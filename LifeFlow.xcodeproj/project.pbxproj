@@ -19,6 +19,12 @@
 		C07FA7C52B01E7D2000B93F3 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C07FA7C42B01E7D2000B93F3 /* SnapKit */; };
 		C07FA7C82B01E851000B93F3 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA7C72B01E851000B93F3 /* Constant.swift */; };
 		C07FA7CA2B01E8C0000B93F3 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C07FA7C92B01E8C0000B93F3 /* .gitignore */; };
+		C07FA7CC2B01E929000B93F3 /* APIManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA7CB2B01E929000B93F3 /* APIManagement.swift */; };
+		C07FA7CF2B01E98C000B93F3 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = C07FA7CE2B01E98C000B93F3 /* Toast */; };
+		C07FA7D22B01E9C3000B93F3 /* RequestJoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA7D12B01E9C3000B93F3 /* RequestJoinModel.swift */; };
+		C07FA7D52B01EA14000B93F3 /* ResponseJoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA7D42B01EA14000B93F3 /* ResponseJoinModel.swift */; };
+		C07FA7D72B01FB51000B93F3 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA7D62B01FB51000B93F3 /* Router.swift */; };
+		C07FA7D92B01FBB6000B93F3 /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA7D82B01FBB6000B93F3 /* Encodable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +37,11 @@
 		C07FA7B22B01E525000B93F3 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		C07FA7C72B01E851000B93F3 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		C07FA7C92B01E8C0000B93F3 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		C07FA7CB2B01E929000B93F3 /* APIManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagement.swift; sourceTree = "<group>"; };
+		C07FA7D12B01E9C3000B93F3 /* RequestJoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestJoinModel.swift; sourceTree = "<group>"; };
+		C07FA7D42B01EA14000B93F3 /* ResponseJoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseJoinModel.swift; sourceTree = "<group>"; };
+		C07FA7D62B01FB51000B93F3 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		C07FA7D82B01FBB6000B93F3 /* Encodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encodable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C07FA7CF2B01E98C000B93F3 /* Toast in Frameworks */,
 				C07FA7BF2B01E6FB000B93F3 /* Alamofire in Frameworks */,
 				C07FA7C22B01E78E000B93F3 /* RxAlamofire in Frameworks */,
 				C07FA7BC2B01E642000B93F3 /* RxSwift in Frameworks */,
@@ -94,6 +106,8 @@
 		C07FA7B42B01E547000B93F3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C07FA7D02B01E9A3000B93F3 /* Request */,
+				C07FA7D32B01E9FE000B93F3 /* Response */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -101,6 +115,8 @@
 		C07FA7B52B01E550000B93F3 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				C07FA7CB2B01E929000B93F3 /* APIManagement.swift */,
+				C07FA7D62B01FB51000B93F3 /* Router.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -108,6 +124,7 @@
 		C07FA7B62B01E558000B93F3 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				C07FA7D82B01FBB6000B93F3 /* Encodable.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -118,6 +135,22 @@
 				C07FA7C72B01E851000B93F3 /* Constant.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		C07FA7D02B01E9A3000B93F3 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				C07FA7D12B01E9C3000B93F3 /* RequestJoinModel.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		C07FA7D32B01E9FE000B93F3 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				C07FA7D42B01EA14000B93F3 /* ResponseJoinModel.swift */,
+			);
+			path = Response;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,6 +175,7 @@
 				C07FA7BE2B01E6FB000B93F3 /* Alamofire */,
 				C07FA7C12B01E78E000B93F3 /* RxAlamofire */,
 				C07FA7C42B01E7D2000B93F3 /* SnapKit */,
+				C07FA7CE2B01E98C000B93F3 /* Toast */,
 			);
 			productName = LifeFlow;
 			productReference = C07FA79A2B01E43C000B93F3 /* LifeFlow.app */;
@@ -176,6 +210,7 @@
 				C07FA7BD2B01E6FB000B93F3 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				C07FA7C02B01E78E000B93F3 /* XCRemoteSwiftPackageReference "RxAlamofire" */,
 				C07FA7C32B01E7D2000B93F3 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				C07FA7CD2B01E98C000B93F3 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 			);
 			productRefGroup = C07FA79B2B01E43C000B93F3 /* Products */;
 			projectDirPath = "";
@@ -204,10 +239,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C07FA7D72B01FB51000B93F3 /* Router.swift in Sources */,
+				C07FA7D92B01FBB6000B93F3 /* Encodable.swift in Sources */,
+				C07FA7D52B01EA14000B93F3 /* ResponseJoinModel.swift in Sources */,
 				C07FA79E2B01E43C000B93F3 /* AppDelegate.swift in Sources */,
 				C07FA7A02B01E43C000B93F3 /* SceneDelegate.swift in Sources */,
+				C07FA7CC2B01E929000B93F3 /* APIManagement.swift in Sources */,
 				C07FA7B32B01E525000B93F3 /* LoginVC.swift in Sources */,
 				C07FA7C82B01E851000B93F3 /* Constant.swift in Sources */,
+				C07FA7D22B01E9C3000B93F3 /* RequestJoinModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,6 +500,14 @@
 				minimumVersion = 5.6.0;
 			};
 		};
+		C07FA7CD2B01E98C000B93F3 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -487,6 +535,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C07FA7C32B01E7D2000B93F3 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		C07FA7CE2B01E98C000B93F3 /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C07FA7CD2B01E98C000B93F3 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
