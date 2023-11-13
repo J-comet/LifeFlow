@@ -17,6 +17,8 @@
 		C07FA7BF2B01E6FB000B93F3 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C07FA7BE2B01E6FB000B93F3 /* Alamofire */; };
 		C07FA7C22B01E78E000B93F3 /* RxAlamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C07FA7C12B01E78E000B93F3 /* RxAlamofire */; };
 		C07FA7C52B01E7D2000B93F3 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C07FA7C42B01E7D2000B93F3 /* SnapKit */; };
+		C07FA7C82B01E851000B93F3 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA7C72B01E851000B93F3 /* Constant.swift */; };
+		C07FA7CA2B01E8C0000B93F3 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C07FA7C92B01E8C0000B93F3 /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 		C07FA7A92B01E43D000B93F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C07FA7AB2B01E43D000B93F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C07FA7B22B01E525000B93F3 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		C07FA7C72B01E851000B93F3 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		C07FA7C92B01E8C0000B93F3 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,15 +68,17 @@
 		C07FA79C2B01E43C000B93F3 /* LifeFlow */ = {
 			isa = PBXGroup;
 			children = (
+				C07FA7AB2B01E43D000B93F3 /* Info.plist */,
 				C07FA79D2B01E43C000B93F3 /* AppDelegate.swift */,
+				C07FA79F2B01E43C000B93F3 /* SceneDelegate.swift */,
 				C07FA7A62B01E43D000B93F3 /* Assets.xcassets */,
 				C07FA7B62B01E558000B93F3 /* Extension */,
-				C07FA7AB2B01E43D000B93F3 /* Info.plist */,
 				C07FA7A82B01E43D000B93F3 /* LaunchScreen.storyboard */,
 				C07FA7B42B01E547000B93F3 /* Model */,
 				C07FA7B52B01E550000B93F3 /* Network */,
-				C07FA79F2B01E43C000B93F3 /* SceneDelegate.swift */,
+				C07FA7C62B01E83C000B93F3 /* Utils */,
 				C07FA7B12B01E508000B93F3 /* View */,
+				C07FA7C92B01E8C0000B93F3 /* .gitignore */,
 			);
 			path = LifeFlow;
 			sourceTree = "<group>";
@@ -104,6 +110,14 @@
 			children = (
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		C07FA7C62B01E83C000B93F3 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				C07FA7C72B01E851000B93F3 /* Constant.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,6 +192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C07FA7AA2B01E43D000B93F3 /* LaunchScreen.storyboard in Resources */,
+				C07FA7CA2B01E8C0000B93F3 /* .gitignore in Resources */,
 				C07FA7A72B01E43D000B93F3 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -192,6 +207,7 @@
 				C07FA79E2B01E43C000B93F3 /* AppDelegate.swift in Sources */,
 				C07FA7A02B01E43C000B93F3 /* SceneDelegate.swift in Sources */,
 				C07FA7B32B01E525000B93F3 /* LoginVC.swift in Sources */,
+				C07FA7C82B01E851000B93F3 /* Constant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
