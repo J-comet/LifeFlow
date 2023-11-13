@@ -11,19 +11,23 @@ import RxSwift
 import Alamofire
 import RxAlamofire
 
+enum APIError: Error {
+    case invlidURL
+    case unknown
+    case statusError
+}
+
 final class LoginVC: UIViewController {
     
-    let bag = DisposeBag()
+    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .cyan
-
-        callRxGet()
         
-
-//        callRxLogin()
-//        callRxJoin()
+        //        callRxGet()
+        callRxLogin()
+        //        callRxJoin()
     }
     
     func callRxGet() {
@@ -39,22 +43,39 @@ final class LoginVC: UIViewController {
             } onError: { error in
                 print(error.localizedDescription)
             }
-            .disposed(by: bag)
+            .disposed(by: disposeBag)
     }
     
     func callRxLogin() {
+
         RxAlamofire
-            .requestJSON(
-                Router.login(
-                    request: RequestLoginModel(email: "aba@aaa.com", password: "1234"))
+            .request(
+                Router.login(request: RequestLoginModel(email: "aba@aaa.com", password: "123")), interceptor: nil
             )
-            .subscribe { (response, data) in
-                print(response.statusCode)
-                print(data)
+            .data()
+            .decode(type: ResponseLoginModel.self, decoder: JSONDecoder())
+            .subscribe { response in
+                print("1111")
+                print(response)
             } onError: { error in
-                print(error.localizedDescription)
+                print("2222")
+                print(error)
             }
-            .disposed(by: bag)
+            .disposed(by: disposeBag)
+        
+        
+        //        RxAlamofire
+        //            .requestJSON(
+        //                Router.login(
+        //                    request: RequestLoginModel(email: "aba@aaa.com", password: "1234"))
+        //            )
+        //            .subscribe { (response, data) in
+        //                print(response.statusCode)
+        //                print(data)
+        //            } onError: { error in
+        //                print(error.localizedDescription)
+        //            }
+        //            .disposed(by: disposeBag)
     }
     
     func callRxJoin() {
@@ -71,7 +92,7 @@ final class LoginVC: UIViewController {
             } onError: { error in
                 print(error.localizedDescription)
             }
-            .disposed(by: bag)
+            .disposed(by: disposeBag)
     }
     
 }
