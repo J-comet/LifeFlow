@@ -19,19 +19,50 @@ final class LoginVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .cyan
 
+        callRxGet()
+        
 
-//        callRxPost()
+//        callRxLogin()
+//        callRxJoin()
     }
     
-    func callRxPost() {
+    func callRxGet() {
+        
+        // Login API 테스트 후에 token, refreshToken 테스트 가능
+        RxAlamofire
+            .requestJSON(
+                Router.content(request: RequestContentModel(authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NTFkNTQyNmQ2MjY1MGU5YTcyNmY1YiIsImlhdCI6MTY5OTg2MzkwMywiZXhwIjoxNjk5ODY1NzAzLCJpc3MiOiJzZXNhY18zIn0.-R65YpsjYTWgYZbTLzNdLdV_gCOUcjkTFP9Ur45XLSc"))
+            )
+            .subscribe { (response, data) in
+                print(response.statusCode)
+                print(data)
+            } onError: { error in
+                print(error.localizedDescription)
+            }
+            .disposed(by: bag)
+    }
+    
+    func callRxLogin() {
+        RxAlamofire
+            .requestJSON(
+                Router.login(
+                    request: RequestLoginModel(email: "aba@aaa.com", password: "1234"))
+            )
+            .subscribe { (response, data) in
+                print(response.statusCode)
+                print(data)
+            } onError: { error in
+                print(error.localizedDescription)
+            }
+            .disposed(by: bag)
+    }
+    
+    func callRxJoin() {
         RxAlamofire
             .requestJSON(
                 Router.join(
                     request:
-                        RequestJoinModel(
-                            email: "aba@aaa.com",
-                            password: "1234", nick: "soso"
-                        )
+                        RequestJoinModel(email: "aba@aaa.com",password: "1234", nick: "soso")
                 )
             )
             .subscribe { (response, data) in
