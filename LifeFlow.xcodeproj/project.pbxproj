@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C01A42B02B02888400317956 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A42AF2B02888400317956 /* Network.swift */; };
+		C01A42B22B02893100317956 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A42B12B02893100317956 /* UserAPI.swift */; };
+		C01A42B62B028E2200317956 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A42B52B028E2200317956 /* UserRepository.swift */; };
+		C01A42B92B0290F100317956 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A42B82B0290F100317956 /* UserService.swift */; };
 		C07FA79E2B01E43C000B93F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA79D2B01E43C000B93F3 /* AppDelegate.swift */; };
 		C07FA7A02B01E43C000B93F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA79F2B01E43C000B93F3 /* SceneDelegate.swift */; };
 		C07FA7A72B01E43D000B93F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C07FA7A62B01E43D000B93F3 /* Assets.xcassets */; };
@@ -35,6 +39,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C01A42AF2B02888400317956 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		C01A42B12B02893100317956 /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
+		C01A42B52B028E2200317956 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		C01A42B82B0290F100317956 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		C07FA79A2B01E43C000B93F3 /* LifeFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LifeFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C07FA79D2B01E43C000B93F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C07FA79F2B01E43C000B93F3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -75,6 +83,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C01A42B32B028D8A00317956 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				C01A42B12B02893100317956 /* UserAPI.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		C01A42B42B028E1900317956 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				C01A42B52B028E2200317956 /* UserRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		C01A42B72B0290DC00317956 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				C01A42B82B0290F100317956 /* UserService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		C07FA7912B01E43C000B93F3 = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +126,7 @@
 		C07FA79C2B01E43C000B93F3 /* LifeFlow */ = {
 			isa = PBXGroup;
 			children = (
+				C07FA7C92B01E8C0000B93F3 /* .gitignore */,
 				C07FA7AB2B01E43D000B93F3 /* Info.plist */,
 				C07FA79D2B01E43C000B93F3 /* AppDelegate.swift */,
 				C07FA79F2B01E43C000B93F3 /* SceneDelegate.swift */,
@@ -104,7 +137,6 @@
 				C07FA7B52B01E550000B93F3 /* Network */,
 				C07FA7C62B01E83C000B93F3 /* Utils */,
 				C07FA7B12B01E508000B93F3 /* View */,
-				C07FA7C92B01E8C0000B93F3 /* .gitignore */,
 			);
 			path = LifeFlow;
 			sourceTree = "<group>";
@@ -130,7 +162,11 @@
 			isa = PBXGroup;
 			children = (
 				C07FA7CB2B01E929000B93F3 /* APIManagement.swift */,
+				C01A42AF2B02888400317956 /* Network.swift */,
 				C07FA7D62B01FB51000B93F3 /* Router.swift */,
+				C01A42B32B028D8A00317956 /* API */,
+				C01A42B42B028E1900317956 /* Repository */,
+				C01A42B72B0290DC00317956 /* Service */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -270,12 +306,16 @@
 				C07FA7A02B01E43C000B93F3 /* SceneDelegate.swift in Sources */,
 				C07FA7CC2B01E929000B93F3 /* APIManagement.swift in Sources */,
 				C07FA7B32B01E525000B93F3 /* LoginVC.swift in Sources */,
+				C01A42B02B02888400317956 /* Network.swift in Sources */,
 				C07FA7C82B01E851000B93F3 /* Constant.swift in Sources */,
 				C07FA7E72B02159B000B93F3 /* ResponseRefreshTokenModel.swift in Sources */,
 				C07FA7E12B0212E4000B93F3 /* ResponseContentModel.swift in Sources */,
 				C07FA7DF2B021241000B93F3 /* RequestContentModel.swift in Sources */,
 				C07FA7D22B01E9C3000B93F3 /* RequestJoinModel.swift in Sources */,
+				C01A42B92B0290F100317956 /* UserService.swift in Sources */,
 				C07FA7DD2B020ED2000B93F3 /* RequestRefreshTokenModel.swift in Sources */,
+				C01A42B62B028E2200317956 /* UserRepository.swift in Sources */,
+				C01A42B22B02893100317956 /* UserAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
