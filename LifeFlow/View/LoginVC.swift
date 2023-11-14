@@ -40,7 +40,8 @@ final class LoginVC: UIViewController {
                     print(data.refreshToken)
                     print(data.token)
                 case .error(let error):
-                    print(error)
+                    print(error.error)
+                    print(error.msg)
                 }
             } onFailure: { owenr, error in
                 print(error)
