@@ -25,26 +25,28 @@ final class LoginVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .cyan
         
-        let request = Network.shared.request(
-            api: UserAPI.login(request: RequestLoginModel(email: "hs@sesac.com", password: "1234")),
-            type: ResponseLoginModel.self
-        )
-            
-            request
-            .debug()
-            .subscribe(with: self) { owenr, result in
-                
-            } onFailure: { owner, error in
-                print(error)
-            }.disposed(by: disposeBag)
-        
-        
-        
-        
+        test()
         
         //        callRxGet()
         //        callRxLogin()
         //        callRxJoin()
+    }
+    
+    func test() {
+        UserRepository.shared.login(email: "hs@sesac.com", password: "1234")
+            .subscribe(with: self) { owenr, result in
+                switch result {
+                case .success(let data):
+                    print(data.refreshToken)
+                    print(data.token)
+                case .error(let error):
+                    print(error)
+                }
+            } onFailure: { owenr, error in
+                print(error)
+            }
+            .disposed(by: disposeBag)
+        
     }
     
     //    func callRxGet() {

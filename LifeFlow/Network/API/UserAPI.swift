@@ -42,15 +42,9 @@ extension UserAPI: Router, URLRequestConvertible {
     var headers: [String:String] {
         switch self {
         case .join:
-            [
-                "Content-Type": "application/json",
-                "SesacKey": APIManagement.key
-            ]
+            Network.defaultHttpHeaders
         case .login:
-            [
-                "Content-Type": "application/json",
-                "SesacKey": APIManagement.key
-            ]
+            Network.defaultHttpHeaders
         }
     }
     
@@ -63,8 +57,8 @@ extension UserAPI: Router, URLRequestConvertible {
         }
     }
     
-    // get,  URLEncoding.default
-    // post, JSONEncoding.default
+    // get = URLEncoding.default
+    // post = JSONEncoding.default
     var encoding: ParameterEncoding? {
         switch self {
         case .join:
