@@ -10,25 +10,6 @@ import Foundation
 import Alamofire
 import RxSwift
 
-//struct ErrorModel {
-//    let code: Int
-//    let message: String = ""
-//    let jsonString: String = ""
-//}
-//
-//enum NetworkResult<T> {
-//    case success(data: T)
-//    case error(errorData: ErrorModel)
-//}
-
-enum NetworkError: Int, Error {
-    case unknown = 600
-    case failDecode = 601           // JSONDecoder 오류 - 서버 구조체 파싱 실패했을 때
-    
-    case emptySesacKey = 420    // SesacKey 값 없음
-    case overRequest = 429      // 과호출
-    case abnormal = 444         // 비정상 호출
-}
 
 final class Network {
     static let shared = Network()
@@ -57,29 +38,42 @@ final class Network {
                         do {
                             let obj = try JSONDecoder().decode(T.self, from: success)
                             single(.success(.success(obj)))
-//                            observer.onNext()
-//                            observer.onCompleted()
+
                         } catch {
-                            print("[JSONDecoder Error] code = \(code)\njsonString = \(jsonString)")
-                            single(.failure(NetworkError.failDecode))
+                            print("<\(self)> : [JSONDecoder Error] code = \(code)\njsonString = \(jsonString)")
+                            single(.failure(CommonError.failDecode))
                         }
                         
                     case .failure:
                         
                         guard let data = response.data, let statusCode = response.response?.statusCode else {
-                            single(.failure(NetworkError.unknown))
+                            single(.failure(CommonError.unknown))
                             return
                         }
                         
                         do {
-                            print("[Failure] code = \(code)\njsonString = \(jsonString)")
-                            if let errorCode = NetworkError(rawValue: statusCode){
-                                let apiError = try JSONDecoder().decode(ResponseAPIError.self, from: data)
+                            print("<\(self)> : [Failure] code = \(code)\njsonString = \(jsonString)")
+                            let apiError = try JSONDecoder().decode(ResponseAPIError.self, from: data)
+                            print("<\(self)> : 에러메시지 = \(apiError.message)")
+                            
+                            switch api.self {
+                            case is TokenAPI:
+                                let errorCode = NetworkError.token(error: TokenError(rawValue: statusCode) ?? .unknown, message: apiError.message)
                                 single(.failure(errorCode))
-//                                single(.success(.error(code: errorCode, msg: apiError.message)))
+
+                            default:
+                                let errorCode = NetworkError.common(error: CommonError(rawValue: statusCode) ?? .unknown, message: apiError.message)
+                                single(.failure(errorCode))
                             }
+                            
+//                            if let errorCode = CommonError(rawValue: statusCode){
+//                                let errorMessage = try JSONDecoder().decode(ResponseAPIError.self, from: data)
+//                                print("에러메시지 = \(errorMessage)")
+//                                single(.failure(errorCode))
+//                            }
+                            
                         } catch {
-                            single(.failure(NetworkError.failDecode))
+                            single(.failure(CommonError.failDecode))
                         }
                         
                     }
