@@ -27,10 +27,6 @@ final class LoginVC: UIViewController {
         
 //        postTest()
         getTest()
-        
-        //        callRxGet()
-        //        callRxLogin()
-        //        callRxJoin()
     }
     
     func postTest() {
