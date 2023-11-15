@@ -10,10 +10,16 @@ import Foundation
 import Alamofire
 import RxSwift
 
-enum NetworkResult<T> {
-    case success(data: T)
-    case failure(error: NetworkError, msg: String)
-}
+//struct ErrorModel {
+//    let code: Int
+//    let message: String = ""
+//    let jsonString: String = ""
+//}
+//
+//enum NetworkResult<T> {
+//    case success(data: T)
+//    case error(errorData: ErrorModel)
+//}
 
 enum NetworkError: Int, Error {
     case unknown = 600
@@ -33,26 +39,32 @@ final class Network {
         "SesacKey": APIManagement.key
     ]
     
-    func request<T: Decodable>(api: Router, type: T.Type) -> Single<NetworkResult<T>> {
+    func request<T: Decodable>(api: Router, type: T.Type) -> Single<Result<T, NetworkError>> {
         return Single.create { single in
             let request = AF.request(api)
                 .validate(statusCode: 200...299)
                 .responseData { response in
+                    
+                    // print용
+                    var jsonString = "JSON 데이터 없음"
+                    if let data = response.data {
+                        jsonString = String(decoding: data, as: UTF8.self)
+                    }
+                    let code = response.response?.statusCode ?? -1
+                    
                     switch response.result {
                     case .success(let success):
-                        
-                        // test
-//                        let str = String(decoding: success, as: UTF8.self)
-//                        print("code = ", response.response?.statusCode)
-//                        print(str)
                         do {
                             let obj = try JSONDecoder().decode(T.self, from: success)
-                            single(.success(.success(data: obj)))
-                        } catch let error {
+                            single(.success(.success(obj)))
+//                            observer.onNext()
+//                            observer.onCompleted()
+                        } catch {
+                            print("[JSONDecoder Error] code = \(code)\njsonString = \(jsonString)")
                             single(.failure(NetworkError.failDecode))
                         }
                         
-                    case .failure(let _):
+                    case .failure:
                         
                         guard let data = response.data, let statusCode = response.response?.statusCode else {
                             single(.failure(NetworkError.unknown))
@@ -60,9 +72,11 @@ final class Network {
                         }
                         
                         do {
-                            if let networkError = NetworkError(rawValue: statusCode){
+                            print("[Failure] code = \(code)\njsonString = \(jsonString)")
+                            if let errorCode = NetworkError(rawValue: statusCode){
                                 let apiError = try JSONDecoder().decode(ResponseAPIError.self, from: data)
-                                single(.success(.failure(error: networkError, msg: apiError.message)))
+                                single(.failure(errorCode))
+//                                single(.success(.error(code: errorCode, msg: apiError.message)))
                             }
                         } catch {
                             single(.failure(NetworkError.failDecode))

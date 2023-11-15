@@ -25,29 +25,27 @@ final class LoginVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .cyan
         
-        test()
+        postTest()
         
         //        callRxGet()
         //        callRxLogin()
         //        callRxJoin()
     }
     
-    func test() {
+    func postTest() {
         UserRepository.shared.login(email: "hs@sesac.com", password: "1234")
-            .subscribe(with: self) { owenr, result in
+            .subscribe { result in
                 switch result {
                 case .success(let data):
                     print(data.refreshToken)
                     print(data.token)
-                case .error(let error):
-                    print(error.error)
-                    print(error.msg)
+                case .failure(let error):
+                    print(error)
                 }
-            } onFailure: { owenr, error in
+            } onFailure: { error in
                 print(error)
             }
             .disposed(by: disposeBag)
-        
     }
     
     //    func callRxGet() {
@@ -66,61 +64,6 @@ final class LoginVC: UIViewController {
     //            .disposed(by: disposeBag)
     //    }
     
-    func callRxLogin() {
-        
-        //        RxAlamofire
-        //            .request(
-        //                Router.login(request: RequestLoginModel(email: "aba@aaa.com", password: "123")), interceptor: nil
-        //            )
-        //            .data()
-        //            .decode(type: ResponseLoginModel.self, decoder: JSONDecoder())
-        //            .subscribe { response in
-        //                print("1111")
-        //                print(response)
-        //            } onError: { error in
-        //                print("2222")
-        //                print(error)
-        //            }
-        //            .disposed(by: disposeBag)
-        
-        /**
-         하나의 Request 로 두개의 Response 를 생성할 수 있을까..?
-         */
-        
-        /**
-         Single Traits 찾아보기
-         */
-        
-        RxAlamofire
-            .requestJSON(
-                UserAPI.login(
-                    request: RequestLoginModel(email: "aba@aaa.com", password: "1234"))
-            )
-            .subscribe { (response, data) in
-                print(response.statusCode)
-                print(data)
-                
-            } onError: { error in
-                print(error.localizedDescription)
-            }
-            .disposed(by: disposeBag)
-    }
     
-    func callRxJoin() {
-        RxAlamofire
-            .requestJSON(
-                UserAPI.join(
-                    request:
-                        RequestJoinModel(email: "aba@aaa.com",password: "1234", nick: "soso")
-                )
-            )
-            .subscribe { (response, data) in
-                print(response.statusCode)
-                print(data)
-            } onError: { error in
-                print(error.localizedDescription)
-            }
-            .disposed(by: disposeBag)
-    }
     
 }
