@@ -46,8 +46,8 @@ final class LoginVC: UIViewController {
     }
     
     func getTest() {
-        let auth = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDAwNjYzMzEsImV4cCI6MTcwMDA2NzIzMSwiaXNzIjoic2VzYWNfMyJ9.dXtY1OyrjHU8K04lQA5z-DvX1q5iz0cFWyTdFel6NH4"
-        let refresh = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NTE5NDRhNmQ2MjY1MGU5YTcyNmUyNiIsImlhdCI6MTcwMDA2NjMzMSwiZXhwIjoxNzAwMDY4MTMxLCJpc3MiOiJzZXNhY18zIn0.X3ab67dg1JEsEI8jN8sXRkUVJlaJQaW7AepbwS6EtQ4"
+        let auth = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDAwNzA5OTgsImV4cCI6MTcwMDA3MTg5OCwiaXNzIjoic2VzYWNfMyJ9.bu_5zT8PdMN1oZjYhhJbbPlNckJHuIJwuZ42lotxzlk"
+        let refresh = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NTE5NDRhNmQ2MjY1MGU5YTcyNmUyNiIsImlhdCI6MTcwMDA3MDk5OCwiZXhwIjoxNzAwMDcyNzk4LCJpc3MiOiJzZXNhY18zIn0.uPzQPz8OlJ0YMaFnDV6sdhOiR1T8Fd0A_0Gkzg31d4k"
         
         TokenRepository.shared.refresh(authorization: auth, refresh: refresh)
             .subscribe { result in
@@ -72,7 +72,7 @@ final class LoginVC: UIViewController {
                     print(message)
                 case .token(let error, let message):
                     print(error)
-                    print(message)
+//                    print(message)
                     
                     switch error {
                     case .unknown, .unableToAuthenticate, 

@@ -28,17 +28,18 @@
 		C07FA7D52B01EA14000B93F3 /* ResponseJoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA7D42B01EA14000B93F3 /* ResponseJoinModel.swift */; };
 		C07FA7D72B01FB51000B93F3 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA7D62B01FB51000B93F3 /* Router.swift */; };
 		C07FA7D92B01FBB6000B93F3 /* Encodable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA7D82B01FBB6000B93F3 /* Encodable+Extension.swift */; };
-		C07FA7DD2B020ED2000B93F3 /* RequestRefreshTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA7DC2B020ED2000B93F3 /* RequestRefreshTokenModel.swift */; };
 		C07FA7DF2B021241000B93F3 /* RequestContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA7DE2B021241000B93F3 /* RequestContentModel.swift */; };
 		C07FA7E12B0212E4000B93F3 /* ResponseContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA7E02B0212E4000B93F3 /* ResponseContentModel.swift */; };
 		C07FA7E32B0213C7000B93F3 /* RequestLoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA7E22B0213C7000B93F3 /* RequestLoginModel.swift */; };
 		C07FA7E52B021548000B93F3 /* ResponseLoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA7E42B021548000B93F3 /* ResponseLoginModel.swift */; };
-		C07FA7E72B02159B000B93F3 /* ResponseRefreshTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA7E62B02159B000B93F3 /* ResponseRefreshTokenModel.swift */; };
 		C07FA7E92B027169000B93F3 /* Observable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA7E82B027169000B93F3 /* Observable+Extension.swift */; };
 		C0DAE9212B038E5D0067279A /* ResponseAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9202B038E5D0067279A /* ResponseAPIError.swift */; };
 		C0DAE9342B0503F40067279A /* TokenAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9332B0503F40067279A /* TokenAPI.swift */; };
 		C0DAE9382B0512E70067279A /* TokenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9372B0512E70067279A /* TokenRepository.swift */; };
 		C0DAE93A2B0521900067279A /* NetworkErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9392B0521900067279A /* NetworkErrorType.swift */; };
+		C0DAE9412B0534D20067279A /* TokenEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9402B0534D20067279A /* TokenEntity.swift */; };
+		C0DAE9432B0534E40067279A /* TokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9422B0534E40067279A /* TokenRequest.swift */; };
+		C0DAE9452B0534F20067279A /* TokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9442B0534F20067279A /* TokenResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,17 +60,18 @@
 		C07FA7D42B01EA14000B93F3 /* ResponseJoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseJoinModel.swift; sourceTree = "<group>"; };
 		C07FA7D62B01FB51000B93F3 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		C07FA7D82B01FBB6000B93F3 /* Encodable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extension.swift"; sourceTree = "<group>"; };
-		C07FA7DC2B020ED2000B93F3 /* RequestRefreshTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestRefreshTokenModel.swift; sourceTree = "<group>"; };
 		C07FA7DE2B021241000B93F3 /* RequestContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestContentModel.swift; sourceTree = "<group>"; };
 		C07FA7E02B0212E4000B93F3 /* ResponseContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseContentModel.swift; sourceTree = "<group>"; };
 		C07FA7E22B0213C7000B93F3 /* RequestLoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLoginModel.swift; sourceTree = "<group>"; };
 		C07FA7E42B021548000B93F3 /* ResponseLoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseLoginModel.swift; sourceTree = "<group>"; };
-		C07FA7E62B02159B000B93F3 /* ResponseRefreshTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseRefreshTokenModel.swift; sourceTree = "<group>"; };
 		C07FA7E82B027169000B93F3 /* Observable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Extension.swift"; sourceTree = "<group>"; };
 		C0DAE9202B038E5D0067279A /* ResponseAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseAPIError.swift; sourceTree = "<group>"; };
 		C0DAE9332B0503F40067279A /* TokenAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenAPI.swift; sourceTree = "<group>"; };
 		C0DAE9372B0512E70067279A /* TokenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRepository.swift; sourceTree = "<group>"; };
 		C0DAE9392B0521900067279A /* NetworkErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorType.swift; sourceTree = "<group>"; };
+		C0DAE9402B0534D20067279A /* TokenEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenEntity.swift; sourceTree = "<group>"; };
+		C0DAE9422B0534E40067279A /* TokenRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRequest.swift; sourceTree = "<group>"; };
+		C0DAE9442B0534F20067279A /* TokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,7 +199,6 @@
 				C07FA7DE2B021241000B93F3 /* RequestContentModel.swift */,
 				C07FA7D12B01E9C3000B93F3 /* RequestJoinModel.swift */,
 				C07FA7E22B0213C7000B93F3 /* RequestLoginModel.swift */,
-				C07FA7DC2B020ED2000B93F3 /* RequestRefreshTokenModel.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -208,7 +209,6 @@
 				C07FA7E02B0212E4000B93F3 /* ResponseContentModel.swift */,
 				C07FA7D42B01EA14000B93F3 /* ResponseJoinModel.swift */,
 				C07FA7E42B021548000B93F3 /* ResponseLoginModel.swift */,
-				C07FA7E62B02159B000B93F3 /* ResponseRefreshTokenModel.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -224,6 +224,7 @@
 		C0DAE93E2B0531280067279A /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				C0DAE9402B0534D20067279A /* TokenEntity.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -231,6 +232,8 @@
 		C0DAE93F2B05313A0067279A /* Token */ = {
 			isa = PBXGroup;
 			children = (
+				C0DAE9422B0534E40067279A /* TokenRequest.swift */,
+				C0DAE9442B0534F20067279A /* TokenResponse.swift */,
 			);
 			path = Token;
 			sourceTree = "<group>";
@@ -331,17 +334,18 @@
 				C07FA7D52B01EA14000B93F3 /* ResponseJoinModel.swift in Sources */,
 				C07FA7E32B0213C7000B93F3 /* RequestLoginModel.swift in Sources */,
 				C07FA79E2B01E43C000B93F3 /* AppDelegate.swift in Sources */,
+				C0DAE9412B0534D20067279A /* TokenEntity.swift in Sources */,
 				C0DAE9382B0512E70067279A /* TokenRepository.swift in Sources */,
 				C07FA7A02B01E43C000B93F3 /* SceneDelegate.swift in Sources */,
 				C07FA7CC2B01E929000B93F3 /* APIManagement.swift in Sources */,
 				C07FA7B32B01E525000B93F3 /* LoginVC.swift in Sources */,
 				C01A42B02B02888400317956 /* Network.swift in Sources */,
+				C0DAE9452B0534F20067279A /* TokenResponse.swift in Sources */,
 				C07FA7C82B01E851000B93F3 /* Constant.swift in Sources */,
-				C07FA7E72B02159B000B93F3 /* ResponseRefreshTokenModel.swift in Sources */,
 				C07FA7E12B0212E4000B93F3 /* ResponseContentModel.swift in Sources */,
 				C07FA7DF2B021241000B93F3 /* RequestContentModel.swift in Sources */,
+				C0DAE9432B0534E40067279A /* TokenRequest.swift in Sources */,
 				C07FA7D22B01E9C3000B93F3 /* RequestJoinModel.swift in Sources */,
-				C07FA7DD2B020ED2000B93F3 /* RequestRefreshTokenModel.swift in Sources */,
 				C01A42B62B028E2200317956 /* UserRepository.swift in Sources */,
 				C01A42B22B02893100317956 /* UserAPI.swift in Sources */,
 			);

@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 
 enum TokenAPI {
-    case refresh(request: RequestRefreshTokenModel)
+    case refresh(request: TokenRequest)
 }
 
 extension TokenAPI: Router, URLRequestConvertible {
