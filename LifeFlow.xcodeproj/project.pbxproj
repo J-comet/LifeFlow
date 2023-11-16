@@ -24,14 +24,8 @@
 		C07FA7CA2B01E8C0000B93F3 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C07FA7C92B01E8C0000B93F3 /* .gitignore */; };
 		C07FA7CC2B01E929000B93F3 /* APIManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA7CB2B01E929000B93F3 /* APIManagement.swift */; };
 		C07FA7CF2B01E98C000B93F3 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = C07FA7CE2B01E98C000B93F3 /* Toast */; };
-		C07FA7D22B01E9C3000B93F3 /* RequestJoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA7D12B01E9C3000B93F3 /* RequestJoinModel.swift */; };
-		C07FA7D52B01EA14000B93F3 /* ResponseJoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA7D42B01EA14000B93F3 /* ResponseJoinModel.swift */; };
 		C07FA7D72B01FB51000B93F3 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA7D62B01FB51000B93F3 /* Router.swift */; };
 		C07FA7D92B01FBB6000B93F3 /* Encodable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA7D82B01FBB6000B93F3 /* Encodable+Extension.swift */; };
-		C07FA7DF2B021241000B93F3 /* RequestContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA7DE2B021241000B93F3 /* RequestContentModel.swift */; };
-		C07FA7E12B0212E4000B93F3 /* ResponseContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA7E02B0212E4000B93F3 /* ResponseContentModel.swift */; };
-		C07FA7E32B0213C7000B93F3 /* RequestLoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA7E22B0213C7000B93F3 /* RequestLoginModel.swift */; };
-		C07FA7E52B021548000B93F3 /* ResponseLoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA7E42B021548000B93F3 /* ResponseLoginModel.swift */; };
 		C07FA7E92B027169000B93F3 /* Observable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA7E82B027169000B93F3 /* Observable+Extension.swift */; };
 		C0DAE9212B038E5D0067279A /* ResponseAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9202B038E5D0067279A /* ResponseAPIError.swift */; };
 		C0DAE9342B0503F40067279A /* TokenAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9332B0503F40067279A /* TokenAPI.swift */; };
@@ -40,6 +34,13 @@
 		C0DAE9412B0534D20067279A /* TokenEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9402B0534D20067279A /* TokenEntity.swift */; };
 		C0DAE9432B0534E40067279A /* TokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9422B0534E40067279A /* TokenRequest.swift */; };
 		C0DAE9452B0534F20067279A /* TokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9442B0534F20067279A /* TokenResponse.swift */; };
+		C0DAE9472B059AC40067279A /* JoinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9462B059AC40067279A /* JoinRequest.swift */; };
+		C0DAE94B2B059B4A0067279A /* JoinResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE94A2B059B4A0067279A /* JoinResponse.swift */; };
+		C0DAE94D2B059B880067279A /* JoinEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE94C2B059B880067279A /* JoinEntity.swift */; };
+		C0DAE9502B059C200067279A /* CreatEntityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE94F2B059C200067279A /* CreatEntityProtocol.swift */; };
+		C0DAE9852B05FC8F0067279A /* LoginEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9842B05FC8F0067279A /* LoginEntity.swift */; };
+		C0DAE9872B05FC9C0067279A /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9862B05FC9C0067279A /* LoginResponse.swift */; };
+		C0DAE9892B05FD5C0067279A /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9882B05FD5C0067279A /* LoginRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,14 +57,8 @@
 		C07FA7C72B01E851000B93F3 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		C07FA7C92B01E8C0000B93F3 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		C07FA7CB2B01E929000B93F3 /* APIManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagement.swift; sourceTree = "<group>"; };
-		C07FA7D12B01E9C3000B93F3 /* RequestJoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestJoinModel.swift; sourceTree = "<group>"; };
-		C07FA7D42B01EA14000B93F3 /* ResponseJoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseJoinModel.swift; sourceTree = "<group>"; };
 		C07FA7D62B01FB51000B93F3 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		C07FA7D82B01FBB6000B93F3 /* Encodable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extension.swift"; sourceTree = "<group>"; };
-		C07FA7DE2B021241000B93F3 /* RequestContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestContentModel.swift; sourceTree = "<group>"; };
-		C07FA7E02B0212E4000B93F3 /* ResponseContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseContentModel.swift; sourceTree = "<group>"; };
-		C07FA7E22B0213C7000B93F3 /* RequestLoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLoginModel.swift; sourceTree = "<group>"; };
-		C07FA7E42B021548000B93F3 /* ResponseLoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseLoginModel.swift; sourceTree = "<group>"; };
 		C07FA7E82B027169000B93F3 /* Observable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Extension.swift"; sourceTree = "<group>"; };
 		C0DAE9202B038E5D0067279A /* ResponseAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseAPIError.swift; sourceTree = "<group>"; };
 		C0DAE9332B0503F40067279A /* TokenAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenAPI.swift; sourceTree = "<group>"; };
@@ -72,6 +67,13 @@
 		C0DAE9402B0534D20067279A /* TokenEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenEntity.swift; sourceTree = "<group>"; };
 		C0DAE9422B0534E40067279A /* TokenRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRequest.swift; sourceTree = "<group>"; };
 		C0DAE9442B0534F20067279A /* TokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenResponse.swift; sourceTree = "<group>"; };
+		C0DAE9462B059AC40067279A /* JoinRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRequest.swift; sourceTree = "<group>"; };
+		C0DAE94A2B059B4A0067279A /* JoinResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinResponse.swift; sourceTree = "<group>"; };
+		C0DAE94C2B059B880067279A /* JoinEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinEntity.swift; sourceTree = "<group>"; };
+		C0DAE94F2B059C200067279A /* CreatEntityProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatEntityProtocol.swift; sourceTree = "<group>"; };
+		C0DAE9842B05FC8F0067279A /* LoginEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEntity.swift; sourceTree = "<group>"; };
+		C0DAE9862B05FC9C0067279A /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
+		C0DAE9882B05FD5C0067279A /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 		C07FA79C2B01E43C000B93F3 /* LifeFlow */ = {
 			isa = PBXGroup;
 			children = (
+				C0DAE94E2B059BF80067279A /* Protocol */,
 				C07FA7C92B01E8C0000B93F3 /* .gitignore */,
 				C07FA7AB2B01E43D000B93F3 /* Info.plist */,
 				C07FA79D2B01E43C000B93F3 /* AppDelegate.swift */,
@@ -154,11 +157,10 @@
 		C07FA7B42B01E547000B93F3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C0DAE93E2B0531280067279A /* Entity */,
-				C0DAE93D2B0531220067279A /* DTO */,
-				C07FA7D02B01E9A3000B93F3 /* Request */,
-				C07FA7D32B01E9FE000B93F3 /* Response */,
 				C0DAE9202B038E5D0067279A /* ResponseAPIError.swift */,
+				C0DAE93D2B0531220067279A /* DTO */,
+				C0DAE93E2B0531280067279A /* Entity */,
+				C07FA7D02B01E9A3000B93F3 /* Request */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -196,27 +198,18 @@
 		C07FA7D02B01E9A3000B93F3 /* Request */ = {
 			isa = PBXGroup;
 			children = (
-				C07FA7DE2B021241000B93F3 /* RequestContentModel.swift */,
-				C07FA7D12B01E9C3000B93F3 /* RequestJoinModel.swift */,
-				C07FA7E22B0213C7000B93F3 /* RequestLoginModel.swift */,
+				C0DAE9492B059ACD0067279A /* User */,
+				C0DAE9482B059AC60067279A /* Token */,
 			);
 			path = Request;
-			sourceTree = "<group>";
-		};
-		C07FA7D32B01E9FE000B93F3 /* Response */ = {
-			isa = PBXGroup;
-			children = (
-				C07FA7E02B0212E4000B93F3 /* ResponseContentModel.swift */,
-				C07FA7D42B01EA14000B93F3 /* ResponseJoinModel.swift */,
-				C07FA7E42B021548000B93F3 /* ResponseLoginModel.swift */,
-			);
-			path = Response;
 			sourceTree = "<group>";
 		};
 		C0DAE93D2B0531220067279A /* DTO */ = {
 			isa = PBXGroup;
 			children = (
-				C0DAE93F2B05313A0067279A /* Token */,
+				C0DAE94A2B059B4A0067279A /* JoinResponse.swift */,
+				C0DAE9862B05FC9C0067279A /* LoginResponse.swift */,
+				C0DAE9442B0534F20067279A /* TokenResponse.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -224,18 +217,36 @@
 		C0DAE93E2B0531280067279A /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				C0DAE94C2B059B880067279A /* JoinEntity.swift */,
+				C0DAE9842B05FC8F0067279A /* LoginEntity.swift */,
 				C0DAE9402B0534D20067279A /* TokenEntity.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
 		};
-		C0DAE93F2B05313A0067279A /* Token */ = {
+		C0DAE9482B059AC60067279A /* Token */ = {
 			isa = PBXGroup;
 			children = (
 				C0DAE9422B0534E40067279A /* TokenRequest.swift */,
-				C0DAE9442B0534F20067279A /* TokenResponse.swift */,
 			);
 			path = Token;
+			sourceTree = "<group>";
+		};
+		C0DAE9492B059ACD0067279A /* User */ = {
+			isa = PBXGroup;
+			children = (
+				C0DAE9462B059AC40067279A /* JoinRequest.swift */,
+				C0DAE9882B05FD5C0067279A /* LoginRequest.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		C0DAE94E2B059BF80067279A /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				C0DAE94F2B059C200067279A /* CreatEntityProtocol.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,28 +335,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C07FA7E52B021548000B93F3 /* ResponseLoginModel.swift in Sources */,
+				C0DAE9892B05FD5C0067279A /* LoginRequest.swift in Sources */,
 				C0DAE93A2B0521900067279A /* NetworkErrorType.swift in Sources */,
+				C0DAE9502B059C200067279A /* CreatEntityProtocol.swift in Sources */,
+				C0DAE9472B059AC40067279A /* JoinRequest.swift in Sources */,
 				C0DAE9212B038E5D0067279A /* ResponseAPIError.swift in Sources */,
 				C07FA7D72B01FB51000B93F3 /* Router.swift in Sources */,
+				C0DAE9872B05FC9C0067279A /* LoginResponse.swift in Sources */,
 				C07FA7E92B027169000B93F3 /* Observable+Extension.swift in Sources */,
+				C0DAE94B2B059B4A0067279A /* JoinResponse.swift in Sources */,
 				C0DAE9342B0503F40067279A /* TokenAPI.swift in Sources */,
 				C07FA7D92B01FBB6000B93F3 /* Encodable+Extension.swift in Sources */,
-				C07FA7D52B01EA14000B93F3 /* ResponseJoinModel.swift in Sources */,
-				C07FA7E32B0213C7000B93F3 /* RequestLoginModel.swift in Sources */,
 				C07FA79E2B01E43C000B93F3 /* AppDelegate.swift in Sources */,
+				C0DAE94D2B059B880067279A /* JoinEntity.swift in Sources */,
 				C0DAE9412B0534D20067279A /* TokenEntity.swift in Sources */,
 				C0DAE9382B0512E70067279A /* TokenRepository.swift in Sources */,
+				C0DAE9852B05FC8F0067279A /* LoginEntity.swift in Sources */,
 				C07FA7A02B01E43C000B93F3 /* SceneDelegate.swift in Sources */,
 				C07FA7CC2B01E929000B93F3 /* APIManagement.swift in Sources */,
 				C07FA7B32B01E525000B93F3 /* LoginVC.swift in Sources */,
 				C01A42B02B02888400317956 /* Network.swift in Sources */,
 				C0DAE9452B0534F20067279A /* TokenResponse.swift in Sources */,
 				C07FA7C82B01E851000B93F3 /* Constant.swift in Sources */,
-				C07FA7E12B0212E4000B93F3 /* ResponseContentModel.swift in Sources */,
-				C07FA7DF2B021241000B93F3 /* RequestContentModel.swift in Sources */,
 				C0DAE9432B0534E40067279A /* TokenRequest.swift in Sources */,
-				C07FA7D22B01E9C3000B93F3 /* RequestJoinModel.swift in Sources */,
 				C01A42B62B028E2200317956 /* UserRepository.swift in Sources */,
 				C01A42B22B02893100317956 /* UserAPI.swift in Sources */,
 			);

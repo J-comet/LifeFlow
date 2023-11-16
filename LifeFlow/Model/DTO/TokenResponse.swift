@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct TokenResponse: Decodable {
+struct TokenResponse: Decodable, CreatEntityProtocol {
     let token: String?
     
-    func toTokenEntity() -> TokenEntity {
+    func toEntity() -> TokenEntity {
         TokenEntity(token: token ?? "")
     }
 }

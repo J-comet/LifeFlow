@@ -25,24 +25,54 @@ final class LoginVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .cyan
         
-//        postTest()
-        getTest()
+        postTest()
+//        getTest()
     }
     
     func postTest() {
-        UserRepository.shared.login(email: "hs@sesac.com", password: "1234")
+        let id = "6555c4716d62650e9a728114"
+        UserRepository.shared.join(email: "k111@k@.com", password: "1234", nick: "닉닉")
             .subscribe { result in
                 switch result {
                 case .success(let data):
-                    print(data.refreshToken)
-                    print(data.token)
+                    print("11111")
+                    print(data.id)
                 case .failure(let error):
-                    print(error)
+                    print("2222")
+                    switch error {
+                    case .common(let error, let message):
+                        print(self," ",error)
+                        print(message)
+                    case .token(let error, let message):
+                        print(self," ",error)
+                        print(message)
+                    }
                 }
             } onFailure: { error in
-                print(error)
+                let networkError = error as! NetworkError
+                switch networkError {
+                case .common(let error, let message):
+                    print("1234")
+                    print(error)
+                    print(message)
+                case .token(let error, let message):
+                    print("5678")
+                    print(error)
+                    print(message)
+                    
+                    switch error {
+                    case .unknown, .unableToAuthenticate,
+                            .forbidden, .server:
+                        print(error.showMessage)
+                    case .notExpire:
+                        print("API 계속 진행시키기")
+                    case .needRefresh:
+                        print("토큰 리프레시 필요")
+                    }
+                }
             }
             .disposed(by: disposeBag)
+
     }
     
     func getTest() {

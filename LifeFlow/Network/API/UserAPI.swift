@@ -11,8 +11,8 @@ import RxSwift
 import Alamofire
 
 enum UserAPI {
-    case join(request: RequestJoinModel)                    // 회원가입
-    case login(request: RequestLoginModel)                  // 로그인
+    case join(request: JoinRequest)                    // 회원가입
+    case login(request: LoginRequest)                  // 로그인
 }
 
 extension UserAPI: Router, URLRequestConvertible {

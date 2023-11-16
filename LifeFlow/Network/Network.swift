@@ -58,11 +58,11 @@ final class Network {
                             
                             switch api.self {
                             case is TokenAPI:
-                                let errorCode = NetworkError.token(error: TokenError(rawValue: statusCode) ?? .unknown, message: apiError.message)
+                                let errorCode = NetworkError.token(error: TokenError(rawValue: statusCode) ?? .unknown, message: apiError.message ?? "apiError.message 파싱할 수 없음")
                                 single(.failure(errorCode))
 
                             default:
-                                let errorCode = NetworkError.common(error: CommonError(rawValue: statusCode) ?? .unknown, message: apiError.message)
+                                let errorCode = NetworkError.common(error: CommonError(rawValue: statusCode) ?? .unknown, message: apiError.message ?? "apiError.message 파싱할 수 없음")
                                 single(.failure(errorCode))
                             }
                             

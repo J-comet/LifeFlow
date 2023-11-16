@@ -9,40 +9,40 @@ import Foundation
 
 import RxSwift
 
-protocol TokenRepositoryProtocol {
-    func refresh(authorization: String, refresh: String) -> Single<Result<TokenEntity, NetworkError>>
-}
-
-final class TokenRepository: TokenRepositoryProtocol {
+final class TokenRepository {
     static let shared = TokenRepository()
     private init() {}
     
-//    private let api = TokenAPI.self
+    //    private let api = TokenAPI.self
     
-//    func refresh(authorization: String, refresh: String) -> Single<Result<TokenResponse, NetworkError>> {
-//        return Network.shared.request(
-//            api: api.refresh(request: TokenRequest(authorization: authorization, refresh: refresh)),
-//            type: TokenResponse.self
-//        )
-//    }
-
+    //    func refresh(authorization: String, refresh: String) -> Single<Result<TokenResponse, NetworkError>> {
+    //        return Network.shared.request(
+    //            api: api.refresh(request: TokenRequest(authorization: authorization, refresh: refresh)),
+    //            type: TokenResponse.self
+    //        )
+    //    }
+    
     func refresh(authorization: String, refresh: String) -> Single<Result<TokenEntity, NetworkError>> {
         return Single.create { single in
             let request = Network.shared.request(
-                api: TokenAPI.refresh(request: TokenRequest(authorization: authorization, refresh: refresh)),
+                api: TokenAPI.refresh(
+                    request: TokenRequest(authorization: authorization, refresh: refresh)
+                ),
                 type: TokenResponse.self
             )
                 .subscribe { result in
                     switch result {
                     case .success(let response):
-                        single(.success(.success(response.toTokenEntity())))
+                        single(.success(.success(response.toEntity())))
                     case .failure(let error):
                         single(.failure(error))
                     }
                 } onFailure: { error in
                     single(.failure(error))
                 }
-            return Disposables.create()
+            return Disposables.create() {
+                request.dispose()
+            }
         }
     }
     
