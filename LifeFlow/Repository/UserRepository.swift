@@ -11,8 +11,6 @@ import RxSwift
 
 
 final class UserRepository {
-    static let shared = UserRepository()
-    private init() {}
     
     func login(email: String, password: String) -> Single<Result<LoginEntity, Error>> {
         return Single.create { single in

@@ -1,15 +1,15 @@
 //
 //  BaseView.swift
-//  MailplugAssignment
+//  LifeFlow
 //
-//  Created by 장혜성 on 2023/11/16.
+//  Created by 장혜성 on 2023/11/17.
 //
 
 import UIKit
 
 class BaseView: UIView {
 
-    var viewBackgroundColor: UIColor { .mpBackground }
+    var viewBackgroundColor: UIColor { .background }
     
     override init(frame: CGRect) {
         super.init(frame: frame)

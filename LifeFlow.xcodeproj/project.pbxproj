@@ -16,6 +16,12 @@
 		C02C06C42B07469B00E9AB93 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02C06BF2B07469B00E9AB93 /* BaseView.swift */; };
 		C02C06C52B07469B00E9AB93 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02C06C02B07469B00E9AB93 /* BaseCollectionViewCell.swift */; };
 		C02C06C72B0746AC00E9AB93 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02C06C62B0746AC00E9AB93 /* BaseTableViewCell.swift */; };
+		C02C06CD2B07475F00E9AB93 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02C06CC2B07475F00E9AB93 /* LoginView.swift */; };
+		C02C06CF2B07476700E9AB93 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02C06CE2B07476700E9AB93 /* LoginViewModel.swift */; };
+		C02C06D22B074CCB00E9AB93 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02C06D12B074CCB00E9AB93 /* ViewModelType.swift */; };
+		C02C06D52B074F2C00E9AB93 /* BasicTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02C06D32B074F2C00E9AB93 /* BasicTextField.swift */; };
+		C02C06D62B074F2C00E9AB93 /* BasicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02C06D42B074F2C00E9AB93 /* BasicButton.swift */; };
+		C02C06D92B0751A800E9AB93 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = C02C06D82B0751A800E9AB93 /* Then */; };
 		C07FA79E2B01E43C000B93F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA79D2B01E43C000B93F3 /* AppDelegate.swift */; };
 		C07FA7A02B01E43C000B93F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA79F2B01E43C000B93F3 /* SceneDelegate.swift */; };
 		C07FA7A72B01E43D000B93F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C07FA7A62B01E43D000B93F3 /* Assets.xcassets */; };
@@ -58,6 +64,11 @@
 		C02C06BF2B07469B00E9AB93 /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		C02C06C02B07469B00E9AB93 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		C02C06C62B0746AC00E9AB93 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		C02C06CC2B07475F00E9AB93 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		C02C06CE2B07476700E9AB93 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		C02C06D12B074CCB00E9AB93 /* ViewModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
+		C02C06D32B074F2C00E9AB93 /* BasicTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicTextField.swift; sourceTree = "<group>"; };
+		C02C06D42B074F2C00E9AB93 /* BasicButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicButton.swift; sourceTree = "<group>"; };
 		C07FA79A2B01E43C000B93F3 /* LifeFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LifeFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C07FA79D2B01E43C000B93F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C07FA79F2B01E43C000B93F3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +105,7 @@
 				C07FA7CF2B01E98C000B93F3 /* Toast in Frameworks */,
 				C07FA7BF2B01E6FB000B93F3 /* Alamofire in Frameworks */,
 				C07FA7C22B01E78E000B93F3 /* RxAlamofire in Frameworks */,
+				C02C06D92B0751A800E9AB93 /* Then in Frameworks */,
 				C07FA7BC2B01E642000B93F3 /* RxSwift in Frameworks */,
 				C07FA7BA2B01E642000B93F3 /* RxCocoa in Frameworks */,
 				C07FA7C52B01E7D2000B93F3 /* SnapKit in Frameworks */,
@@ -134,6 +146,32 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		C02C06CA2B07471500E9AB93 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				C02C06CB2B07475300E9AB93 /* Login */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		C02C06CB2B07475300E9AB93 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				C07FA7B22B01E525000B93F3 /* LoginVC.swift */,
+				C02C06CC2B07475F00E9AB93 /* LoginView.swift */,
+				C02C06CE2B07476700E9AB93 /* LoginViewModel.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		C02C06D02B0747E700E9AB93 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				C07FA7A62B01E43D000B93F3 /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		C07FA7912B01E43C000B93F3 = {
 			isa = PBXGroup;
 			children = (
@@ -157,7 +195,6 @@
 				C07FA7AB2B01E43D000B93F3 /* Info.plist */,
 				C07FA79D2B01E43C000B93F3 /* AppDelegate.swift */,
 				C07FA79F2B01E43C000B93F3 /* SceneDelegate.swift */,
-				C07FA7A62B01E43D000B93F3 /* Assets.xcassets */,
 				C02C06BB2B07465700E9AB93 /* Base */,
 				C07FA7B62B01E558000B93F3 /* Extension */,
 				C07FA7A82B01E43D000B93F3 /* LaunchScreen.storyboard */,
@@ -165,18 +202,21 @@
 				C07FA7B52B01E550000B93F3 /* Network */,
 				C0DAE94E2B059BF80067279A /* Protocol */,
 				C01A42B42B028E1900317956 /* Repository */,
+				C02C06D02B0747E700E9AB93 /* Resource */,
+				C02C06CA2B07471500E9AB93 /* Scene */,
 				C07FA7C62B01E83C000B93F3 /* Utils */,
-				C07FA7B12B01E508000B93F3 /* View */,
+				C07FA7B12B01E508000B93F3 /* CustomView */,
 			);
 			path = LifeFlow;
 			sourceTree = "<group>";
 		};
-		C07FA7B12B01E508000B93F3 /* View */ = {
+		C07FA7B12B01E508000B93F3 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
-				C07FA7B22B01E525000B93F3 /* LoginVC.swift */,
+				C02C06D42B074F2C00E9AB93 /* BasicButton.swift */,
+				C02C06D32B074F2C00E9AB93 /* BasicTextField.swift */,
 			);
-			path = View;
+			path = CustomView;
 			sourceTree = "<group>";
 		};
 		C07FA7B42B01E547000B93F3 /* Model */ = {
@@ -267,6 +307,7 @@
 		C0DAE94E2B059BF80067279A /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				C02C06D12B074CCB00E9AB93 /* ViewModelType.swift */,
 				C0DAE94F2B059C200067279A /* CreatEntityProtocol.swift */,
 			);
 			path = Protocol;
@@ -295,6 +336,7 @@
 				C07FA7C12B01E78E000B93F3 /* RxAlamofire */,
 				C07FA7C42B01E7D2000B93F3 /* SnapKit */,
 				C07FA7CE2B01E98C000B93F3 /* Toast */,
+				C02C06D82B0751A800E9AB93 /* Then */,
 			);
 			productName = LifeFlow;
 			productReference = C07FA79A2B01E43C000B93F3 /* LifeFlow.app */;
@@ -330,6 +372,7 @@
 				C07FA7C02B01E78E000B93F3 /* XCRemoteSwiftPackageReference "RxAlamofire" */,
 				C07FA7C32B01E7D2000B93F3 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				C07FA7CD2B01E98C000B93F3 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				C02C06D72B0751A800E9AB93 /* XCRemoteSwiftPackageReference "Then" */,
 			);
 			productRefGroup = C07FA79B2B01E43C000B93F3 /* Products */;
 			projectDirPath = "";
@@ -369,8 +412,10 @@
 				C0DAE94B2B059B4A0067279A /* JoinResponse.swift in Sources */,
 				C0DAE9342B0503F40067279A /* TokenAPI.swift in Sources */,
 				C02C06C32B07469B00E9AB93 /* BaseCellProtocol.swift in Sources */,
+				C02C06D22B074CCB00E9AB93 /* ViewModelType.swift in Sources */,
 				C02C06C42B07469B00E9AB93 /* BaseView.swift in Sources */,
 				C07FA7D92B01FBB6000B93F3 /* Encodable+Extension.swift in Sources */,
+				C02C06D62B074F2C00E9AB93 /* BasicButton.swift in Sources */,
 				C07FA79E2B01E43C000B93F3 /* AppDelegate.swift in Sources */,
 				C0DAE94D2B059B880067279A /* JoinEntity.swift in Sources */,
 				C0DAE9412B0534D20067279A /* TokenEntity.swift in Sources */,
@@ -378,13 +423,16 @@
 				C0DAE9852B05FC8F0067279A /* LoginEntity.swift in Sources */,
 				C07FA7A02B01E43C000B93F3 /* SceneDelegate.swift in Sources */,
 				C07FA7CC2B01E929000B93F3 /* APIManagement.swift in Sources */,
+				C02C06CF2B07476700E9AB93 /* LoginViewModel.swift in Sources */,
 				C07FA7B32B01E525000B93F3 /* LoginVC.swift in Sources */,
 				C02C06C52B07469B00E9AB93 /* BaseCollectionViewCell.swift in Sources */,
+				C02C06CD2B07475F00E9AB93 /* LoginView.swift in Sources */,
 				C01A42B02B02888400317956 /* Network.swift in Sources */,
 				C0DAE9452B0534F20067279A /* TokenResponse.swift in Sources */,
 				C02C06C12B07469B00E9AB93 /* BaseViewController.swift in Sources */,
 				C07FA7C82B01E851000B93F3 /* Constant.swift in Sources */,
 				C0DAE9432B0534E40067279A /* TokenRequest.swift in Sources */,
+				C02C06D52B074F2C00E9AB93 /* BasicTextField.swift in Sources */,
 				C01A42B62B028E2200317956 /* UserRepository.swift in Sources */,
 				C02C06C72B0746AC00E9AB93 /* BaseTableViewCell.swift in Sources */,
 				C01A42B22B02893100317956 /* UserAPI.swift in Sources */,
@@ -608,6 +656,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		C02C06D72B0751A800E9AB93 /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 		C07FA7B82B01E642000B93F3 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift";
@@ -651,6 +707,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C02C06D82B0751A800E9AB93 /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C02C06D72B0751A800E9AB93 /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
 		C07FA7B92B01E642000B93F3 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C07FA7B82B01E642000B93F3 /* XCRemoteSwiftPackageReference "RxSwift" */;
