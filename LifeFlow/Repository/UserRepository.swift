@@ -14,11 +14,9 @@ final class UserRepository {
     static let shared = UserRepository()
     private init() {}
     
-//    private let api = UserAPI.self
-    
-    func login(email: String, password: String) -> Single<Result<LoginEntity, NetworkError>> {
+    func login(email: String, password: String) -> Single<Result<LoginEntity, Error>> {
         return Single.create { single in
-            let request = Network.shared.request(
+            let request = Network.shared.singleRequest(
                 api: UserAPI.login(request: LoginRequest(email: email, password: password)),
                 type: LoginResponse.self
             )
@@ -27,20 +25,18 @@ final class UserRepository {
                     case .success(let response):
                         single(.success(.success(response.toEntity())))
                     case .failure(let error):
-                        single(.failure(error))
+                        single(.success(.failure(error)))
                     }
-                } onFailure: { error in
-                    single(.failure(error))
                 }
             return Disposables.create() {
                 request.dispose()
             }
         }
     }
-    
-    func join(email: String, password: String, nick: String) -> Single<Result<JoinEntity, NetworkError>> {
+
+    func join(email: String, password: String, nick: String) -> Single<Result<JoinEntity, Error>> {
         return Single.create { single in
-            let request = Network.shared.request(
+            let request = Network.shared.singleRequest(
                 api: UserAPI.join(request: JoinRequest(email: email, password: password, nick: nick)),
                 type: JoinResponse.self
             )
@@ -49,10 +45,8 @@ final class UserRepository {
                     case .success(let response):
                         single(.success(.success(response.toEntity())))
                     case .failure(let error):
-                        single(.failure(error))
+                        single(.success(.failure(error)))
                     }
-                } onFailure: { error in
-                    single(.failure(error))
                 }
             return Disposables.create() {
                 request.dispose()

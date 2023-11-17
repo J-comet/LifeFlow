@@ -9,4 +9,14 @@ import Foundation
 
 struct Constant {
     static let productName = Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as! String
+    
+    
+    struct Network {
+        static let defaultHttpHeaders = [
+            "Content-Type": "application/json",
+            "SesacKey": APIManagement.key
+        ]
+    }
+    
+    
 }

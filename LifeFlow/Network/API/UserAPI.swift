@@ -42,9 +42,9 @@ extension UserAPI: Router, URLRequestConvertible {
     var headers: [String:String] {
         switch self {
         case .join:
-            Network.defaultHttpHeaders
+            Constant.Network.defaultHttpHeaders
         case .login:
-            Network.defaultHttpHeaders
+            Constant.Network.defaultHttpHeaders
         }
     }
     

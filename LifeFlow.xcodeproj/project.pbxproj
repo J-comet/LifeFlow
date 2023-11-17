@@ -26,8 +26,7 @@
 		C07FA7CF2B01E98C000B93F3 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = C07FA7CE2B01E98C000B93F3 /* Toast */; };
 		C07FA7D72B01FB51000B93F3 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA7D62B01FB51000B93F3 /* Router.swift */; };
 		C07FA7D92B01FBB6000B93F3 /* Encodable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA7D82B01FBB6000B93F3 /* Encodable+Extension.swift */; };
-		C07FA7E92B027169000B93F3 /* Observable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA7E82B027169000B93F3 /* Observable+Extension.swift */; };
-		C0DAE9212B038E5D0067279A /* ResponseAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9202B038E5D0067279A /* ResponseAPIError.swift */; };
+		C0DAE9212B038E5D0067279A /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9202B038E5D0067279A /* ErrorResponse.swift */; };
 		C0DAE9342B0503F40067279A /* TokenAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9332B0503F40067279A /* TokenAPI.swift */; };
 		C0DAE9382B0512E70067279A /* TokenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9372B0512E70067279A /* TokenRepository.swift */; };
 		C0DAE93A2B0521900067279A /* NetworkErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9392B0521900067279A /* NetworkErrorType.swift */; };
@@ -59,8 +58,7 @@
 		C07FA7CB2B01E929000B93F3 /* APIManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagement.swift; sourceTree = "<group>"; };
 		C07FA7D62B01FB51000B93F3 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		C07FA7D82B01FBB6000B93F3 /* Encodable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extension.swift"; sourceTree = "<group>"; };
-		C07FA7E82B027169000B93F3 /* Observable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Extension.swift"; sourceTree = "<group>"; };
-		C0DAE9202B038E5D0067279A /* ResponseAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseAPIError.swift; sourceTree = "<group>"; };
+		C0DAE9202B038E5D0067279A /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		C0DAE9332B0503F40067279A /* TokenAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenAPI.swift; sourceTree = "<group>"; };
 		C0DAE9372B0512E70067279A /* TokenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRepository.swift; sourceTree = "<group>"; };
 		C0DAE9392B0521900067279A /* NetworkErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorType.swift; sourceTree = "<group>"; };
@@ -138,6 +136,7 @@
 				C07FA7A62B01E43D000B93F3 /* Assets.xcassets */,
 				C07FA7B62B01E558000B93F3 /* Extension */,
 				C07FA7A82B01E43D000B93F3 /* LaunchScreen.storyboard */,
+				C01A42B42B028E1900317956 /* Repository */,
 				C07FA7B42B01E547000B93F3 /* Model */,
 				C07FA7B52B01E550000B93F3 /* Network */,
 				C07FA7C62B01E83C000B93F3 /* Utils */,
@@ -157,7 +156,7 @@
 		C07FA7B42B01E547000B93F3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C0DAE9202B038E5D0067279A /* ResponseAPIError.swift */,
+				C0DAE9202B038E5D0067279A /* ErrorResponse.swift */,
 				C0DAE93D2B0531220067279A /* DTO */,
 				C0DAE93E2B0531280067279A /* Entity */,
 				C07FA7D02B01E9A3000B93F3 /* Request */,
@@ -173,7 +172,6 @@
 				C0DAE9392B0521900067279A /* NetworkErrorType.swift */,
 				C07FA7D62B01FB51000B93F3 /* Router.swift */,
 				C01A42B32B028D8A00317956 /* API */,
-				C01A42B42B028E1900317956 /* Repository */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -182,7 +180,6 @@
 			isa = PBXGroup;
 			children = (
 				C07FA7D82B01FBB6000B93F3 /* Encodable+Extension.swift */,
-				C07FA7E82B027169000B93F3 /* Observable+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -339,10 +336,9 @@
 				C0DAE93A2B0521900067279A /* NetworkErrorType.swift in Sources */,
 				C0DAE9502B059C200067279A /* CreatEntityProtocol.swift in Sources */,
 				C0DAE9472B059AC40067279A /* JoinRequest.swift in Sources */,
-				C0DAE9212B038E5D0067279A /* ResponseAPIError.swift in Sources */,
+				C0DAE9212B038E5D0067279A /* ErrorResponse.swift in Sources */,
 				C07FA7D72B01FB51000B93F3 /* Router.swift in Sources */,
 				C0DAE9872B05FC9C0067279A /* LoginResponse.swift in Sources */,
-				C07FA7E92B027169000B93F3 /* Observable+Extension.swift in Sources */,
 				C0DAE94B2B059B4A0067279A /* JoinResponse.swift in Sources */,
 				C0DAE9342B0503F40067279A /* TokenAPI.swift in Sources */,
 				C07FA7D92B01FBB6000B93F3 /* Encodable+Extension.swift in Sources */,
