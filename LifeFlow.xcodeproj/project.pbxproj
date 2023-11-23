@@ -41,7 +41,6 @@
 		C0DAE9212B038E5D0067279A /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9202B038E5D0067279A /* ErrorResponse.swift */; };
 		C0DAE9342B0503F40067279A /* TokenAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9332B0503F40067279A /* TokenAPI.swift */; };
 		C0DAE9382B0512E70067279A /* TokenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9372B0512E70067279A /* TokenRepository.swift */; };
-		C0DAE93A2B0521900067279A /* NetworkErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9392B0521900067279A /* NetworkErrorType.swift */; };
 		C0DAE9412B0534D20067279A /* TokenEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9402B0534D20067279A /* TokenEntity.swift */; };
 		C0DAE9432B0534E40067279A /* TokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9422B0534E40067279A /* TokenRequest.swift */; };
 		C0DAE9452B0534F20067279A /* TokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9442B0534F20067279A /* TokenResponse.swift */; };
@@ -84,7 +83,6 @@
 		C0DAE9202B038E5D0067279A /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		C0DAE9332B0503F40067279A /* TokenAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenAPI.swift; sourceTree = "<group>"; };
 		C0DAE9372B0512E70067279A /* TokenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRepository.swift; sourceTree = "<group>"; };
-		C0DAE9392B0521900067279A /* NetworkErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorType.swift; sourceTree = "<group>"; };
 		C0DAE9402B0534D20067279A /* TokenEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenEntity.swift; sourceTree = "<group>"; };
 		C0DAE9422B0534E40067279A /* TokenRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRequest.swift; sourceTree = "<group>"; };
 		C0DAE9442B0534F20067279A /* TokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenResponse.swift; sourceTree = "<group>"; };
@@ -235,7 +233,6 @@
 			children = (
 				C07FA7CB2B01E929000B93F3 /* APIManagement.swift */,
 				C01A42AF2B02888400317956 /* Network.swift */,
-				C0DAE9392B0521900067279A /* NetworkErrorType.swift */,
 				C07FA7D62B01FB51000B93F3 /* Router.swift */,
 				C01A42B32B028D8A00317956 /* API */,
 			);
@@ -402,7 +399,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0DAE9892B05FD5C0067279A /* LoginRequest.swift in Sources */,
-				C0DAE93A2B0521900067279A /* NetworkErrorType.swift in Sources */,
 				C0DAE9502B059C200067279A /* CreatEntityProtocol.swift in Sources */,
 				C0DAE9472B059AC40067279A /* JoinRequest.swift in Sources */,
 				C0DAE9212B038E5D0067279A /* ErrorResponse.swift in Sources */,

@@ -18,20 +18,6 @@ final class LoginViewModel: BaseViewModel {
         self.userRepository = userRepository
     }
     
-    struct Input {
-        let email: ControlProperty<String>      // emailTextField.rx.text
-        let password: ControlProperty<String>   // pwTextField.rx.text
-        let loginTap: ControlEvent<Void>            // loginButton.rx.tap
-    }
-    
-    struct Output {
-        
-    }
-    
-    func transform(input: Input) -> Output {
-        return Output()
-    }
-    
     func login(email: String, password: String) {
         userRepository.login(email: email, password: password)
             .subscribe(with: self) { owner, result in

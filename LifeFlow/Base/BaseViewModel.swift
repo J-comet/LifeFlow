@@ -9,9 +9,9 @@ import Foundation
 
 import RxSwift
 
-typealias BaseViewModel = ViewModel & ViewModelType
+//typealias BaseViewModel = ViewModel & ViewModelType
 
-class ViewModel {
+class BaseViewModel {
     
     var disposeBag = DisposeBag()
 
