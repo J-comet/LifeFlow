@@ -55,7 +55,7 @@ extension SignupVC {
             .withLatestFrom(output.signUpData)
             .bind(with: self) { owner, signUpData in
                 if signUpData.isAvailable {
-                    owner.viewModel.join(
+                    owner.viewModel.checkExistEmail(
                         email: signUpData.email,
                         password: signUpData.password,
                         nickname: signUpData.nickname
@@ -85,8 +85,9 @@ extension SignupVC {
         output.joinSuccess
             .bind(with: self) { owner, value in
                 dump(value)
-                owner.showToast(msg: "가입 완료")
-                owner.navigationController?.popViewController(animated: true)
+//                owner.showAlert(title: "", msg: "가입 완료", ok: "확인") { _ in
+//                    owner.navigationController?.popViewController(animated: true)
+//                }
             }
             .disposed(by: viewModel.disposeBag)
     }

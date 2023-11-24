@@ -17,17 +17,19 @@ final class UserRepository {
             Network.shared.request(
                 api: UserAPI.login(request: LoginRequest(email: email, password: password)),
                 type: LoginResponse.self
-            ) { result, statusCode in
-                
+            ).subscribe { result in
                 switch result {
-                case .success(let success):
-                    single(.success(.success(success.toEntity())))
-                case .failure:
-                    guard let error = UserLoginError(rawValue: statusCode) else { return }
-                    single(.success(.failure(error)))
+                case .success(let result):
+                    switch result {
+                    case .success(let value):
+                        single(.success(.success(value.toEntity())))
+                    case .failure(let error):
+                        single(.success(.failure(UserLoginError(rawValue: error.statusCode) ?? .commonError)))
+                    }
+                case .failure(let _):
+                    single(.success(.failure(UserLoginError.commonError)))
                 }
             }
-            return Disposables.create()
         }
     }
     
@@ -36,17 +38,57 @@ final class UserRepository {
             Network.shared.request(
                 api: UserAPI.join(request: JoinRequest(email: email, password: password, nick: nick)),
                 type: JoinResponse.self
-            ) { result, statusCode in
-                
+            ).subscribe { result in
                 switch result {
-                case .success(let success):
-                    single(.success(.success(success.toEntity())))
-                case .failure:
-                    guard let error = UserJoinError(rawValue: statusCode) else { return }
-                    single(.success(.failure(error)))
+                case .success(let result):
+                    switch result {
+                    case .success(let value):
+                        single(.success(.success(value.toEntity())))
+                    case .failure(let error):
+                        single(.success(.failure(UserJoinError(rawValue: error.statusCode) ?? .commonError)))
+                    }
+                case .failure(let _):
+                    single(.success(.failure(UserJoinError.commonError)))
                 }
             }
-            return Disposables.create()
+        }
+    }
+    
+    func chkEmail(email: String) -> Single<Result<CommonMessageResponse, UserChkDuplicateEmailError>> {
+        return Single.create { single in
+            Network.shared.request(
+                api: UserAPI.chkDuplicateEmail(request: DuplicateEmailRequest(email: email)),
+                type: CommonMessageResponse.self
+            ).subscribe { result in
+                switch result {
+                case .success(let result):
+                    switch result {
+                    case .success(let value):
+                        single(.success(.success(value)))
+                    case .failure(let error):
+                        single(.success(.failure(UserChkDuplicateEmailError(rawValue: error.statusCode) ?? .commonError)))
+                    }
+                case .failure(let _):
+                    single(.success(.failure(UserChkDuplicateEmailError.commonError)))
+                }
+            }
+        }
+    }
+}
+
+enum UserLoginError: Int, Error {
+    case commonError = 600          // API 공통으로 받을 수 있는 응답코드 - Message 파싱해서 사용하기
+    case missingValue = 400         // 필수값 누락
+    case notFoundAccount = 401       // 가입되지 않았거나, 이메일, 비밀번호 잘못 입력했을 때
+    
+    var message: String {
+        switch self {
+        case .commonError:
+            "다시 시도해주세요"
+        case .missingValue:
+            "필수 정보가 누락되었어요"
+        case .notFoundAccount:
+            "이메일과 비밀번호를 확인해주세요"
         }
     }
 }
@@ -68,8 +110,19 @@ enum UserJoinError: Int, Error {
     }
 }
 
-enum UserLoginError: Int, Error {
+enum UserChkDuplicateEmailError: Int, Error {
     case commonError = 600          // API 공통으로 받을 수 있는 응답코드 - Message 파싱해서 사용하기
     case missingValue = 400         // 필수값 누락
-    case notFoundAccount = 401       // 가입되지 않았거나, 이메일, 비밀번호 잘못 입력했을 때
+    case notAvailable = 409         // 사용불가한 이메일
+    
+    var message: String {
+        switch self {
+        case .commonError:
+            "다시 시도해주세요"
+        case .missingValue:
+            "필수 정보가 누락되었어요"
+        case .notAvailable:
+            "사용할 수 없는 이메일이에요"
+        }
+    }
 }

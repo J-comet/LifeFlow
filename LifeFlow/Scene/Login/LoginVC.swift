@@ -17,6 +17,26 @@ final class LoginVC: BaseViewController<LoginView, LoginViewModel> {
         super.viewDidLoad()
         bindViewModel()
         configureVC()
+        
+//        repository.login(email: "z@z.com", password: "zzzzzzzz2")
+//            .subscribe { response in
+//                switch response {
+//                case .success(let result):
+//                    switch result {
+//                    case .success(let data):
+//                        print("111111")
+//                        print(data)
+//                    case .failure(let loginError):
+//                        print("2222222")
+//                        self.showAlert(title: "", msg: loginError.message, ok: "확인")
+//                        print(loginError.localizedDescription)
+//                    }
+//                case .failure(let error):
+//                    print("33333333")
+//                    print(error.localizedDescription)
+//                }
+//            }
+//            .disposed(by: viewModel.disposeBag)
     }
     
     // TODO: 회원가입 통신까지 끝낸 후 로그인 기능 개발

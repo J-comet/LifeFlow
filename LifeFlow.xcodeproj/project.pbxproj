@@ -54,7 +54,9 @@
 		C0B07F242B10DC0900350ECC /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B07F232B10DC0900350ECC /* UIViewController+Extension.swift */; };
 		C0B07F272B10DD3000350ECC /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C0B07F262B10DD3000350ECC /* IQKeyboardManagerSwift */; };
 		C0B07F292B1108B200350ECC /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B07F282B1108B200350ECC /* LoadingIndicator.swift */; };
-		C0DAE9212B038E5D0067279A /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9202B038E5D0067279A /* ErrorResponse.swift */; };
+		C0B07F2B2B110C8100350ECC /* DuplicateEmailRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B07F2A2B110C8100350ECC /* DuplicateEmailRequest.swift */; };
+		C0B07F2F2B111D9900350ECC /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B07F2E2B111D9900350ECC /* NetworkError.swift */; };
+		C0DAE9212B038E5D0067279A /* CommonMessageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9202B038E5D0067279A /* CommonMessageResponse.swift */; };
 		C0DAE9342B0503F40067279A /* TokenAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9332B0503F40067279A /* TokenAPI.swift */; };
 		C0DAE9382B0512E70067279A /* TokenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9372B0512E70067279A /* TokenRepository.swift */; };
 		C0DAE9412B0534D20067279A /* TokenEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9402B0534D20067279A /* TokenEntity.swift */; };
@@ -111,7 +113,9 @@
 		C0B07F212B10DB5D00350ECC /* ValidateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateManager.swift; sourceTree = "<group>"; };
 		C0B07F232B10DC0900350ECC /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		C0B07F282B1108B200350ECC /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
-		C0DAE9202B038E5D0067279A /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
+		C0B07F2A2B110C8100350ECC /* DuplicateEmailRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuplicateEmailRequest.swift; sourceTree = "<group>"; };
+		C0B07F2E2B111D9900350ECC /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		C0DAE9202B038E5D0067279A /* CommonMessageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonMessageResponse.swift; sourceTree = "<group>"; };
 		C0DAE9332B0503F40067279A /* TokenAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenAPI.swift; sourceTree = "<group>"; };
 		C0DAE9372B0512E70067279A /* TokenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRepository.swift; sourceTree = "<group>"; };
 		C0DAE9402B0534D20067279A /* TokenEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenEntity.swift; sourceTree = "<group>"; };
@@ -288,7 +292,7 @@
 		C07FA7B42B01E547000B93F3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C0DAE9202B038E5D0067279A /* ErrorResponse.swift */,
+				C0DAE9202B038E5D0067279A /* CommonMessageResponse.swift */,
 				C0DAE93D2B0531220067279A /* DTO */,
 				C0DAE93E2B0531280067279A /* Entity */,
 				C07FA7D02B01E9A3000B93F3 /* Request */,
@@ -301,6 +305,7 @@
 			children = (
 				C07FA7CB2B01E929000B93F3 /* APIManagement.swift */,
 				C01A42AF2B02888400317956 /* Network.swift */,
+				C0B07F2E2B111D9900350ECC /* NetworkError.swift */,
 				C07FA7D62B01FB51000B93F3 /* Router.swift */,
 				C01A42B32B028D8A00317956 /* API */,
 			);
@@ -335,12 +340,28 @@
 			path = Request;
 			sourceTree = "<group>";
 		};
-		C0DAE93D2B0531220067279A /* DTO */ = {
+		C0B07F2C2B110D8E00350ECC /* User */ = {
 			isa = PBXGroup;
 			children = (
 				C0DAE94A2B059B4A0067279A /* JoinResponse.swift */,
 				C0DAE9862B05FC9C0067279A /* LoginResponse.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		C0B07F2D2B110D9C00350ECC /* Token */ = {
+			isa = PBXGroup;
+			children = (
 				C0DAE9442B0534F20067279A /* TokenResponse.swift */,
+			);
+			path = Token;
+			sourceTree = "<group>";
+		};
+		C0DAE93D2B0531220067279A /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				C0B07F2D2B110D9C00350ECC /* Token */,
+				C0B07F2C2B110D8E00350ECC /* User */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -368,6 +389,7 @@
 			children = (
 				C0DAE9462B059AC40067279A /* JoinRequest.swift */,
 				C0DAE9882B05FD5C0067279A /* LoginRequest.swift */,
+				C0B07F2A2B110C8100350ECC /* DuplicateEmailRequest.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -484,7 +506,7 @@
 				C0DAE9502B059C200067279A /* CreatEntityProtocol.swift in Sources */,
 				C0DAE9472B059AC40067279A /* JoinRequest.swift in Sources */,
 				C0729D6F2B10942900CEA6F0 /* UITextField+Extension.swift in Sources */,
-				C0DAE9212B038E5D0067279A /* ErrorResponse.swift in Sources */,
+				C0DAE9212B038E5D0067279A /* CommonMessageResponse.swift in Sources */,
 				C07FA7D72B01FB51000B93F3 /* Router.swift in Sources */,
 				C0DAE9872B05FC9C0067279A /* LoginResponse.swift in Sources */,
 				C02C06C22B07469B00E9AB93 /* BaseViewModel.swift in Sources */,
@@ -501,6 +523,7 @@
 				C0DAE9412B0534D20067279A /* TokenEntity.swift in Sources */,
 				C0DAE9382B0512E70067279A /* TokenRepository.swift in Sources */,
 				C0729D692B10892500CEA6F0 /* SignupVC.swift in Sources */,
+				C0B07F2F2B111D9900350ECC /* NetworkError.swift in Sources */,
 				C0DAE9852B05FC8F0067279A /* LoginEntity.swift in Sources */,
 				C07FA7A02B01E43C000B93F3 /* SceneDelegate.swift in Sources */,
 				C07FA7CC2B01E929000B93F3 /* APIManagement.swift in Sources */,
@@ -508,6 +531,7 @@
 				C07FA7B32B01E525000B93F3 /* LoginVC.swift in Sources */,
 				C02C06C52B07469B00E9AB93 /* BaseCollectionViewCell.swift in Sources */,
 				C02C06CD2B07475F00E9AB93 /* LoginView.swift in Sources */,
+				C0B07F2B2B110C8100350ECC /* DuplicateEmailRequest.swift in Sources */,
 				C01A42B02B02888400317956 /* Network.swift in Sources */,
 				C0DAE9452B0534F20067279A /* TokenResponse.swift in Sources */,
 				C02C06C12B07469B00E9AB93 /* BaseViewController.swift in Sources */,

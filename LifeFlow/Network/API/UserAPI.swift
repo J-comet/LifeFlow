@@ -11,8 +11,9 @@ import RxSwift
 import Alamofire
 
 enum UserAPI {
-    case join(request: JoinRequest)                    // 회원가입
-    case login(request: LoginRequest)                  // 로그인
+    case chkDuplicateEmail(request: DuplicateEmailRequest)   // 중복이메일 체크
+    case join(request: JoinRequest)                         // 회원가입
+    case login(request: LoginRequest)                       // 로그인
 }
 
 extension UserAPI: Router, URLRequestConvertible {
@@ -23,6 +24,8 @@ extension UserAPI: Router, URLRequestConvertible {
     
     var path: String {
         switch self {
+        case .chkDuplicateEmail:
+            "validation/email"
         case .join:
             "join"
         case .login:
@@ -32,6 +35,8 @@ extension UserAPI: Router, URLRequestConvertible {
     
     var method: HTTPMethod {
         switch self {
+        case .chkDuplicateEmail:
+                .post
         case .join:
                 .post
         case .login:
@@ -40,16 +45,13 @@ extension UserAPI: Router, URLRequestConvertible {
     }
     
     var headers: [String:String] {
-        switch self {
-        case .join:
-            Constant.Network.defaultHttpHeaders
-        case .login:
-            Constant.Network.defaultHttpHeaders
-        }
+        Constant.Network.defaultHttpHeaders
     }
     
     var parameters: [String: String]? {
         switch self {
+        case .chkDuplicateEmail(let request):
+            request.toEncodable
         case .join(let request):
             request.toEncodable
         case .login(let request):
@@ -61,6 +63,8 @@ extension UserAPI: Router, URLRequestConvertible {
     // post = JSONEncoding.default
     var encoding: ParameterEncoding? {
         switch self {
+        case .chkDuplicateEmail:
+            JSONEncoding.default
         case .join:
             JSONEncoding.default
         case .login:

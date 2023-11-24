@@ -16,17 +16,19 @@ final class TokenRepository {
             Network.shared.request(
                 api: TokenAPI.refresh(request: TokenRequest(authorization: authorization, refresh: refresh)),
                 type: TokenResponse.self
-            ) { result, statusCode in
-                
+            ).subscribe { result in
                 switch result {
-                case .success(let success):
-                    single(.success(.success(success.toEntity())))
-                case .failure:
-                    guard let tokenError = TokenError(rawValue: statusCode) else { return }
-                    single(.success(.failure(tokenError)))
+                case .success(let result):
+                    switch result {
+                    case .success(let value):
+                        single(.success(.success(value.toEntity())))
+                    case .failure(let error):
+                        single(.success(.failure(TokenError(rawValue: error.statusCode) ?? .commonError)))
+                    }
+                case .failure(let _):
+                    single(.success(.failure(TokenError.commonError)))
                 }
             }
-            return Disposables.create()
         }
     }
 }

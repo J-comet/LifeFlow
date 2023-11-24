@@ -87,16 +87,29 @@ final class SignupViewModel: BaseViewModel {
         )
     }
     
-    func join(email: String, password: String, nickname: String) {
+    func checkExistEmail(email: String, password: String, nickname: String) {
         isLoading.accept(true)
+        userRepository.chkEmail(email: email)
+            .subscribe(with: self) { owner, result in
+                switch result {
+                case .success(let data):
+                    owner.join(email: email, password: password, nickname: nickname)
+                case .failure(let error):
+                    owner.errorMessage.accept(error.message)
+                    owner.isLoading.accept(false)
+                }
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    private func join(email: String, password: String, nickname: String) {
         userRepository.join(email: email, password: password, nick: nickname)
             .subscribe(with: self) { owner, result in
                 switch result {
                 case .success(let data):
                     owner.joinSuccess.accept(data)
                 case .failure(let error):
-                    let message = UserJoinError(rawValue: error.rawValue)?.message ?? ""
-                    owner.errorMessage.accept(message)
+                    owner.errorMessage.accept(error.message)
                 }
                 owner.isLoading.accept(false)
             }

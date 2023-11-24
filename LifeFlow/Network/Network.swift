@@ -14,30 +14,43 @@ final class Network {
     static let shared = Network()
     private init() { }
     
+    static let commonErrorCode = 600
+    
     func request<T: Decodable>(
         api: Router,
-        type: T.Type,
-        completion: @escaping (Result<T, Error>, Int) -> Void
-    ) {
-        AF.request(
-            api
-        ).responseDecodable(of: T.self) { response in
-            
-            var jsonString = "JSON 데이터 없음"
-            if let data = response.data {
-                jsonString = String(decoding: data, as: UTF8.self)
+        type: T.Type
+    ) -> Single<Result<T, NetworkError>> {
+        return Single.create { single -> Disposable in
+            AF.request(api)
+                .validate()
+                .responseDecodable(of: T.self) { response in
+                
+                var jsonString = "JSON 데이터 없음"
+                if let data = response.data {
+                    jsonString = String(decoding: data, as: UTF8.self)
+                }
+                let statusCode = response.response?.statusCode ?? -1
+                let errorMessage = "<\(self)> : [JSONDecoder Error] code = \(statusCode)\njsonString = \(jsonString)"
+                
+                switch response.result {
+                case .success(let data):
+                    if statusCode == 200 {
+                        single(.success(.success(data)))
+                    } else {
+//                        let error = NSError(domain: errorMessage, code: statusCode)
+                        let error = NetworkError(statusCode: statusCode)
+                        single(.success(.failure(error)))
+                    }
+                    
+                case .failure(let _):
+//                    let error = NSError(domain: errorMessage, code: statusCode)
+                    let error = NetworkError(statusCode: statusCode)
+                    single(.success(.failure(error)))
+                }
             }
-            let statusCode = response.response?.statusCode ?? -1
-            let errorMessage = "<\(self)> : [JSONDecoder Error] code = \(statusCode)\njsonString = \(jsonString)"
-            
-            switch response.result {
-            case .success(let data):
-                completion(.success(data), 200)
-            case .failure(let error):
-                let statusCode = response.response?.statusCode
-                completion(.failure(error), statusCode ?? 600)
-            }
+            return Disposables.create()
         }
+        
     }
     
     
