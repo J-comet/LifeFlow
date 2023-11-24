@@ -84,10 +84,9 @@ extension SignupVC {
         
         output.joinSuccess
             .bind(with: self) { owner, value in
-                dump(value)
-//                owner.showAlert(title: "", msg: "가입 완료", ok: "확인") { _ in
-//                    owner.navigationController?.popViewController(animated: true)
-//                }
+                owner.showAlert(title: "", msg: "가입 완료", ok: "확인") { _ in
+                    owner.navigationController?.popViewController(animated: true)
+                }
             }
             .disposed(by: viewModel.disposeBag)
     }

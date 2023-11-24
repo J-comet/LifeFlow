@@ -38,7 +38,6 @@ final class SignupViewModel: BaseViewModel {
     }
     
     let joinSuccess = PublishRelay<JoinEntity>()
-    let errorMessage = PublishRelay<String>()
     
     func transform(input: Input) -> Output {
 

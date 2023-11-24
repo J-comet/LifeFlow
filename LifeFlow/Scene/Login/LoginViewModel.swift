@@ -18,16 +18,24 @@ final class LoginViewModel: BaseViewModel {
         self.userRepository = userRepository
     }
     
+    let loginSuccess = PublishRelay<LoginEntity>()
+    
+    let email = BehaviorRelay(value: "")
+    let password = BehaviorRelay(value: "")
+    
+    let inputData = 0
+    
     func login(email: String, password: String) {
+        isLoading.accept(true)
         userRepository.login(email: email, password: password)
             .subscribe(with: self) { owner, result in
                 switch result {
                 case.success(let data):
-                    print(data.refreshToken)
-                    print(data.token)
+                    owner.loginSuccess.accept(data)
                 case .failure(let error):
-                    print(error)
+                    owner.errorMessage.accept(error.message)
                 }
+                owner.isLoading.accept(false)
             }
             .disposed(by: disposeBag)
     }

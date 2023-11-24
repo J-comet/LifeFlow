@@ -14,7 +14,8 @@ import RxCocoa
 
 class BaseViewModel {
     
-    var isLoading = PublishRelay<Bool>()
+    let isLoading = PublishRelay<Bool>()
+    let errorMessage = PublishRelay<String>()
     
     var disposeBag = DisposeBag()
 

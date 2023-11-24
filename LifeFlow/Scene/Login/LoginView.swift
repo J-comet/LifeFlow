@@ -32,7 +32,7 @@ final class LoginView: BaseView {
     }
     
     let pwTextFiled = BasicTextField(placeholderText: "비밀번호를 입력해주세요").then {
-        $0.textContentType = .password
+        $0.isSecureTextEntry = true
     }
     
     let signupButton = UIButton().then {

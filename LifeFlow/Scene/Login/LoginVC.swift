@@ -17,55 +17,115 @@ final class LoginVC: BaseViewController<LoginView, LoginViewModel> {
         super.viewDidLoad()
         bindViewModel()
         configureVC()
-        
-//        repository.login(email: "z@z.com", password: "zzzzzzzz2")
-//            .subscribe { response in
-//                switch response {
-//                case .success(let result):
-//                    switch result {
-//                    case .success(let data):
-//                        print("111111")
-//                        print(data)
-//                    case .failure(let loginError):
-//                        print("2222222")
-//                        self.showAlert(title: "", msg: loginError.message, ok: "확인")
-//                        print(loginError.localizedDescription)
-//                    }
-//                case .failure(let error):
-//                    print("33333333")
-//                    print(error.localizedDescription)
-//                }
-//            }
-//            .disposed(by: viewModel.disposeBag)
     }
     
-    // TODO: 회원가입 통신까지 끝낸 후 로그인 기능 개발
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        mainView.emailTextFiled.resignFirstResponder()
+        mainView.pwTextFiled.resignFirstResponder()
+    }
+    
     func bindViewModel() {
-
-        let isEmailVaild = mainView.emailTextFiled
+        
+        mainView.emailTextFiled
             .rx
             .text
             .orEmpty
-            .map { $0.count >= 8 } // 이메일 정규식 검사하기
-            .distinctUntilChanged()
+            .bind(with: self) { owner, email in
+                owner.viewModel.email.accept(email)
+            }
+            .disposed(by: viewModel.disposeBag)
         
-        let isPasswordValid = mainView.pwTextFiled.rx.text.orEmpty
-            .map { $0.count >= 8 }
-            .distinctUntilChanged()
-            
-        let isLoginButtonEnabled = Observable.combineLatest(isEmailVaild, isPasswordValid) { email, password in
-            email && password
-        }
-            
-        let isButtonEnabled = Observable.combineLatest(isPasswordValid, isEmailVaild) { $0 && $1 }
-
-        isButtonEnabled
-            .bind(to: mainView.loginButton.rx.isEnabled)
+        mainView.pwTextFiled
+            .rx
+            .text
+            .orEmpty
+            .bind(with: self) { owner, password in
+                owner.viewModel.password.accept(password)
+            }
+            .disposed(by: viewModel.disposeBag)
+        
+        let inputData = Driver.combineLatest(viewModel.email.asDriver(), viewModel.password.asDriver()) { (email: $0, password: $1) }
+        
+        mainView.loginButton
+            .rx
+            .tap
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
+            .withLatestFrom(inputData)
+            .bind(with: self) { owner, data in
+                owner.mainView.emailTextFiled.resignFirstResponder()
+                owner.mainView.pwTextFiled.resignFirstResponder()
+                
+                if data.email.isEmpty || data.password.isEmpty {
+                    owner.showToast(msg: "이메일과 비밀번호를 입력해주세요")
+                } else {
+                    owner.viewModel.login(email: data.email, password: data.password)
+                }
+            }
+            .disposed(by: viewModel.disposeBag)
+        
+        viewModel.errorMessage
+            .bind(with: self) { owner, message in
+                owner.showToast(msg: message)
+            }
+            .disposed(by: viewModel.disposeBag)
+        
+        mainView.emailTextFiled
+            .rx
+            .controlEvent(.editingDidEndOnExit)
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
+            .withLatestFrom(inputData)
+            .share()
+            .bind(with: self) { owner, data in
+                owner.mainView.emailTextFiled.resignFirstResponder()
+                owner.mainView.pwTextFiled.resignFirstResponder()
+                
+                if data.email.isEmpty || data.password.isEmpty {
+                    owner.showToast(msg: "이메일과 비밀번호를 입력해주세요")
+                } else {
+                    owner.viewModel.login(email: data.email, password: data.password)
+                }
+            }
+            .disposed(by: viewModel.disposeBag)
+        
+        mainView.pwTextFiled
+            .rx
+            .controlEvent(.editingDidEndOnExit)
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
+            .withLatestFrom(inputData)
+            .share()
+            .bind(with: self) { owner, data in
+                owner.mainView.emailTextFiled.resignFirstResponder()
+                owner.mainView.pwTextFiled.resignFirstResponder()
+                
+                if data.email.isEmpty || data.password.isEmpty {
+                    owner.showToast(msg: "이메일과 비밀번호를 입력해주세요")
+                } else {
+                    owner.viewModel.login(email: data.email, password: data.password)
+                }
+            }
+            .disposed(by: viewModel.disposeBag)
+        
+        viewModel.loginSuccess
+            .bind(with: self) { owner, login in
+                dump(login)
+            }
+            .disposed(by: viewModel.disposeBag)
+        
+        viewModel.isLoading
+            .bind { isLoading in
+                if isLoading {
+                    LoadingIndicator.show()
+                } else {
+                    LoadingIndicator.hide()
+                }
+            }
             .disposed(by: viewModel.disposeBag)
         
         mainView.signupButton
             .rx
             .tap
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .bind(with: self) { owner, _ in
                 let vc = SignupVC(viewModel: SignupViewModel(userRepository: UserRepository()))
                 owner.navigationItem.backButtonDisplayMode = .minimal
