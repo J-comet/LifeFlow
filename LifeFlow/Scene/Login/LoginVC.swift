@@ -19,6 +19,7 @@ final class LoginVC: BaseViewController<LoginView, LoginViewModel> {
         configureVC()
     }
     
+    // TODO: 회원가입 통신까지 끝낸 후 로그인 기능 개발
     func bindViewModel() {
 
         let isEmailVaild = mainView.emailTextFiled
@@ -40,6 +41,16 @@ final class LoginVC: BaseViewController<LoginView, LoginViewModel> {
 
         isButtonEnabled
             .bind(to: mainView.loginButton.rx.isEnabled)
+            .disposed(by: viewModel.disposeBag)
+        
+        mainView.signupButton
+            .rx
+            .tap
+            .bind(with: self) { owner, _ in
+                let vc = SignupVC(viewModel: SignupViewModel())      
+                owner.navigationItem.backButtonDisplayMode = .minimal
+                owner.navigationController?.pushViewController(vc, animated: true)
+            }
             .disposed(by: viewModel.disposeBag)
         
     }

@@ -7,11 +7,11 @@
 
 import UIKit
 
-class BasicTextField: UITextField {
+final class BasicTextField: UITextField {
     
     init(placeholderText: String) {
         super.init(frame: .zero)
-        textColor = .black
+        textColor = .text
         borderStyle = .none
         layer.cornerRadius = 10
         layer.borderWidth = 1

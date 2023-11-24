@@ -29,6 +29,11 @@
 		C0729D5F2B10806D00CEA6F0 /* SpoqaHanSansNeo-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C0729D5A2B10806D00CEA6F0 /* SpoqaHanSansNeo-Regular.otf */; };
 		C0729D622B1080E100CEA6F0 /* SpoqaHanSansNeoFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0729D612B1080E100CEA6F0 /* SpoqaHanSansNeoFonts.swift */; };
 		C0729D642B10811400CEA6F0 /* BasicLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0729D632B10811400CEA6F0 /* BasicLabel.swift */; };
+		C0729D692B10892500CEA6F0 /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0729D682B10892500CEA6F0 /* SignupVC.swift */; };
+		C0729D6B2B10892D00CEA6F0 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0729D6A2B10892D00CEA6F0 /* SignupView.swift */; };
+		C0729D6D2B10893400CEA6F0 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0729D6C2B10893400CEA6F0 /* SignupViewModel.swift */; };
+		C0729D6F2B10942900CEA6F0 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0729D6E2B10942900CEA6F0 /* UITextField+Extension.swift */; };
+		C0729D712B10960E00CEA6F0 /* UnderLineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0729D702B10960E00CEA6F0 /* UnderLineTextField.swift */; };
 		C07FA79E2B01E43C000B93F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA79D2B01E43C000B93F3 /* AppDelegate.swift */; };
 		C07FA7A02B01E43C000B93F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA79F2B01E43C000B93F3 /* SceneDelegate.swift */; };
 		C07FA7A72B01E43D000B93F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C07FA7A62B01E43D000B93F3 /* Assets.xcassets */; };
@@ -82,6 +87,11 @@
 		C0729D5A2B10806D00CEA6F0 /* SpoqaHanSansNeo-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Regular.otf"; sourceTree = "<group>"; };
 		C0729D612B1080E100CEA6F0 /* SpoqaHanSansNeoFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpoqaHanSansNeoFonts.swift; sourceTree = "<group>"; };
 		C0729D632B10811400CEA6F0 /* BasicLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicLabel.swift; sourceTree = "<group>"; };
+		C0729D682B10892500CEA6F0 /* SignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
+		C0729D6A2B10892D00CEA6F0 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
+		C0729D6C2B10893400CEA6F0 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
+		C0729D6E2B10942900CEA6F0 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		C0729D702B10960E00CEA6F0 /* UnderLineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderLineTextField.swift; sourceTree = "<group>"; };
 		C07FA79A2B01E43C000B93F3 /* LifeFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LifeFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C07FA79D2B01E43C000B93F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C07FA79F2B01E43C000B93F3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -161,6 +171,7 @@
 		C02C06CA2B07471500E9AB93 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				C0729D672B10890C00CEA6F0 /* Signup */,
 				C02C06CB2B07475300E9AB93 /* Login */,
 			);
 			path = Scene;
@@ -203,6 +214,16 @@
 				C0729D612B1080E100CEA6F0 /* SpoqaHanSansNeoFonts.swift */,
 			);
 			path = Enum;
+			sourceTree = "<group>";
+		};
+		C0729D672B10890C00CEA6F0 /* Signup */ = {
+			isa = PBXGroup;
+			children = (
+				C0729D682B10892500CEA6F0 /* SignupVC.swift */,
+				C0729D6A2B10892D00CEA6F0 /* SignupView.swift */,
+				C0729D6C2B10893400CEA6F0 /* SignupViewModel.swift */,
+			);
+			path = Signup;
 			sourceTree = "<group>";
 		};
 		C07FA7912B01E43C000B93F3 = {
@@ -250,6 +271,7 @@
 				C02C06D42B074F2C00E9AB93 /* BasicButton.swift */,
 				C02C06D32B074F2C00E9AB93 /* BasicTextField.swift */,
 				C0729D632B10811400CEA6F0 /* BasicLabel.swift */,
+				C0729D702B10960E00CEA6F0 /* UnderLineTextField.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -280,6 +302,7 @@
 			isa = PBXGroup;
 			children = (
 				C07FA7D82B01FBB6000B93F3 /* Encodable+Extension.swift */,
+				C0729D6E2B10942900CEA6F0 /* UITextField+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -440,10 +463,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0729D6B2B10892D00CEA6F0 /* SignupView.swift in Sources */,
 				C0DAE9892B05FD5C0067279A /* LoginRequest.swift in Sources */,
 				C0729D642B10811400CEA6F0 /* BasicLabel.swift in Sources */,
 				C0DAE9502B059C200067279A /* CreatEntityProtocol.swift in Sources */,
 				C0DAE9472B059AC40067279A /* JoinRequest.swift in Sources */,
+				C0729D6F2B10942900CEA6F0 /* UITextField+Extension.swift in Sources */,
 				C0DAE9212B038E5D0067279A /* ErrorResponse.swift in Sources */,
 				C07FA7D72B01FB51000B93F3 /* Router.swift in Sources */,
 				C0DAE9872B05FC9C0067279A /* LoginResponse.swift in Sources */,
@@ -459,6 +484,7 @@
 				C0DAE94D2B059B880067279A /* JoinEntity.swift in Sources */,
 				C0DAE9412B0534D20067279A /* TokenEntity.swift in Sources */,
 				C0DAE9382B0512E70067279A /* TokenRepository.swift in Sources */,
+				C0729D692B10892500CEA6F0 /* SignupVC.swift in Sources */,
 				C0DAE9852B05FC8F0067279A /* LoginEntity.swift in Sources */,
 				C07FA7A02B01E43C000B93F3 /* SceneDelegate.swift in Sources */,
 				C07FA7CC2B01E929000B93F3 /* APIManagement.swift in Sources */,
@@ -471,10 +497,12 @@
 				C02C06C12B07469B00E9AB93 /* BaseViewController.swift in Sources */,
 				C07FA7C82B01E851000B93F3 /* Constant.swift in Sources */,
 				C0DAE9432B0534E40067279A /* TokenRequest.swift in Sources */,
+				C0729D6D2B10893400CEA6F0 /* SignupViewModel.swift in Sources */,
 				C02C06D52B074F2C00E9AB93 /* BasicTextField.swift in Sources */,
 				C0729D622B1080E100CEA6F0 /* SpoqaHanSansNeoFonts.swift in Sources */,
 				C01A42B62B028E2200317956 /* UserRepository.swift in Sources */,
 				C02C06C72B0746AC00E9AB93 /* BaseTableViewCell.swift in Sources */,
+				C0729D712B10960E00CEA6F0 /* UnderLineTextField.swift in Sources */,
 				C01A42B22B02893100317956 /* UserAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
