@@ -29,6 +29,7 @@ final class SignupView: BaseView {
         $0.font(weight: .light, size: 12)
         $0.textColor = .error
         $0.text = "정확한 이메일을 입력해주세요"
+        $0.isHidden = true
     }
     
     let pwStackView = UIStackView().then {
@@ -36,12 +37,15 @@ final class SignupView: BaseView {
         $0.spacing = 6
     }
 
-    let pwTextField = UnderLineTextField(placeholderText: "비밀번호를 입력해주세요")
+    let pwTextField = UnderLineTextField(placeholderText: "비밀번호를 입력해주세요").then {
+        $0.isSecureTextEntry = true
+    }
     
     let errorPwLabel = BasicLabel().then {
         $0.font(weight: .light, size: 12)
         $0.textColor = .error
-        $0.text = "영어, 숫자를 포함해 8~12자를 입력해주세요"
+        $0.text = "영문, 숫자를 포함해 8~16자를 입력해주세요"
+        $0.isHidden = true
     }
     
     let pwCheckStackView = UIStackView().then {
@@ -49,12 +53,15 @@ final class SignupView: BaseView {
         $0.spacing = 6
     }
     
-    let pwCheckTextField = UnderLineTextField(placeholderText: "비밀번호를 한번 더 입력해주세요")
+    let pwCheckTextField = UnderLineTextField(placeholderText: "비밀번호를 한번 더 입력해주세요").then {
+        $0.isSecureTextEntry = true
+    }
     
     let errorPwCheckLabel = BasicLabel().then {
         $0.font(weight: .light, size: 12)
         $0.textColor = .error
         $0.text = "비밀번호가 일치하지 않아요"
+        $0.isHidden = true
     }
     
     let nicknameStackView = UIStackView().then {
@@ -64,13 +71,14 @@ final class SignupView: BaseView {
     
     let nicknameTextField = UnderLineTextField(placeholderText: "닉네임을 입력해주세요")
     
-    let signUpButton = BasicButton(title: "회원가입")
-    
     let errorNicknameLabel = BasicLabel().then {
         $0.font(weight: .light, size: 12)
         $0.textColor = .error
-        $0.text = "영어, 숫자로 2~8자를 입력해주세요"
+        $0.text = "영문, 숫자로 2~8자를 입력해주세요"
+        $0.isHidden = true
     }
+    
+    let signUpButton = BasicButton(title: "가입하기")
     
     override func configureHierarchy() {
         addSubview(topTitleLabel)
