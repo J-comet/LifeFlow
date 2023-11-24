@@ -47,12 +47,11 @@ final class LoginVC: BaseViewController<LoginView, LoginViewModel> {
             .rx
             .tap
             .bind(with: self) { owner, _ in
-                let vc = SignupVC(viewModel: SignupViewModel())      
+                let vc = SignupVC(viewModel: SignupViewModel(userRepository: UserRepository()))
                 owner.navigationItem.backButtonDisplayMode = .minimal
                 owner.navigationController?.pushViewController(vc, animated: true)
             }
             .disposed(by: viewModel.disposeBag)
-        
     }
     
     func configureVC() {

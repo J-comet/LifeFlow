@@ -53,6 +53,7 @@
 		C0B07F222B10DB5D00350ECC /* ValidateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B07F212B10DB5D00350ECC /* ValidateManager.swift */; };
 		C0B07F242B10DC0900350ECC /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B07F232B10DC0900350ECC /* UIViewController+Extension.swift */; };
 		C0B07F272B10DD3000350ECC /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C0B07F262B10DD3000350ECC /* IQKeyboardManagerSwift */; };
+		C0B07F292B1108B200350ECC /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B07F282B1108B200350ECC /* LoadingIndicator.swift */; };
 		C0DAE9212B038E5D0067279A /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9202B038E5D0067279A /* ErrorResponse.swift */; };
 		C0DAE9342B0503F40067279A /* TokenAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9332B0503F40067279A /* TokenAPI.swift */; };
 		C0DAE9382B0512E70067279A /* TokenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9372B0512E70067279A /* TokenRepository.swift */; };
@@ -109,6 +110,7 @@
 		C07FA7D82B01FBB6000B93F3 /* Encodable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extension.swift"; sourceTree = "<group>"; };
 		C0B07F212B10DB5D00350ECC /* ValidateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateManager.swift; sourceTree = "<group>"; };
 		C0B07F232B10DC0900350ECC /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		C0B07F282B1108B200350ECC /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		C0DAE9202B038E5D0067279A /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		C0DAE9332B0503F40067279A /* TokenAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenAPI.swift; sourceTree = "<group>"; };
 		C0DAE9372B0512E70067279A /* TokenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRepository.swift; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 				C02C06D32B074F2C00E9AB93 /* BasicTextField.swift */,
 				C0729D632B10811400CEA6F0 /* BasicLabel.swift */,
 				C0729D702B10960E00CEA6F0 /* UnderLineTextField.swift */,
+				C0B07F282B1108B200350ECC /* LoadingIndicator.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -473,6 +476,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0B07F292B1108B200350ECC /* LoadingIndicator.swift in Sources */,
 				C0729D6B2B10892D00CEA6F0 /* SignupView.swift in Sources */,
 				C0B07F222B10DB5D00350ECC /* ValidateManager.swift in Sources */,
 				C0DAE9892B05FD5C0067279A /* LoginRequest.swift in Sources */,

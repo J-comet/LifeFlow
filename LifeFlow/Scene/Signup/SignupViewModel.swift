@@ -12,6 +12,12 @@ import RxCocoa
 
 final class SignupViewModel: BaseViewModel {
     
+    private var userRepository: UserRepository
+    
+    init(userRepository: UserRepository) {
+        self.userRepository = userRepository
+    }
+    
     struct Input {
         let emailText: ControlProperty<String>
         let pwText: ControlProperty<String>
@@ -26,10 +32,16 @@ final class SignupViewModel: BaseViewModel {
         let pwValidate: Observable<Bool>
         let pwCheckValidate: Observable<Bool>
         let nicknameValidate: Observable<Bool>
-        let signUpAvailable: Observable<Bool>       // 회원가입 할 수 있는 상태인지
+        let signUpData: SharedSequence<DriverSharingStrategy, (isAvailable: Bool, email: String, password: String, nickname: String)>
+        let joinSuccess: PublishRelay<JoinEntity>
+        let errorMessage: PublishRelay<String>
     }
     
+    let joinSuccess = PublishRelay<JoinEntity>()
+    let errorMessage = PublishRelay<String>()
+    
     func transform(input: Input) -> Output {
+
         let emailValidate = input.emailText.map {
             ValidateManager.shared.isValidEmail(email: $0)
         }
@@ -55,16 +67,39 @@ final class SignupViewModel: BaseViewModel {
         Observable.combineLatest(emailValidate, pwValidate, pwCheckValidate, nicknameValidate) { email, pw, pwCheck, nickname in
             return email && pw && pwCheck && nickname
         }
-
+        
+        let signUpData = Driver.combineLatest(
+            signUpAvailable.asDriver(onErrorJustReturn: false),
+            input.emailText.asDriver(),
+            input.pwText.asDriver(),
+            input.nicknameText.asDriver()
+        ) { (isAvailable: $0, email: $1, password: $2, nickname: $3) }
+        
         return Output(
             signUpTab: input.signUpTab,
             emailValidate: emailValidate,
             pwValidate: pwValidate,
             pwCheckValidate: pwCheckValidate,
             nicknameValidate: nicknameValidate,
-            signUpAvailable: signUpAvailable
+            signUpData: signUpData,
+            joinSuccess: joinSuccess,
+            errorMessage: errorMessage
         )
     }
     
-    
+    func join(email: String, password: String, nickname: String) {
+        isLoading.accept(true)
+        userRepository.join(email: email, password: password, nick: nickname)
+            .subscribe(with: self) { owner, result in
+                switch result {
+                case .success(let data):
+                    owner.joinSuccess.accept(data)
+                case .failure(let error):
+                    let message = UserJoinError(rawValue: error.rawValue)?.message ?? ""
+                    owner.errorMessage.accept(message)
+                }
+                owner.isLoading.accept(false)
+            }
+            .disposed(by: disposeBag)
+    }
 }

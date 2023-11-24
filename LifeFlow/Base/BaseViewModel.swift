@@ -8,10 +8,13 @@
 import Foundation
 
 import RxSwift
+import RxCocoa
 
 //typealias BaseViewModel = ViewModel & ViewModelType
 
 class BaseViewModel {
+    
+    var isLoading = PublishRelay<Bool>()
     
     var disposeBag = DisposeBag()
 

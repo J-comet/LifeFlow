@@ -52,13 +52,41 @@ extension SignupVC {
         
         output.signUpTab
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
-            .withLatestFrom(output.signUpAvailable)
-            .bind(with: self) { owner, isAvailable in
-                if isAvailable {
-                    print("통신 하기")
+            .withLatestFrom(output.signUpData)
+            .bind(with: self) { owner, signUpData in
+                if signUpData.isAvailable {
+                    owner.viewModel.join(
+                        email: signUpData.email,
+                        password: signUpData.password,
+                        nickname: signUpData.nickname
+                    )
                 } else {
-                    owner.showAlert(title: "", msg: "모든 정보를 입력해주세요", ok: "확인")
+                    owner.showAlert(title: "", msg: "모든 정보를 정확히 입력해주세요", ok: "확인")
                 }
+            }
+            .disposed(by: viewModel.disposeBag)
+        
+        viewModel.isLoading
+            .bind { isLoading in
+                if isLoading {
+                    LoadingIndicator.show()
+                } else {
+                    LoadingIndicator.hide()
+                }
+            }
+            .disposed(by: viewModel.disposeBag)
+        
+        output.errorMessage
+            .bind(with: self) { owner, message in
+                owner.showToast(msg: message)
+            }
+            .disposed(by: viewModel.disposeBag)
+        
+        output.joinSuccess
+            .bind(with: self) { owner, value in
+                dump(value)
+                owner.showToast(msg: "가입 완료")
+                owner.navigationController?.popViewController(animated: true)
             }
             .disposed(by: viewModel.disposeBag)
     }

@@ -55,6 +55,17 @@ enum UserJoinError: Int, Error {
     case commonError = 600          // API 공통으로 받을 수 있는 응답코드 - Message 파싱해서 사용하기
     case missingValue = 400         // 필수값 누락
     case existedUser = 409          // 존재하는 사용자
+    
+    var message: String {
+        switch self {
+        case .commonError:
+            "다시 시도해주세요"
+        case .missingValue:
+            "필수 정보가 누락되었어요"
+        case .existedUser:
+            "이미 존재하는 사용자에요"
+        }
+    }
 }
 
 enum UserLoginError: Int, Error {
