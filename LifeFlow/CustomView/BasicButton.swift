@@ -9,18 +9,18 @@ import UIKit
 
 class BasicButton: UIButton {
     
-    init(title: String) {
+    init(title: String, bgColor: UIColor? = .main) {
         super.init(frame: .zero)
-        
-        setTitle(title, for: .normal)
-        setTitleColor(UIColor.white, for: .normal)
-        backgroundColor = UIColor.black
+        isExclusiveTouch = true
+        clipsToBounds = true
         layer.cornerRadius = 10
+        setTitle(title, for: .normal)
+        titleLabel?.font = UIFont(name: SpoqaHanSansNeoFonts.bold.rawValue, size: 16)!
+        backgroundColor = bgColor
     }
     
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }

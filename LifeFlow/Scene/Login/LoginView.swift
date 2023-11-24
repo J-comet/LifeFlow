@@ -12,7 +12,20 @@ import Then
 
 final class LoginView: BaseView {
     
-    private let containerView = UIView()
+    private let contentStackView = UIStackView().then {
+        $0.axis = .vertical
+        $0.spacing = 8
+    }
+    
+    let appTitleLabel = BasicLabel().then {
+        $0.text = "LIFE FLOW"
+        $0.font(weight: .bold, size: 40)
+        $0.textColor = .main
+        $0.textAlignment = .center
+        $0.snp.makeConstraints { make in
+            make.height.equalTo(160)
+        }
+    }
     
     let emailTextFiled = BasicTextField(placeholderText: "이메일을 입력해주세요").then {
         $0.textContentType = .emailAddress
@@ -22,40 +35,42 @@ final class LoginView: BaseView {
         $0.textContentType = .password
     }
     
-    let loginButton = BasicButton(title: "로그인")
+    let signupButton = UIButton().then {
+        var attString = AttributedString("회원가입")
+        attString.font = UIFont(name: SpoqaHanSansNeoFonts.light.rawValue, size: 14)
+        var config = UIButton.Configuration.filled()
+        config.attributedTitle = attString
+        config.baseBackgroundColor = .clear
+        config.baseForegroundColor = .gray
+        $0.configuration = config
+    }
+    
+    let loginButton = BasicButton(title: "로그인").then {
+        $0.snp.makeConstraints { make in
+            make.height.equalTo(50)
+        }
+    }
     
     override func configureHierarchy() {
-        addSubview(containerView)
-        containerView.addSubview(emailTextFiled)
-        containerView.addSubview(pwTextFiled)
-        containerView.addSubview(loginButton)
+        addSubview(contentStackView)
+        addSubview(signupButton)
+        contentStackView.addArrangedSubview(appTitleLabel)
+        contentStackView.addArrangedSubview(emailTextFiled)
+        contentStackView.addArrangedSubview(pwTextFiled)
+        contentStackView.addArrangedSubview(loginButton)
     }
     
     override func configureLayout() {
-        containerView.backgroundColor = .cyan
-        containerView.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+        contentStackView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalTo(safeAreaLayoutGuide).multipliedBy(0.6)
             make.width.equalTo(self.snp.width).multipliedBy(0.8)
         }
         
-        emailTextFiled.snp.makeConstraints { make in
-            make.top.leading.equalToSuperview()
+        signupButton.snp.makeConstraints { make in
+            make.top.equalTo(contentStackView.snp.bottom).offset(8)
+            make.horizontalEdges.equalTo(contentStackView)
             make.height.equalTo(50)
-            make.horizontalEdges.equalToSuperview()
-        }
-        
-        pwTextFiled.snp.makeConstraints { make in
-            make.top.equalTo(emailTextFiled.snp.bottom).offset(8)
-            make.leading.equalToSuperview()
-            make.height.equalTo(50)
-            make.horizontalEdges.equalToSuperview()
-        }
-        
-        loginButton.snp.makeConstraints { make in
-            make.top.equalTo(pwTextFiled.snp.bottom).offset(8)
-            make.leading.equalToSuperview()
-            make.height.equalTo(50)
-            make.horizontalEdges.equalToSuperview()
         }
     }
 }

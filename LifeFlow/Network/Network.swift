@@ -22,6 +22,14 @@ final class Network {
         AF.request(
             api
         ).responseDecodable(of: T.self) { response in
+            
+            var jsonString = "JSON 데이터 없음"
+            if let data = response.data {
+                jsonString = String(decoding: data, as: UTF8.self)
+            }
+            let statusCode = response.response?.statusCode ?? -1
+            let errorMessage = "<\(self)> : [JSONDecoder Error] code = \(statusCode)\njsonString = \(jsonString)"
+            
             switch response.result {
             case .success(let data):
                 completion(.success(data), 200)
