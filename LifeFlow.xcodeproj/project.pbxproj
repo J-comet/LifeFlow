@@ -22,6 +22,7 @@
 		C02C06D52B074F2C00E9AB93 /* BasicTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02C06D32B074F2C00E9AB93 /* BasicTextField.swift */; };
 		C02C06D62B074F2C00E9AB93 /* BasicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02C06D42B074F2C00E9AB93 /* BasicButton.swift */; };
 		C02C06D92B0751A800E9AB93 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = C02C06D82B0751A800E9AB93 /* Then */; };
+		C0685C082B112B7B0098BB49 /* UserDefaultData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0685C072B112B7B0098BB49 /* UserDefaultData.swift */; };
 		C0729D5B2B10806D00CEA6F0 /* SpoqaHanSansNeo-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = C0729D562B10806D00CEA6F0 /* SpoqaHanSansNeo-Thin.otf */; };
 		C0729D5C2B10806D00CEA6F0 /* SpoqaHanSansNeo-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = C0729D572B10806D00CEA6F0 /* SpoqaHanSansNeo-Light.otf */; };
 		C0729D5D2B10806D00CEA6F0 /* SpoqaHanSansNeo-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C0729D582B10806D00CEA6F0 /* SpoqaHanSansNeo-Bold.otf */; };
@@ -86,6 +87,7 @@
 		C02C06D12B074CCB00E9AB93 /* ViewModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		C02C06D32B074F2C00E9AB93 /* BasicTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicTextField.swift; sourceTree = "<group>"; };
 		C02C06D42B074F2C00E9AB93 /* BasicButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicButton.swift; sourceTree = "<group>"; };
+		C0685C072B112B7B0098BB49 /* UserDefaultData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultData.swift; sourceTree = "<group>"; };
 		C0729D562B10806D00CEA6F0 /* SpoqaHanSansNeo-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Thin.otf"; sourceTree = "<group>"; };
 		C0729D572B10806D00CEA6F0 /* SpoqaHanSansNeo-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Light.otf"; sourceTree = "<group>"; };
 		C0729D582B10806D00CEA6F0 /* SpoqaHanSansNeo-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Bold.otf"; sourceTree = "<group>"; };
@@ -327,6 +329,7 @@
 			children = (
 				C07FA7C72B01E851000B93F3 /* Constant.swift */,
 				C0B07F212B10DB5D00350ECC /* ValidateManager.swift */,
+				C0685C072B112B7B0098BB49 /* UserDefaultData.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -506,6 +509,7 @@
 				C0DAE9502B059C200067279A /* CreatEntityProtocol.swift in Sources */,
 				C0DAE9472B059AC40067279A /* JoinRequest.swift in Sources */,
 				C0729D6F2B10942900CEA6F0 /* UITextField+Extension.swift in Sources */,
+				C0685C082B112B7B0098BB49 /* UserDefaultData.swift in Sources */,
 				C0DAE9212B038E5D0067279A /* CommonMessageResponse.swift in Sources */,
 				C07FA7D72B01FB51000B93F3 /* Router.swift in Sources */,
 				C0DAE9872B05FC9C0067279A /* LoginResponse.swift in Sources */,
