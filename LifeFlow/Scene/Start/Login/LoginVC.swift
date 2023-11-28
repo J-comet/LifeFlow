@@ -112,9 +112,10 @@ final class LoginVC: BaseViewController<LoginView, LoginViewModel> {
                 UserDefaults.token = login.token
                 UserDefaults.refreshToken = login.refreshToken
                 
-                // TODO: Home 으로 이동 코드 추가 예정
-                // TODO: SceneDelegate 에서 도 isLogin 값 확인후 홈으로 보내기
-                
+                let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+                let sceneDelegate = windowScene?.delegate as? SceneDelegate
+                sceneDelegate?.window?.rootViewController = TabBarVC()
+                sceneDelegate?.window?.makeKeyAndVisible()
             }
             .disposed(by: viewModel.disposeBag)
         

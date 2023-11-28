@@ -15,9 +15,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
-        let vc = LoginVC(viewModel: LoginViewModel(userRepository: UserRepository()))
-        window?.rootViewController = UINavigationController(rootViewController: vc) 
-        window?.makeKeyAndVisible()
+        
+        // 로그인한 사용자인지 판별하기
+        if UserDefaults.isLogin {
+            let vc = TabBarVC()
+            window?.rootViewController = UINavigationController(rootViewController: vc)
+            window?.makeKeyAndVisible()
+        } else {
+            let vc = LoginVC(viewModel: LoginViewModel(userRepository: UserRepository()))
+            window?.rootViewController = UINavigationController(rootViewController: vc)
+            window?.makeKeyAndVisible()
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
