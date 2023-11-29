@@ -39,12 +39,14 @@ extension HomeVC {
         Observable.just(arrString)
             .asDriver(onErrorJustReturn: [])
             .drive(mainView.tableView.rx.items(cellIdentifier: HomeTableCell.identifier, cellType: HomeTableCell.self)) { (row, element, cell) in
+                cell.selectionStyle = .none
                 cell.configCell(row: element)
             }
             .disposed(by: viewModel.disposeBag)
     }
     
-    func configureVC() {        
+    func configureVC() {
+        navigationController?.navigationBar.backgroundColor = .white
         navigationItem.rightBarButtonItem = rightBarButton
         navigationItem.titleView = navTitleLabel
         navigationController?.hidesBarsOnSwipe = true
