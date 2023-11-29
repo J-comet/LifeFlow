@@ -24,8 +24,6 @@ final class TabBarVC: UITabBarController {
         //        tabBar.unselectedItemTintColor = .black
         
         let button = UIButton(type: .custom)
-        var toMakeButtonUp = 90
-        
         view.addSubview(button)
         button.backgroundColor = .white
         button.layer.cornerRadius = CGFloat((UIScreen.main.bounds.width * 0.16) / 2)
@@ -37,21 +35,15 @@ final class TabBarVC: UITabBarController {
         
         button.setBackgroundImage(UIImage(systemName: "plus.circle.fill")?.withTintColor(.main, renderingMode: .alwaysOriginal), for: .normal)
         button.setBackgroundImage(UIImage(systemName: "plus.circle.fill")?.withTintColor(.main, renderingMode: .alwaysOriginal), for: .highlighted)
-        let heightDifference: CGFloat = CGFloat(toMakeButtonUp)
-        if heightDifference < 0 {
-            button.center = tabBar.center
-        } else {
-            var center: CGPoint = tabBar.center
-            center.y = center.y - heightDifference / 2.0
-            button.center = center
-        }
         button.addTarget(self, action: #selector(addBtnTabbed), for:.touchUpInside)
         
     }
     
     @objc
     func addBtnTabbed() {
-        print("aaaaa")
+        let vc = PostInputVC(viewModel: PostInputViewModel())
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
     }
     
     private func tapVC(type: TabType) -> UINavigationController {
