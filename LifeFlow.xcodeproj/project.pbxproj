@@ -17,6 +17,10 @@
 		C02028A22B15D32A008FB1EA /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02028A12B15D32A008FB1EA /* ProfileVC.swift */; };
 		C02028A42B15D33A008FB1EA /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02028A32B15D33A008FB1EA /* ProfileView.swift */; };
 		C02028A62B15D342008FB1EA /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02028A52B15D342008FB1EA /* ProfileViewModel.swift */; };
+		C02028A82B15DB71008FB1EA /* NavTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02028A72B15DB71008FB1EA /* NavTitleLabel.swift */; };
+		C02028AA2B15DD72008FB1EA /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02028A92B15DD72008FB1EA /* UIImage+Extension.swift */; };
+		C02028AC2B15DF51008FB1EA /* HomeTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02028AB2B15DF51008FB1EA /* HomeTableCell.swift */; };
+		C02028AE2B15E4FA008FB1EA /* ReusableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02028AD2B15E4FA008FB1EA /* ReusableViewProtocol.swift */; };
 		C02C06C12B07469B00E9AB93 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02C06BC2B07469B00E9AB93 /* BaseViewController.swift */; };
 		C02C06C22B07469B00E9AB93 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02C06BD2B07469B00E9AB93 /* BaseViewModel.swift */; };
 		C02C06C32B07469B00E9AB93 /* BaseCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02C06BE2B07469B00E9AB93 /* BaseCellProtocol.swift */; };
@@ -90,6 +94,10 @@
 		C02028A12B15D32A008FB1EA /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		C02028A32B15D33A008FB1EA /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		C02028A52B15D342008FB1EA /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		C02028A72B15DB71008FB1EA /* NavTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavTitleLabel.swift; sourceTree = "<group>"; };
+		C02028A92B15DD72008FB1EA /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		C02028AB2B15DF51008FB1EA /* HomeTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableCell.swift; sourceTree = "<group>"; };
+		C02028AD2B15E4FA008FB1EA /* ReusableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewProtocol.swift; sourceTree = "<group>"; };
 		C02C06BC2B07469B00E9AB93 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C02C06BD2B07469B00E9AB93 /* BaseViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		C02C06BE2B07469B00E9AB93 /* BaseCellProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCellProtocol.swift; sourceTree = "<group>"; };
@@ -208,6 +216,7 @@
 				C02028982B15C9CF008FB1EA /* HomeView.swift */,
 				C020289A2B15C9EA008FB1EA /* HomeVC.swift */,
 				C020289C2B15C9F2008FB1EA /* HomeViewModel.swift */,
+				C02028AB2B15DF51008FB1EA /* HomeTableCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -316,8 +325,9 @@
 				C07FA7AB2B01E43D000B93F3 /* Info.plist */,
 				C07FA79D2B01E43C000B93F3 /* AppDelegate.swift */,
 				C07FA79F2B01E43C000B93F3 /* SceneDelegate.swift */,
-				C0729D602B1080E100CEA6F0 /* Enum */,
 				C02C06BB2B07465700E9AB93 /* Base */,
+				C07FA7B12B01E508000B93F3 /* CustomView */,
+				C0729D602B1080E100CEA6F0 /* Enum */,
 				C07FA7B62B01E558000B93F3 /* Extension */,
 				C07FA7A82B01E43D000B93F3 /* LaunchScreen.storyboard */,
 				C07FA7B42B01E547000B93F3 /* Model */,
@@ -327,7 +337,6 @@
 				C02C06D02B0747E700E9AB93 /* Resource */,
 				C02C06CA2B07471500E9AB93 /* Scene */,
 				C07FA7C62B01E83C000B93F3 /* Utils */,
-				C07FA7B12B01E508000B93F3 /* CustomView */,
 			);
 			path = LifeFlow;
 			sourceTree = "<group>";
@@ -340,6 +349,7 @@
 				C0729D632B10811400CEA6F0 /* BasicLabel.swift */,
 				C0729D702B10960E00CEA6F0 /* UnderLineTextField.swift */,
 				C0B07F282B1108B200350ECC /* LoadingIndicator.swift */,
+				C02028A72B15DB71008FB1EA /* NavTitleLabel.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -373,6 +383,7 @@
 				C07FA7D82B01FBB6000B93F3 /* Encodable+Extension.swift */,
 				C0729D6E2B10942900CEA6F0 /* UITextField+Extension.swift */,
 				C0B07F232B10DC0900350ECC /* UIViewController+Extension.swift */,
+				C02028A92B15DD72008FB1EA /* UIImage+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -455,6 +466,7 @@
 			children = (
 				C02C06D12B074CCB00E9AB93 /* ViewModelType.swift */,
 				C0DAE94F2B059C200067279A /* CreatEntityProtocol.swift */,
+				C02028AD2B15E4FA008FB1EA /* ReusableViewProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -589,6 +601,7 @@
 				C0DAE9852B05FC8F0067279A /* LoginEntity.swift in Sources */,
 				C07FA7A02B01E43C000B93F3 /* SceneDelegate.swift in Sources */,
 				C020289F2B15CA5A008FB1EA /* TabBarVC.swift in Sources */,
+				C02028AC2B15DF51008FB1EA /* HomeTableCell.swift in Sources */,
 				C07FA7CC2B01E929000B93F3 /* APIManagement.swift in Sources */,
 				C02C06CF2B07476700E9AB93 /* LoginViewModel.swift in Sources */,
 				C07FA7B32B01E525000B93F3 /* LoginVC.swift in Sources */,
@@ -597,6 +610,7 @@
 				C0B07F2B2B110C8100350ECC /* DuplicateEmailRequest.swift in Sources */,
 				C01A42B02B02888400317956 /* Network.swift in Sources */,
 				C0DAE9452B0534F20067279A /* TokenResponse.swift in Sources */,
+				C02028AA2B15DD72008FB1EA /* UIImage+Extension.swift in Sources */,
 				C02C06C12B07469B00E9AB93 /* BaseViewController.swift in Sources */,
 				C07FA7C82B01E851000B93F3 /* Constant.swift in Sources */,
 				C0DAE9432B0534E40067279A /* TokenRequest.swift in Sources */,
@@ -605,6 +619,8 @@
 				C0729D622B1080E100CEA6F0 /* SpoqaHanSansNeoFonts.swift in Sources */,
 				C01A42B62B028E2200317956 /* UserRepository.swift in Sources */,
 				C02C06C72B0746AC00E9AB93 /* BaseTableViewCell.swift in Sources */,
+				C02028AE2B15E4FA008FB1EA /* ReusableViewProtocol.swift in Sources */,
+				C02028A82B15DB71008FB1EA /* NavTitleLabel.swift in Sources */,
 				C02028992B15C9CF008FB1EA /* HomeView.swift in Sources */,
 				C0729D712B10960E00CEA6F0 /* UnderLineTextField.swift in Sources */,
 				C01A42B22B02893100317956 /* UserAPI.swift in Sources */,

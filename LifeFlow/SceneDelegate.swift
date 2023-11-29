@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // 로그인한 사용자인지 판별하기
         if UserDefaults.isLogin {
             let vc = TabBarVC()
-            window?.rootViewController = UINavigationController(rootViewController: vc)
+            window?.rootViewController = vc
             window?.makeKeyAndVisible()
         } else {
             let vc = LoginVC(viewModel: LoginViewModel(userRepository: UserRepository()))

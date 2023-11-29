@@ -52,7 +52,7 @@ extension TabBarVC {
             case .home:
                 return .tabHome
             case .profile:
-                return UIImage(systemName: "person.fill")!
+                return UIImage(systemName: "person.circle")!
             }
         }
     }
