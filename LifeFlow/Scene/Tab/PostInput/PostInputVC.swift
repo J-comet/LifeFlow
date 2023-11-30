@@ -23,6 +23,14 @@ extension PostInputVC {
     
     func bindViewModel() {
         
+        let arrString = ["none","none","none","none","none","none","none","none","none","none","none","none","none"]
+        Observable.just(arrString)
+            .asDriver(onErrorJustReturn: [])
+            .drive(mainView.imgCollectionView.rx.items(cellIdentifier: PostInputImageCell.identifier, cellType: PostInputImageCell.self)) { (row, element, cell) in
+                
+                cell.configCell(row: element)
+            }
+            .disposed(by: viewModel.disposeBag)
     }
     
     func configureVC() {

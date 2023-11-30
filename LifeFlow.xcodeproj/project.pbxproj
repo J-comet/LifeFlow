@@ -65,6 +65,8 @@
 		C07FA7CF2B01E98C000B93F3 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = C07FA7CE2B01E98C000B93F3 /* Toast */; };
 		C07FA7D72B01FB51000B93F3 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA7D62B01FB51000B93F3 /* Router.swift */; };
 		C07FA7D92B01FBB6000B93F3 /* Encodable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA7D82B01FBB6000B93F3 /* Encodable+Extension.swift */; };
+		C082C9FD2B17979C004C53B3 /* PostInputImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C082C9FC2B17979C004C53B3 /* PostInputImageCell.swift */; };
+		C082CA262B18AF3B004C53B3 /* BasicTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C082CA252B18AF3B004C53B3 /* BasicTextView.swift */; };
 		C0B07F222B10DB5D00350ECC /* ValidateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B07F212B10DB5D00350ECC /* ValidateManager.swift */; };
 		C0B07F242B10DC0900350ECC /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B07F232B10DC0900350ECC /* UIViewController+Extension.swift */; };
 		C0B07F272B10DD3000350ECC /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C0B07F262B10DD3000350ECC /* IQKeyboardManagerSwift */; };
@@ -140,6 +142,8 @@
 		C07FA7CB2B01E929000B93F3 /* APIManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagement.swift; sourceTree = "<group>"; };
 		C07FA7D62B01FB51000B93F3 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		C07FA7D82B01FBB6000B93F3 /* Encodable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extension.swift"; sourceTree = "<group>"; };
+		C082C9FC2B17979C004C53B3 /* PostInputImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostInputImageCell.swift; sourceTree = "<group>"; };
+		C082CA252B18AF3B004C53B3 /* BasicTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicTextView.swift; sourceTree = "<group>"; };
 		C0B07F212B10DB5D00350ECC /* ValidateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateManager.swift; sourceTree = "<group>"; };
 		C0B07F232B10DC0900350ECC /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		C0B07F282B1108B200350ECC /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
@@ -244,6 +248,7 @@
 				C02028CF2B17843C008FB1EA /* PostInputVC.swift */,
 				C02028D12B17845A008FB1EA /* PostInputView.swift */,
 				C02028D32B178475008FB1EA /* PostInputViewModel.swift */,
+				C082C9FC2B17979C004C53B3 /* PostInputImageCell.swift */,
 			);
 			path = PostInput;
 			sourceTree = "<group>";
@@ -362,11 +367,12 @@
 			isa = PBXGroup;
 			children = (
 				C02C06D42B074F2C00E9AB93 /* BasicButton.swift */,
-				C02C06D32B074F2C00E9AB93 /* BasicTextField.swift */,
 				C0729D632B10811400CEA6F0 /* BasicLabel.swift */,
-				C0729D702B10960E00CEA6F0 /* UnderLineTextField.swift */,
+				C02C06D32B074F2C00E9AB93 /* BasicTextField.swift */,
+				C082CA252B18AF3B004C53B3 /* BasicTextView.swift */,
 				C0B07F282B1108B200350ECC /* LoadingIndicator.swift */,
 				C02028A72B15DB71008FB1EA /* NavTitleLabel.swift */,
+				C0729D702B10960E00CEA6F0 /* UnderLineTextField.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -594,6 +600,7 @@
 				C0DAE9502B059C200067279A /* CreatEntityProtocol.swift in Sources */,
 				C0DAE9472B059AC40067279A /* JoinRequest.swift in Sources */,
 				C02028A22B15D32A008FB1EA /* ProfileVC.swift in Sources */,
+				C082CA262B18AF3B004C53B3 /* BasicTextView.swift in Sources */,
 				C0729D6F2B10942900CEA6F0 /* UITextField+Extension.swift in Sources */,
 				C02028A42B15D33A008FB1EA /* ProfileView.swift in Sources */,
 				C020289B2B15C9EA008FB1EA /* HomeVC.swift in Sources */,
@@ -611,6 +618,7 @@
 				C07FA7D92B01FBB6000B93F3 /* Encodable+Extension.swift in Sources */,
 				C02C06D62B074F2C00E9AB93 /* BasicButton.swift in Sources */,
 				C07FA79E2B01E43C000B93F3 /* AppDelegate.swift in Sources */,
+				C082C9FD2B17979C004C53B3 /* PostInputImageCell.swift in Sources */,
 				C0DAE94D2B059B880067279A /* JoinEntity.swift in Sources */,
 				C0DAE9412B0534D20067279A /* TokenEntity.swift in Sources */,
 				C0DAE9382B0512E70067279A /* TokenRepository.swift in Sources */,
