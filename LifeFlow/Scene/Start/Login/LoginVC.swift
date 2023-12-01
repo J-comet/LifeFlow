@@ -134,7 +134,7 @@ final class LoginVC: BaseViewController<LoginView, LoginViewModel> {
             .tap
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .bind(with: self) { owner, _ in
-                let vc = SignupVC(viewModel: SignupViewModel(userRepository: UserRepository()))
+                let vc = SignupVC(viewModel: SignupViewModel(userRepository: AuthRepository()))
                 owner.navigationItem.backButtonDisplayMode = .minimal
                 owner.navigationController?.pushViewController(vc, animated: true)
             }

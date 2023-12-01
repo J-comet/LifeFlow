@@ -8,10 +8,11 @@
 import Foundation
 
 struct LoginResponse: Decodable, CreatEntityProtocol {
+    let _id: String?
     let token: String?
     let refreshToken: String?
     
     func toEntity() -> LoginEntity {
-        LoginEntity(token: token ?? "", refreshToken: refreshToken ?? "")
+        LoginEntity(id: _id ?? "", token: token ?? "", refreshToken: refreshToken ?? "")
     }
 }

@@ -91,7 +91,7 @@ final class PostInputView: BaseView {
         imgCollectionView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(24)
             make.horizontalEdges.equalToSuperview()
-            make.height.equalTo(60)
+            make.height.equalTo(100)
         }
         
         titleLabel.snp.makeConstraints { make in
@@ -118,7 +118,7 @@ final class PostInputView: BaseView {
         
         completeButton.snp.makeConstraints { make in
             make.height.equalTo(48)
-            make.bottom.equalTo(safeAreaLayoutGuide)
+            make.bottom.equalTo(safeAreaLayoutGuide).inset(16)
             make.horizontalEdges.equalToSuperview().inset(16)
         }
     }
@@ -130,7 +130,7 @@ extension PostInputView {
         // 비율 계산해서 디바이스 별로 UI 설정
         let layout = UICollectionViewFlowLayout()
         let spacing: CGFloat = 16
-        let size = CGSize(width: 60, height: 60)
+        let size = CGSize(width: 100, height: 100)
         
         layout.scrollDirection = .horizontal
         layout.itemSize = size

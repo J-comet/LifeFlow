@@ -8,6 +8,7 @@
 import Foundation
 
 struct LoginEntity {
+    let id: String
     let token: String
     let refreshToken: String
 }

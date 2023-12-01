@@ -12,9 +12,9 @@ import RxCocoa
 
 final class SignupViewModel: BaseViewModel {
     
-    private var userRepository: UserRepository
+    private var userRepository: AuthRepository
     
-    init(userRepository: UserRepository) {
+    init(userRepository: AuthRepository) {
         self.userRepository = userRepository
     }
     

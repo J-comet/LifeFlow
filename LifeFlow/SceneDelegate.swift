@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.rootViewController = vc
             window?.makeKeyAndVisible()
         } else {
-            let vc = LoginVC(viewModel: LoginViewModel(userRepository: UserRepository()))
+            let vc = LoginVC(viewModel: LoginViewModel(userRepository: AuthRepository()))
             window?.rootViewController = UINavigationController(rootViewController: vc)
             window?.makeKeyAndVisible()
         }

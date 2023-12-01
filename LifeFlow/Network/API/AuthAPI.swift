@@ -1,5 +1,5 @@
 //
-//  UserAPI.swift
+//  AuthAPI.swift
 //  LifeFlow
 //
 //  Created by 장혜성 on 2023/11/14.
@@ -10,13 +10,13 @@ import Foundation
 import RxSwift
 import Alamofire
 
-enum UserAPI {
+enum AuthAPI {
     case chkDuplicateEmail(request: DuplicateEmailRequest)   // 중복이메일 체크
     case join(request: JoinRequest)                         // 회원가입
     case login(request: LoginRequest)                       // 로그인
 }
 
-extension UserAPI: Router, URLRequestConvertible {
+extension AuthAPI: Router, URLRequestConvertible {
     
     var baseURL: URL {
         URL(string: APIManagement.baseURL)!

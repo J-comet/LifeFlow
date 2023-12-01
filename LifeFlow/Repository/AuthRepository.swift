@@ -1,5 +1,5 @@
 //
-//  UserRepository.swift
+//  AuthRepository.swift
 //  LifeFlow
 //
 //  Created by 장혜성 on 2023/11/14.
@@ -10,12 +10,12 @@ import Foundation
 import RxSwift
 
 
-final class UserRepository {
+final class AuthRepository {
     
-    func login(email: String, password: String) -> Single<Result<LoginEntity, UserLoginError>> {
+    func login(email: String, password: String) -> Single<Result<LoginEntity, AuthLoginError>> {
         return Single.create { single in
             Network.shared.request(
-                api: UserAPI.login(request: LoginRequest(email: email, password: password)),
+                api: AuthAPI.login(request: LoginRequest(email: email, password: password)),
                 type: LoginResponse.self
             ).subscribe { result in
                 switch result {
@@ -24,19 +24,19 @@ final class UserRepository {
                     case .success(let value):
                         single(.success(.success(value.toEntity())))
                     case .failure(let error):
-                        single(.success(.failure(UserLoginError(rawValue: error.statusCode) ?? .commonError)))
+                        single(.success(.failure(AuthLoginError(rawValue: error.statusCode) ?? .commonError)))
                     }
                 case .failure(let _):
-                    single(.success(.failure(UserLoginError.commonError)))
+                    single(.success(.failure(AuthLoginError.commonError)))
                 }
             }
         }
     }
     
-    func join(email: String, password: String, nick: String) -> Single<Result<JoinEntity, UserJoinError>> {
+    func join(email: String, password: String, nick: String) -> Single<Result<JoinEntity, AuthJoinError>> {
         return Single.create { single in
             Network.shared.request(
-                api: UserAPI.join(request: JoinRequest(email: email, password: password, nick: nick)),
+                api: AuthAPI.join(request: JoinRequest(email: email, password: password, nick: nick)),
                 type: JoinResponse.self
             ).subscribe { result in
                 switch result {
@@ -45,19 +45,19 @@ final class UserRepository {
                     case .success(let value):
                         single(.success(.success(value.toEntity())))
                     case .failure(let error):
-                        single(.success(.failure(UserJoinError(rawValue: error.statusCode) ?? .commonError)))
+                        single(.success(.failure(AuthJoinError(rawValue: error.statusCode) ?? .commonError)))
                     }
                 case .failure(let _):
-                    single(.success(.failure(UserJoinError.commonError)))
+                    single(.success(.failure(AuthJoinError.commonError)))
                 }
             }
         }
     }
     
-    func chkEmail(email: String) -> Single<Result<CommonMessageResponse, UserChkDuplicateEmailError>> {
+    func chkEmail(email: String) -> Single<Result<CommonMessageResponse, AuthChkDuplicateEmailError>> {
         return Single.create { single in
             Network.shared.request(
-                api: UserAPI.chkDuplicateEmail(request: DuplicateEmailRequest(email: email)),
+                api: AuthAPI.chkDuplicateEmail(request: DuplicateEmailRequest(email: email)),
                 type: CommonMessageResponse.self
             ).subscribe { result in
                 switch result {
@@ -66,17 +66,17 @@ final class UserRepository {
                     case .success(let value):
                         single(.success(.success(value)))
                     case .failure(let error):
-                        single(.success(.failure(UserChkDuplicateEmailError(rawValue: error.statusCode) ?? .commonError)))
+                        single(.success(.failure(AuthChkDuplicateEmailError(rawValue: error.statusCode) ?? .commonError)))
                     }
                 case .failure(let _):
-                    single(.success(.failure(UserChkDuplicateEmailError.commonError)))
+                    single(.success(.failure(AuthChkDuplicateEmailError.commonError)))
                 }
             }
         }
     }
 }
 
-enum UserLoginError: Int, Error {
+enum AuthLoginError: Int, Error {
     case commonError = 600          // API 공통으로 받을 수 있는 응답코드 - Message 파싱해서 사용하기
     case missingValue = 400         // 필수값 누락
     case notFoundAccount = 401       // 가입되지 않았거나, 이메일, 비밀번호 잘못 입력했을 때
@@ -93,7 +93,7 @@ enum UserLoginError: Int, Error {
     }
 }
 
-enum UserJoinError: Int, Error {
+enum AuthJoinError: Int, Error {
     case commonError = 600          // API 공통으로 받을 수 있는 응답코드 - Message 파싱해서 사용하기
     case missingValue = 400         // 필수값 누락
     case existedUser = 409          // 존재하는 사용자
@@ -110,7 +110,7 @@ enum UserJoinError: Int, Error {
     }
 }
 
-enum UserChkDuplicateEmailError: Int, Error {
+enum AuthChkDuplicateEmailError: Int, Error {
     case commonError = 600          // API 공통으로 받을 수 있는 응답코드 - Message 파싱해서 사용하기
     case missingValue = 400         // 필수값 누락
     case notAvailable = 409         // 사용불가한 이메일
