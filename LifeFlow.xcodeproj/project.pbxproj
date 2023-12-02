@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C006C6982B19D674004D14AF /* PostEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C006C6972B19D674004D14AF /* PostEntity.swift */; };
+		C006C69B2B19D6BF004D14AF /* PostCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C006C69A2B19D6BF004D14AF /* PostCreateRequest.swift */; };
+		C006C69D2B19D94E004D14AF /* PostAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C006C69C2B19D94E004D14AF /* PostAPI.swift */; };
+		C006C69F2B1A1B7D004D14AF /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C006C69E2B1A1B7D004D14AF /* Date+Extension.swift */; };
+		C006C6A12B1ACCAC004D14AF /* PhpickerImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C006C6A02B1ACCAC004D14AF /* PhpickerImage.swift */; };
 		C01A42B02B02888400317956 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A42AF2B02888400317956 /* Network.swift */; };
 		C01A42B22B02893100317956 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A42B12B02893100317956 /* AuthAPI.swift */; };
 		C01A42B62B028E2200317956 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A42B52B028E2200317956 /* AuthRepository.swift */; };
@@ -86,9 +91,15 @@
 		C0DAE9852B05FC8F0067279A /* LoginEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9842B05FC8F0067279A /* LoginEntity.swift */; };
 		C0DAE9872B05FC9C0067279A /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9862B05FC9C0067279A /* LoginResponse.swift */; };
 		C0DAE9892B05FD5C0067279A /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9882B05FD5C0067279A /* LoginRequest.swift */; };
+		C0F5AAE72B1AD99200B3D102 /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = C0F5AAE62B1AD99200B3D102 /* RxGesture */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C006C6972B19D674004D14AF /* PostEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEntity.swift; sourceTree = "<group>"; };
+		C006C69A2B19D6BF004D14AF /* PostCreateRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCreateRequest.swift; sourceTree = "<group>"; };
+		C006C69C2B19D94E004D14AF /* PostAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAPI.swift; sourceTree = "<group>"; };
+		C006C69E2B1A1B7D004D14AF /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		C006C6A02B1ACCAC004D14AF /* PhpickerImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhpickerImage.swift; sourceTree = "<group>"; };
 		C01A42AF2B02888400317956 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		C01A42B12B02893100317956 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
 		C01A42B52B028E2200317956 /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
@@ -170,6 +181,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C07FA7CF2B01E98C000B93F3 /* Toast in Frameworks */,
+				C0F5AAE72B1AD99200B3D102 /* RxGesture in Frameworks */,
 				C0B07F272B10DD3000350ECC /* IQKeyboardManagerSwift in Frameworks */,
 				C07FA7BF2B01E6FB000B93F3 /* Alamofire in Frameworks */,
 				C07FA7C22B01E78E000B93F3 /* RxAlamofire in Frameworks */,
@@ -183,11 +195,52 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C006C6932B19D63E004D14AF /* Post */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
+		C006C6942B19D64A004D14AF /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				C0DAE94C2B059B880067279A /* JoinEntity.swift */,
+				C0DAE9842B05FC8F0067279A /* LoginEntity.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		C006C6952B19D651004D14AF /* Token */ = {
+			isa = PBXGroup;
+			children = (
+				C0DAE9402B0534D20067279A /* TokenEntity.swift */,
+			);
+			path = Token;
+			sourceTree = "<group>";
+		};
+		C006C6962B19D657004D14AF /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				C006C6972B19D674004D14AF /* PostEntity.swift */,
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
+		C006C6992B19D6A0004D14AF /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				C006C69A2B19D6BF004D14AF /* PostCreateRequest.swift */,
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
 		C01A42B32B028D8A00317956 /* API */ = {
 			isa = PBXGroup;
 			children = (
 				C01A42B12B02893100317956 /* AuthAPI.swift */,
 				C0DAE9332B0503F40067279A /* TokenAPI.swift */,
+				C006C69C2B19D94E004D14AF /* PostAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -384,6 +437,7 @@
 				C0DAE93D2B0531220067279A /* DTO */,
 				C0DAE93E2B0531280067279A /* Entity */,
 				C07FA7D02B01E9A3000B93F3 /* Request */,
+				C006C6A02B1ACCAC004D14AF /* PhpickerImage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -407,6 +461,7 @@
 				C0729D6E2B10942900CEA6F0 /* UITextField+Extension.swift */,
 				C0B07F232B10DC0900350ECC /* UIViewController+Extension.swift */,
 				C02028A92B15DD72008FB1EA /* UIImage+Extension.swift */,
+				C006C69E2B1A1B7D004D14AF /* Date+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -424,19 +479,20 @@
 		C07FA7D02B01E9A3000B93F3 /* Request */ = {
 			isa = PBXGroup;
 			children = (
-				C0DAE9492B059ACD0067279A /* User */,
+				C0DAE9492B059ACD0067279A /* Auth */,
+				C006C6992B19D6A0004D14AF /* Post */,
 				C0DAE9482B059AC60067279A /* Token */,
 			);
 			path = Request;
 			sourceTree = "<group>";
 		};
-		C0B07F2C2B110D8E00350ECC /* User */ = {
+		C0B07F2C2B110D8E00350ECC /* Auth */ = {
 			isa = PBXGroup;
 			children = (
 				C0DAE94A2B059B4A0067279A /* JoinResponse.swift */,
 				C0DAE9862B05FC9C0067279A /* LoginResponse.swift */,
 			);
-			path = User;
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		C0B07F2D2B110D9C00350ECC /* Token */ = {
@@ -450,8 +506,9 @@
 		C0DAE93D2B0531220067279A /* DTO */ = {
 			isa = PBXGroup;
 			children = (
+				C0B07F2C2B110D8E00350ECC /* Auth */,
+				C006C6932B19D63E004D14AF /* Post */,
 				C0B07F2D2B110D9C00350ECC /* Token */,
-				C0B07F2C2B110D8E00350ECC /* User */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -459,9 +516,9 @@
 		C0DAE93E2B0531280067279A /* Entity */ = {
 			isa = PBXGroup;
 			children = (
-				C0DAE94C2B059B880067279A /* JoinEntity.swift */,
-				C0DAE9842B05FC8F0067279A /* LoginEntity.swift */,
-				C0DAE9402B0534D20067279A /* TokenEntity.swift */,
+				C006C6942B19D64A004D14AF /* Auth */,
+				C006C6962B19D657004D14AF /* Post */,
+				C006C6952B19D651004D14AF /* Token */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -474,14 +531,14 @@
 			path = Token;
 			sourceTree = "<group>";
 		};
-		C0DAE9492B059ACD0067279A /* User */ = {
+		C0DAE9492B059ACD0067279A /* Auth */ = {
 			isa = PBXGroup;
 			children = (
 				C0DAE9462B059AC40067279A /* JoinRequest.swift */,
 				C0DAE9882B05FD5C0067279A /* LoginRequest.swift */,
 				C0B07F2A2B110C8100350ECC /* DuplicateEmailRequest.swift */,
 			);
-			path = User;
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		C0DAE94E2B059BF80067279A /* Protocol */ = {
@@ -519,6 +576,7 @@
 				C07FA7CE2B01E98C000B93F3 /* Toast */,
 				C02C06D82B0751A800E9AB93 /* Then */,
 				C0B07F262B10DD3000350ECC /* IQKeyboardManagerSwift */,
+				C0F5AAE62B1AD99200B3D102 /* RxGesture */,
 			);
 			productName = LifeFlow;
 			productReference = C07FA79A2B01E43C000B93F3 /* LifeFlow.app */;
@@ -556,6 +614,7 @@
 				C07FA7CD2B01E98C000B93F3 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 				C02C06D72B0751A800E9AB93 /* XCRemoteSwiftPackageReference "Then" */,
 				C0B07F252B10DD3000350ECC /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				C0F5AAE52B1AD99200B3D102 /* XCRemoteSwiftPackageReference "RxGesture" */,
 			);
 			productRefGroup = C07FA79B2B01E43C000B93F3 /* Products */;
 			projectDirPath = "";
@@ -600,9 +659,11 @@
 				C0DAE9502B059C200067279A /* CreatEntityProtocol.swift in Sources */,
 				C0DAE9472B059AC40067279A /* JoinRequest.swift in Sources */,
 				C02028A22B15D32A008FB1EA /* ProfileVC.swift in Sources */,
+				C006C6A12B1ACCAC004D14AF /* PhpickerImage.swift in Sources */,
 				C082CA262B18AF3B004C53B3 /* BasicTextView.swift in Sources */,
 				C0729D6F2B10942900CEA6F0 /* UITextField+Extension.swift in Sources */,
 				C02028A42B15D33A008FB1EA /* ProfileView.swift in Sources */,
+				C006C6982B19D674004D14AF /* PostEntity.swift in Sources */,
 				C020289B2B15C9EA008FB1EA /* HomeVC.swift in Sources */,
 				C0685C082B112B7B0098BB49 /* UserDefaultData.swift in Sources */,
 				C0DAE9212B038E5D0067279A /* CommonMessageResponse.swift in Sources */,
@@ -626,6 +687,7 @@
 				C02028A62B15D342008FB1EA /* ProfileViewModel.swift in Sources */,
 				C0B07F2F2B111D9900350ECC /* NetworkError.swift in Sources */,
 				C0DAE9852B05FC8F0067279A /* LoginEntity.swift in Sources */,
+				C006C69D2B19D94E004D14AF /* PostAPI.swift in Sources */,
 				C07FA7A02B01E43C000B93F3 /* SceneDelegate.swift in Sources */,
 				C020289F2B15CA5A008FB1EA /* TabBarVC.swift in Sources */,
 				C02028AC2B15DF51008FB1EA /* HomeTableCell.swift in Sources */,
@@ -638,6 +700,7 @@
 				C01A42B02B02888400317956 /* Network.swift in Sources */,
 				C0DAE9452B0534F20067279A /* TokenResponse.swift in Sources */,
 				C02028AA2B15DD72008FB1EA /* UIImage+Extension.swift in Sources */,
+				C006C69F2B1A1B7D004D14AF /* Date+Extension.swift in Sources */,
 				C02C06C12B07469B00E9AB93 /* BaseViewController.swift in Sources */,
 				C07FA7C82B01E851000B93F3 /* Constant.swift in Sources */,
 				C0DAE9432B0534E40067279A /* TokenRequest.swift in Sources */,
@@ -648,6 +711,7 @@
 				C01A42B62B028E2200317956 /* AuthRepository.swift in Sources */,
 				C02C06C72B0746AC00E9AB93 /* BaseTableViewCell.swift in Sources */,
 				C02028AE2B15E4FA008FB1EA /* ReusableViewProtocol.swift in Sources */,
+				C006C69B2B19D6BF004D14AF /* PostCreateRequest.swift in Sources */,
 				C02028A82B15DB71008FB1EA /* NavTitleLabel.swift in Sources */,
 				C02028992B15C9CF008FB1EA /* HomeView.swift in Sources */,
 				C0729D712B10960E00CEA6F0 /* UnderLineTextField.swift in Sources */,
@@ -928,6 +992,14 @@
 				minimumVersion = 6.5.16;
 			};
 		};
+		C0F5AAE52B1AD99200B3D102 /* XCRemoteSwiftPackageReference "RxGesture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxGesture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.4;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -970,6 +1042,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C0B07F252B10DD3000350ECC /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
 			productName = IQKeyboardManagerSwift;
+		};
+		C0F5AAE62B1AD99200B3D102 /* RxGesture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C0F5AAE52B1AD99200B3D102 /* XCRemoteSwiftPackageReference "RxGesture" */;
+			productName = RxGesture;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

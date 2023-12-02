@@ -91,7 +91,7 @@ final class PostInputView: BaseView {
         imgCollectionView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(24)
             make.horizontalEdges.equalToSuperview()
-            make.height.equalTo(100)
+            make.height.equalTo(140)
         }
         
         titleLabel.snp.makeConstraints { make in
@@ -113,7 +113,7 @@ final class PostInputView: BaseView {
             make.top.equalTo(contentLabel.snp.bottom).offset(8)
             make.horizontalEdges.equalToSuperview().inset(16)
             make.bottom.equalToSuperview()
-            make.height.greaterThanOrEqualTo(300)
+            make.height.equalTo(300)
         }
         
         completeButton.snp.makeConstraints { make in
@@ -129,14 +129,14 @@ extension PostInputView {
     func createLayout() -> UICollectionViewFlowLayout {
         // 비율 계산해서 디바이스 별로 UI 설정
         let layout = UICollectionViewFlowLayout()
-        let spacing: CGFloat = 16
-        let size = CGSize(width: 100, height: 100)
+        let spacing: CGFloat = 6
+        let size = CGSize(width: 140, height: 140)
         
         layout.scrollDirection = .horizontal
         layout.itemSize = size
         layout.sectionInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)  // 컨텐츠가 잘리지 않고 자연스럽게 표시되도록 여백설정
-        layout.minimumLineSpacing = spacing         // 셀과셀 위 아래 최소 간격
-        layout.minimumInteritemSpacing = spacing    // 셀과셀 좌 우 최소 간격
+        layout.minimumLineSpacing = 0         // 셀과셀 위 아래 최소 간격
+        layout.minimumInteritemSpacing = 0    // 셀과셀 좌 우 최소 간격
         return layout
     }
 }
