@@ -15,9 +15,6 @@ import RxGesture
 
 final class PostInputVC: BaseViewController<PostInputView, PostInputViewModel> {
     
-    private var selectedImages: [PhpickerImage] = [PhpickerImage(image: nil)]
-    private var previewImages: BehaviorRelay<[PhpickerImage]> = BehaviorRelay(value: [PhpickerImage(image: nil)])
-    
     private var max = 5
     
     private var phpickerConfig = {
@@ -50,8 +47,8 @@ extension PostInputVC: PHPickerViewControllerDelegate {
                     provider.loadObject(ofClass: UIImage.self) { (image, error) in
                         DispatchQueue.main.async {
                             if let selectedImage = image as? UIImage {
-                                self.selectedImages.append(PhpickerImage(image: selectedImage))
-                                self.previewImages.accept(self.selectedImages)
+                                self.viewModel.selectedImages.append(PhpickerImage(image: selectedImage))
+                                self.viewModel.previewImages.accept(self.viewModel.selectedImages)
                             }
                         }
                     }
@@ -64,7 +61,7 @@ extension PostInputVC: PHPickerViewControllerDelegate {
 extension PostInputVC {
     
     func bindViewModel() {
-        previewImages
+        viewModel.previewImages
             .asDriver(onErrorJustReturn: [])
             .drive(mainView.imgCollectionView.rx.items(cellIdentifier: PostInputImageCell.identifier, cellType: PostInputImageCell.self)) { (row, element, cell) in
                 
@@ -74,9 +71,9 @@ extension PostInputVC {
                     .when(.recognized)
                     .asDriver { _ in .never() }
                     .drive(with: self, onNext: { owner, tap in
-                        if let removeIdx = owner.selectedImages.firstIndex(where: {$0.id == element.id }) {
-                            owner.selectedImages.remove(at: removeIdx)
-                            owner.previewImages.accept(owner.selectedImages)
+                        if let removeIdx = owner.viewModel.selectedImages.firstIndex(where: {$0.id == element.id }) {
+                            owner.viewModel.selectedImages.remove(at: removeIdx)
+                            owner.viewModel.previewImages.accept(owner.viewModel.selectedImages)
                         }
                     })
                     .disposed(by: cell.disposeBag)
@@ -89,13 +86,13 @@ extension PostInputVC {
         Observable.zip(mainView.imgCollectionView.rx.itemSelected, mainView.imgCollectionView.rx.modelSelected(PhpickerImage.self))
             .subscribe(with: self) { owner, selectedItem in
                 
-                owner.phpickerConfig.selectionLimit = owner.max - (owner.selectedImages.count - 1)
+                owner.phpickerConfig.selectionLimit = owner.max - (owner.viewModel.selectedImages.count - 1)
                 let picker = PHPickerViewController(configuration: owner.phpickerConfig)
                 picker.delegate = self
                 
                 if selectedItem.0.item == 0 {
-                    if owner.selectedImages.count - 1 == owner.max {
-                        owner.showToast(msg: "최대 \(owner.max)개 선택할 수 있어요")
+                    if owner.viewModel.selectedImages.count - 1 == owner.max {
+                        owner.showToast(msg: "이미지는 최대 \(owner.max)개 선택할 수 있어요")
                     } else {
                         owner.present(picker, animated: true, completion: nil)
                     }
@@ -104,7 +101,6 @@ extension PostInputVC {
                 }
             }
             .disposed(by: viewModel.disposeBag)
-        
     }
     
     func configureVC() {
@@ -112,7 +108,38 @@ extension PostInputVC {
             .rx
             .tap
             .bind(with: self) { owner, _ in
-                self.dismiss(animated: true)
+                owner.dismiss(animated: true)
+            }
+            .disposed(by: viewModel.disposeBag)
+        
+        mainView.completeButton
+            .rx
+            .tap
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
+            .withLatestFrom(viewModel.previewImages)
+            .map { previewImages in
+                let realImage = previewImages.filter { pickerImage in
+                    pickerImage.image != nil
+                }
+                var uiImages: [UIImage] = []
+                uiImages.append(contentsOf: realImage.map { pickerImage in
+                    pickerImage.image!
+                })
+                return uiImages
+            }
+            .bind(with: self) { owner, images in
+//                owner.showToast(msg: "완료")
+                Network.shared.createPost(
+                    api: PostAPI.create(
+                        request:
+                            PostCreateRequest(
+                                product_id: "lfTestPost",
+                                title: "타이틀",
+                                content: "내용"
+                            )
+                    ),
+                    images: images
+                )
             }
             .disposed(by: viewModel.disposeBag)
     }

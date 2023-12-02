@@ -12,4 +12,7 @@ import RxCocoa
 
 final class PostInputViewModel: BaseViewModel {
     
+    var selectedImages: [PhpickerImage] = [PhpickerImage(image: nil)]
+    var previewImages: BehaviorRelay<[PhpickerImage]> = BehaviorRelay(value: [PhpickerImage(image: nil)])
+    
 }
