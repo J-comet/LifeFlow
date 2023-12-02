@@ -128,18 +128,32 @@ extension PostInputVC {
                 return uiImages
             }
             .bind(with: self) { owner, images in
-//                owner.showToast(msg: "완료")
-                Network.shared.createPost(
-                    api: PostAPI.create(
-                        request:
-                            PostCreateRequest(
-                                product_id: "lfTestPost",
-                                title: "타이틀",
-                                content: "내용"
-                            )
-                    ),
-                    images: images
-                )
+                // TODO: 실제 데이터로 교체 작업 필요
+                // TODO: 이미지 선택시 용량 체크 필요 - 10MB
+                owner.viewModel.create(title: "타이트을", content: "내요응", images: images)
+            }
+            .disposed(by: viewModel.disposeBag)
+        
+        viewModel.createSuccess
+            .bind(with: self) { owner, value in
+                print("성공성공")
+                print(value)
+            }
+            .disposed(by: viewModel.disposeBag)
+        
+        viewModel.errorMessage
+            .bind(with: self) { owner, message in
+                owner.showToast(msg: message)
+            }
+            .disposed(by: viewModel.disposeBag)
+        
+        viewModel.isLoading
+            .bind { isLoading in
+                if isLoading {
+                    LoadingIndicator.show()
+                } else {
+                    LoadingIndicator.hide()
+                }
             }
             .disposed(by: viewModel.disposeBag)
     }

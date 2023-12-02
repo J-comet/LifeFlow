@@ -11,5 +11,4 @@ struct PostCreateRequest: Encodable {
     let product_id: String
     let title: String
     let content: String
-    let date = Date()
 }

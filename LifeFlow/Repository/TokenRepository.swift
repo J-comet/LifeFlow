@@ -40,7 +40,7 @@ enum TokenError: Int, Error {
     case notExpire = 409            // 토큰 만료되지 않음
     case needRefresh = 418          // 토큰이 만료됨 - 리프레시 필요
     
-    var showMessage: String {
+    var message: String {
         switch self {
         case .commonError:
             "알 수 없는 오류가 발생했어요"

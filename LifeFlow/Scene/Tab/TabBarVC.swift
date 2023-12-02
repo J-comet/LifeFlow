@@ -41,7 +41,7 @@ final class TabBarVC: UITabBarController {
     
     @objc
     func addBtnTabbed() {
-        let vc = PostInputVC(viewModel: PostInputViewModel())
+        let vc = PostInputVC(viewModel: PostInputViewModel(postRepository: PostRespository()))
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
     }

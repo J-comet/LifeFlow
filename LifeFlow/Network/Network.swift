@@ -53,45 +53,61 @@ final class Network {
         
     }
     
-    func createPost(api: Router, images: [UIImage]) {
-        AF.upload(multipartFormData: { multipartData in
-
-            //img 추가
-            for imageData in images {
-                
-                if let resizedImage = imageData.resizeWithWidth(width: 500) {
-                    if let image = resizedImage.jpegData(compressionQuality: 1) {
-                        multipartData.append(image, withName: "file", fileName: "test.jpeg", mimeType: "image/jpeg")
+    func upload<T: Decodable>(
+        api: Router,
+        type: T.Type,
+        images: [UIImage]
+    ) -> Single<Result<T, NetworkError>> {
+        return Single.create { single -> Disposable in
+            AF.upload(multipartFormData: { multipartData in
+                //img 추가
+                images.enumerated().forEach { idx, imageData in
+                    if let resizedImage = imageData.resizeWithWidth(width: 500) {
+                        if let image = resizedImage.jpegData(compressionQuality: 1) {
+                            multipartData.append(
+                                image,
+                                withName: "file",
+                                fileName: "\(Date().toString())/\(UUID()).jpeg",
+                                mimeType: "image/jpeg"
+                            )
+                        }
                     }
                 }
-            }
-            
-            // 배열 처리
-//            let keywords =  try! JSONSerialization.data(withJSONObject: model.keywords, options: .prettyPrinted)
-//            multipartFormData.append(keywords, withName: "keywords")
 
-        }, with: api)
-        .validate()
-        .responseData { response in
-            guard let statusCode = response.response?.statusCode else { return }
-            
-            switch response.result {
-            case .success(let success):
-                if statusCode == 200 {
-//                    single(.success(.success(data)))
-                    print("게시물 등록 성공")
-                    print(success)
-                } else {
-                    print("게시물 등록 성공했지만 실패 - \(statusCode)")
-//                    let error = NetworkError(statusCode: statusCode)
-//                    single(.success(.failure(error)))
+                // 배열 처리
+    //            let keywords =  try! JSONSerialization.data(withJSONObject: model.keywords, options: .prettyPrinted)
+    //            multipartFormData.append(keywords, withName: "keywords")
+
+            }, with: api)
+            .validate()
+            .responseDecodable(of: T.self) { response in
+                
+                guard let statusCode = response.response?.statusCode else { return }
+                var jsonString = ""
+                if let data = response.data {
+                    jsonString = String(decoding: data, as: UTF8.self)
                 }
-            case .failure(let failure):
-                print("게시물 완전 실패 - \(failure)")
-//                let error = NetworkError(statusCode: statusCode)
-//                single(.success(.failure(error)))
+                print(jsonString)
+                
+                switch response.result {
+                case .success(let data):
+                    if statusCode == 200 {
+                        single(.success(.success(data)))
+                        print("게시물 등록 성공")
+                    } else {
+                        print("게시물 등록 성공할뻔 했지만 실패 - \(statusCode)")
+                        let error = NetworkError(statusCode: statusCode)
+                        single(.success(.failure(error)))
+                    }
+                case .failure(let failure):
+                    print("게시물 완전 실패 - \(failure)")
+                    let error = NetworkError(statusCode: statusCode)
+                    single(.success(.failure(error)))
+                }
+                
             }
-            
+            return Disposables.create()
         }
+        
     }
 }
