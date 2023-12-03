@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct PostCreateEntity {
+struct PostEntity {
     let image: [String]
-//    let hashTags: [String]
+    let likes: [String]
     let id: String
     let creator: CreatorEntity
     let time: String

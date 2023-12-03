@@ -16,7 +16,7 @@ final class PostRespository {
         title: String,
         content: String,
         images: [UIImage]
-    ) -> Single<Result<PostCreateEntity, PostError>> {
+    ) -> Single<Result<PostEntity, PostCreateError>> {
         return Single.create { single in
             Network.shared.upload(
                 api: PostAPI.create(
@@ -25,7 +25,7 @@ final class PostRespository {
                         title: title,
                         content: content)
                 ),
-                type: PostCreateResponse.self,
+                type: PostResponse.self,
                 images: images
             ).subscribe { result in
                 switch result {
@@ -34,17 +34,45 @@ final class PostRespository {
                     case .success(let value):
                         single(.success(.success(value.toEntity())))
                     case .failure(let error):
-                        single(.success(.failure(PostError(rawValue: error.statusCode) ?? .commonError)))
+                        single(.success(.failure(PostCreateError(rawValue: error.statusCode) ?? .commonError)))
                     }
                 case .failure(let _):
-                    single(.success(.failure(PostError.commonError)))
+                    single(.success(.failure(PostCreateError.commonError)))
+                }
+            }
+        }
+    }
+    
+    func get(next: String) -> Single<Result<String, PostGetError>> {
+        return Single.create { single in
+            Network.shared.request(
+                api: PostAPI.get(
+                    request: PostGetRequest(
+                        product_id: Constant.ProductID.post,
+                        next: next,
+                        limit: "10"
+                    )
+                ),
+                type: String.self
+            ).subscribe { result in
+                switch result {
+                case .success(let result):
+                    switch result {
+                    case .success(let value):
+                        single(.success(.success(value)))
+//                        single(.success(.success(value.toEntity())))
+                    case .failure(let error):
+                        single(.success(.failure(PostGetError(rawValue: error.statusCode) ?? .commonError)))
+                    }
+                case .failure(let _):
+                    single(.success(.failure(PostGetError.commonError)))
                 }
             }
         }
     }
 }
 
-enum PostError: Int, Error {
+enum PostCreateError: Int, Error {
     case commonError = 600          // API 공통으로 받을 수 있는 응답코드 - Message 파싱해서 사용하기
     case badRequest = 400           // 잘못된 요청
     case unableToAuthenticate = 401   // 인증할 수 없는 토큰
@@ -64,6 +92,29 @@ enum PostError: Int, Error {
             "허용되지 않은 접근이에요"
         case .noPostsCreated:
             "관리자에게 문의해주세요"
+        case .needRefresh:
+            "토큰이 만료되었어요"
+        }
+    }
+}
+
+enum PostGetError: Int, Error {
+    case commonError = 600          // API 공통으로 받을 수 있는 응답코드 - Message 파싱해서 사용하기
+    case badRequest = 400           // 잘못된 요청
+    case unableToAuthenticate = 401   // 인증할 수 없는 토큰
+    case forbidden = 403            // 허용되지 않은 접근
+    case needRefresh = 419          // 토큰이 만료됨 - 리프레시 필요
+    
+    var message: String {
+        switch self {
+        case .commonError:
+            "알 수 없는 오류가 발생했어요"
+        case .badRequest:
+            "잘못된 요청이에요"
+        case .unableToAuthenticate:
+            "인증할 수 없는 토큰이에요"
+        case .forbidden:
+            "허용되지 않은 접근이에요"
         case .needRefresh:
             "토큰이 만료되었어요"
         }

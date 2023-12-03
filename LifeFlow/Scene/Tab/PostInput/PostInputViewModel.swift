@@ -21,12 +21,12 @@ final class PostInputViewModel: BaseViewModel {
     var selectedImages: [PhpickerImage] = [PhpickerImage(image: nil)]
     var previewImages: BehaviorRelay<[PhpickerImage]> = BehaviorRelay(value: [PhpickerImage(image: nil)])
     
-    let createSuccess = PublishRelay<PostCreateEntity>()
+    let createSuccess = PublishRelay<PostEntity>()
     
     func create(title: String, content: String, images: [UIImage]) {
         isLoading.accept(true)
         postRepository.create(
-            productId: "lfPostTest",
+            productId: Constant.ProductID.post,
             title: title,
             content: content,
             images: images

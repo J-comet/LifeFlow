@@ -11,6 +11,7 @@ import Alamofire
 
 enum PostAPI {
     case create(request: PostCreateRequest)
+    case get(request: PostGetRequest)
 }
 
 extension PostAPI: Router, URLRequestConvertible {
@@ -23,6 +24,8 @@ extension PostAPI: Router, URLRequestConvertible {
         switch self {
         case .create:
             "post"
+        case .get:
+            "post"
         }
     }
     
@@ -30,6 +33,8 @@ extension PostAPI: Router, URLRequestConvertible {
         switch self {
         case .create:
                 .post
+        case .get:
+                .get
         }
     }
     
@@ -41,12 +46,16 @@ extension PostAPI: Router, URLRequestConvertible {
                 "SesacKey": APIManagement.key,
                 "Content-Type": "multipart/form-data"
             ]
+        case .get:
+            Constant.Network.defaultHttpHeaders
         }
     }
     
     var parameters: [String: String]? {
         switch self {
         case .create(let request):
+            request.toEncodable
+        case .get(let request):
             request.toEncodable
         }
     }
@@ -57,6 +66,8 @@ extension PostAPI: Router, URLRequestConvertible {
         switch self {
         case .create:
             JSONEncoding.default
+        case .get:
+            URLEncoding.default
         }
     }
     
@@ -66,10 +77,6 @@ extension PostAPI: Router, URLRequestConvertible {
         request.method = method
         request.headers = HTTPHeaders(headers)
 //        request.timeoutInterval = 10
-        
-//        for (key, value) in parameters {
-//            MultipartFormData.append("\(value)".data(using: .utf8)!, withName: key)
-//        }
         
         if let encoding = encoding {
             return try encoding.encode(request, with: parameters)

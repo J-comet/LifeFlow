@@ -73,7 +73,7 @@ extension TabBarVC {
         var vc: UIViewController {
             switch self {
             case .home:
-                return HomeVC(viewModel: HomeViewModel())
+                return HomeVC(viewModel: HomeViewModel(postRepository: PostRespository()))
             case .emty:
                 return EmptyVC()
             case .profile:

@@ -1,5 +1,5 @@
 //
-//  PostCreateResponse.swift
+//  PostResponse.swift
 //  LifeFlow
 //
 //  Created by 장혜성 on 2023/12/02.
@@ -7,23 +7,24 @@
 
 import Foundation
 
-struct PostCreateResponse: Decodable, CreatEntityProtocol {
+struct PostResponse: Decodable, CreatEntityProtocol {
     let image: [String]?
-//    let hashTags: [String]
+    let likes: [String]?
     let id: String?
     let creator: CreatorResponse?
     let time: String?
     
     enum CodingKeys: String, CodingKey {
         case image
-//        case hashTags
+        case likes
         case id = "_id"
         case creator, time
     }
     
-    func toEntity() -> PostCreateEntity {
-        PostCreateEntity(
-            image: image ?? [],
+    func toEntity() -> PostEntity {
+        PostEntity(
+            image: image ?? [], 
+            likes: likes ?? [],
             id: id ?? "",
             creator: creator?.toEntity() ?? CreatorEntity(id: "", nick: ""),
             time: time ?? ""

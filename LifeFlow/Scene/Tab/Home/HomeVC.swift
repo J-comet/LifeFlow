@@ -28,6 +28,9 @@ final class HomeVC: BaseViewController<HomeView, HomeViewModel> {
         super.viewDidLoad()
         bindViewModel()
         configureVC()
+        
+//        print(UserDefaults.token)
+        viewModel.getPosts(next: "")
     }
 }
 
@@ -41,6 +44,13 @@ extension HomeVC {
             .drive(mainView.tableView.rx.items(cellIdentifier: HomeTableCell.identifier, cellType: HomeTableCell.self)) { (row, element, cell) in
                 cell.selectionStyle = .none
                 cell.configCell(row: element)
+            }
+            .disposed(by: viewModel.disposeBag)
+        
+        viewModel.errorMessage
+            .bind(with: self) { owner, message in
+                print(message)
+                owner.showToast(msg: message)
             }
             .disposed(by: viewModel.disposeBag)
     }

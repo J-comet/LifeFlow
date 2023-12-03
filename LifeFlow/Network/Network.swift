@@ -32,6 +32,8 @@ final class Network {
                     let statusCode = response.response?.statusCode ?? -1
                     let errorMessage = "<\(self)> : [JSONDecoder Error] code = \(statusCode)\njsonString = \(jsonString)"
                     
+                    print("request = ", jsonString)
+                    
                     switch response.result {
                     case .success(let data):
                         if statusCode == 200 {
@@ -87,7 +89,8 @@ final class Network {
                 if let data = response.data {
                     jsonString = String(decoding: data, as: UTF8.self)
                 }
-                print(jsonString)
+                
+                print("upload = ", jsonString)
                 
                 switch response.result {
                 case .success(let data):
