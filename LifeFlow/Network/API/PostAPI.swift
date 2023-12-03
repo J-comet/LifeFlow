@@ -11,7 +11,7 @@ import Alamofire
 
 enum PostAPI {
     case create(request: PostCreateRequest)
-    case get(request: PostGetRequest)
+    case getPosts(request: PostGetRequest)
 }
 
 extension PostAPI: Router, URLRequestConvertible {
@@ -24,7 +24,7 @@ extension PostAPI: Router, URLRequestConvertible {
         switch self {
         case .create:
             "post"
-        case .get:
+        case .getPosts:
             "post"
         }
     }
@@ -33,7 +33,7 @@ extension PostAPI: Router, URLRequestConvertible {
         switch self {
         case .create:
                 .post
-        case .get:
+        case .getPosts:
                 .get
         }
     }
@@ -46,8 +46,12 @@ extension PostAPI: Router, URLRequestConvertible {
                 "SesacKey": APIManagement.key,
                 "Content-Type": "multipart/form-data"
             ]
-        case .get:
-            Constant.Network.defaultHttpHeaders
+        case .getPosts:
+            [
+                "Authorization": UserDefaults.token,
+                "SesacKey": APIManagement.key,
+                "Content-Type": "application/json"
+            ]
         }
     }
     
@@ -55,7 +59,7 @@ extension PostAPI: Router, URLRequestConvertible {
         switch self {
         case .create(let request):
             request.toEncodable
-        case .get(let request):
+        case .getPosts(let request):
             request.toEncodable
         }
     }
@@ -66,7 +70,7 @@ extension PostAPI: Router, URLRequestConvertible {
         switch self {
         case .create:
             JSONEncoding.default
-        case .get:
+        case .getPosts:
             URLEncoding.default
         }
     }

@@ -112,6 +112,26 @@ extension PostInputVC {
             }
             .disposed(by: viewModel.disposeBag)
         
+        mainView.titleTextField
+            .rx
+            .text
+            .orEmpty
+            .asDriver()
+            .drive(with: self) { owner, title in
+                owner.viewModel.title.accept(title)
+            }
+            .disposed(by: viewModel.disposeBag)
+        
+        mainView.contentTextview
+            .rx
+            .text
+            .orEmpty
+            .asDriver()
+            .drive(with: self) { owner, title in
+                owner.viewModel.content.accept(title)
+            }
+            .disposed(by: viewModel.disposeBag)
+        
         mainView.completeButton
             .rx
             .tap
@@ -128,16 +148,15 @@ extension PostInputVC {
                 return uiImages
             }
             .bind(with: self) { owner, images in
-                // TODO: 실제 데이터로 교체 작업 필요
                 // TODO: 이미지 선택시 용량 체크 필요 - 10MB
-                owner.viewModel.create(title: "타이트을", content: "내요응", images: images)
+                owner.viewModel.create(images: images)
             }
             .disposed(by: viewModel.disposeBag)
         
         viewModel.createSuccess
             .bind(with: self) { owner, value in
                 print("성공성공")
-                print(value)
+                //
             }
             .disposed(by: viewModel.disposeBag)
         

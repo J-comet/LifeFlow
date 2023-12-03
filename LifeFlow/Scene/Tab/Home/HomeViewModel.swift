@@ -18,16 +18,20 @@ final class HomeViewModel: BaseViewModel {
         self.postRepository = postRepository
     }
     
-//    var posts: BehaviorRelay<[PostEntity]> = BehaviorRelay(value: [])
+    private var next = ""
+    private var tmpPosts: [PostEntity] = []
     
-    func getPosts(next: String) {
-        print("1234")
-        postRepository.get(next: next)
+    var posts: BehaviorRelay<[PostEntity]> = BehaviorRelay(value: [])
+    
+    func getPosts() {
+        postRepository.getPosts(next: next)
             .subscribe(with: self) { owner, result in
                 switch result {
                 case .success(let data):
                     print(data)
-//                    owner.posts.accept(<#T##event: [PostEntity]##[PostEntity]#>)
+                    owner.next = data.nextCursor
+                    owner.tmpPosts.append(contentsOf: data.data)
+                    owner.posts.accept(owner.tmpPosts)
                 case .failure(let error):
                     print(error)
                     owner.errorMessage.accept(error.message)

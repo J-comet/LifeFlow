@@ -43,24 +43,23 @@ final class PostRespository {
         }
     }
     
-    func get(next: String) -> Single<Result<String, PostGetError>> {
+    func getPosts(next: String) -> Single<Result<PostListEntity, PostGetError>> {
         return Single.create { single in
             Network.shared.request(
-                api: PostAPI.get(
+                api: PostAPI.getPosts(
                     request: PostGetRequest(
                         product_id: Constant.ProductID.post,
                         next: next,
                         limit: "10"
                     )
                 ),
-                type: String.self
+                type: PostListResponse.self
             ).subscribe { result in
                 switch result {
                 case .success(let result):
                     switch result {
                     case .success(let value):
-                        single(.success(.success(value)))
-//                        single(.success(.success(value.toEntity())))
+                        single(.success(.success(value.toEntity())))
                     case .failure(let error):
                         single(.success(.failure(PostGetError(rawValue: error.statusCode) ?? .commonError)))
                     }

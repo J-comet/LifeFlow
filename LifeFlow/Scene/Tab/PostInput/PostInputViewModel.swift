@@ -18,17 +18,37 @@ final class PostInputViewModel: BaseViewModel {
         self.postRepository = postRepository
     }
     
+    let title = BehaviorRelay(value: "")
+    let content = BehaviorRelay(value: "")
+    
     var selectedImages: [PhpickerImage] = [PhpickerImage(image: nil)]
-    var previewImages: BehaviorRelay<[PhpickerImage]> = BehaviorRelay(value: [PhpickerImage(image: nil)])
+    let previewImages: BehaviorRelay<[PhpickerImage]> = BehaviorRelay(value: [PhpickerImage(image: nil)])
     
     let createSuccess = PublishRelay<PostEntity>()
     
-    func create(title: String, content: String, images: [UIImage]) {
+    func create(images: [UIImage]) {
+        
+        if images.isEmpty {
+            errorMessage.accept("이미지를 선택해주세요")
+            return
+        }
+        
+        if title.value.isEmpty {
+            errorMessage.accept("제목을 입력해주세요")
+            return
+        }
+        
+        if content.value == "내용을 입력해주세요" {
+            errorMessage.accept("내용을 입력해주세요")
+            return
+        }
+        
+
         isLoading.accept(true)
         postRepository.create(
             productId: Constant.ProductID.post,
-            title: title,
-            content: content,
+            title: title.value,
+            content: content.value,
             images: images
         ).subscribe(with: self) { owner, result in
             switch result {

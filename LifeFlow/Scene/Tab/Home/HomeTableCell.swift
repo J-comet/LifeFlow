@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class HomeTableCell: BaseTableViewCell<String> {
+final class HomeTableCell: BaseTableViewCell<PostEntity> {
     
     let userThumbnail = UIImageView()
     
@@ -20,8 +20,8 @@ final class HomeTableCell: BaseTableViewCell<String> {
     
     let bottonContainerView = UIView()
     
-    override func configCell(row: String) {
-        locNameLabel.text = row
+    override func configCell(row: PostEntity) {
+        locNameLabel.text = row.creator.nick
     }
     
     override func configureHierarchy() {

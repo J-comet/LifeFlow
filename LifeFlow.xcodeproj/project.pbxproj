@@ -97,6 +97,8 @@
 		C0F5AAEE2B1B16D700B3D102 /* CreatorEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F5AAED2B1B16D700B3D102 /* CreatorEntity.swift */; };
 		C0F5AAF12B1B16FC00B3D102 /* CreatorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F5AAF02B1B16FC00B3D102 /* CreatorResponse.swift */; };
 		C0F5AAF32B1C2E7F00B3D102 /* PostGetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F5AAF22B1C2E7F00B3D102 /* PostGetRequest.swift */; };
+		C0F5AAF52B1C482E00B3D102 /* PostListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F5AAF42B1C482E00B3D102 /* PostListResponse.swift */; };
+		C0F5AAF72B1C48F900B3D102 /* PostListEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F5AAF62B1C48F900B3D102 /* PostListEntity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -183,6 +185,8 @@
 		C0F5AAED2B1B16D700B3D102 /* CreatorEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorEntity.swift; sourceTree = "<group>"; };
 		C0F5AAF02B1B16FC00B3D102 /* CreatorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorResponse.swift; sourceTree = "<group>"; };
 		C0F5AAF22B1C2E7F00B3D102 /* PostGetRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGetRequest.swift; sourceTree = "<group>"; };
+		C0F5AAF42B1C482E00B3D102 /* PostListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListResponse.swift; sourceTree = "<group>"; };
+		C0F5AAF62B1C48F900B3D102 /* PostListEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListEntity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				C0F5AAEA2B1B169C00B3D102 /* PostResponse.swift */,
+				C0F5AAF42B1C482E00B3D102 /* PostListResponse.swift */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -234,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				C006C6972B19D674004D14AF /* PostEntity.swift */,
+				C0F5AAF62B1C48F900B3D102 /* PostListEntity.swift */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -706,6 +712,7 @@
 				C0DAE94B2B059B4A0067279A /* JoinResponse.swift in Sources */,
 				C0DAE9342B0503F40067279A /* TokenAPI.swift in Sources */,
 				C02C06C32B07469B00E9AB93 /* BaseCellProtocol.swift in Sources */,
+				C0F5AAF72B1C48F900B3D102 /* PostListEntity.swift in Sources */,
 				C02C06D22B074CCB00E9AB93 /* ViewModelType.swift in Sources */,
 				C02C06C42B07469B00E9AB93 /* BaseView.swift in Sources */,
 				C0B07F242B10DC0900350ECC /* UIViewController+Extension.swift in Sources */,
@@ -741,6 +748,7 @@
 				C0DAE9432B0534E40067279A /* TokenRequest.swift in Sources */,
 				C0729D6D2B10893400CEA6F0 /* SignupViewModel.swift in Sources */,
 				C02C06D52B074F2C00E9AB93 /* BasicTextField.swift in Sources */,
+				C0F5AAF52B1C482E00B3D102 /* PostListResponse.swift in Sources */,
 				C02028D22B17845A008FB1EA /* PostInputView.swift in Sources */,
 				C0729D622B1080E100CEA6F0 /* SpoqaHanSansNeoFonts.swift in Sources */,
 				C01A42B62B028E2200317956 /* AuthRepository.swift in Sources */,

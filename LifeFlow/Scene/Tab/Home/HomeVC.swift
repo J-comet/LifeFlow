@@ -29,8 +29,7 @@ final class HomeVC: BaseViewController<HomeView, HomeViewModel> {
         bindViewModel()
         configureVC()
         
-//        print(UserDefaults.token)
-        viewModel.getPosts(next: "")
+        viewModel.getPosts()
     }
 }
 
@@ -38,14 +37,46 @@ final class HomeVC: BaseViewController<HomeView, HomeViewModel> {
 extension HomeVC {
     
     func bindViewModel() {
-        let arrString = ["a","b","c","d"]
-        Observable.just(arrString)
+        
+        viewModel.posts
             .asDriver(onErrorJustReturn: [])
             .drive(mainView.tableView.rx.items(cellIdentifier: HomeTableCell.identifier, cellType: HomeTableCell.self)) { (row, element, cell) in
                 cell.selectionStyle = .none
                 cell.configCell(row: element)
             }
             .disposed(by: viewModel.disposeBag)
+        
+        viewModel.posts
+            .map { $0.isEmpty }
+            .share()
+            .bind(to: mainView.tableView.rx.isHidden)
+            .disposed(by: viewModel.disposeBag)
+        
+        viewModel.posts
+            .map { !$0.isEmpty }
+            .asDriver(onErrorJustReturn: false)
+            .drive(mainView.emptyLabel.rx.isHidden)
+            .disposed(by: viewModel.disposeBag)
+        
+        viewModel.posts
+            .map { $0.isEmpty }
+            .asDriver(onErrorJustReturn: false)
+            .drive(with: self) { owner, isEmpty in
+                owner.navigationController?.hidesBarsOnSwipe = !isEmpty
+            }
+            .disposed(by: viewModel.disposeBag)
+        
+        
+        viewModel.isLoading
+            .bind { isLoading in
+                if isLoading {
+                    LoadingIndicator.show()
+                } else {
+                    LoadingIndicator.hide()
+                }
+            }
+            .disposed(by: viewModel.disposeBag)
+        
         
         viewModel.errorMessage
             .bind(with: self) { owner, message in
@@ -59,6 +90,6 @@ extension HomeVC {
         navigationController?.navigationBar.backgroundColor = .white
         navigationItem.rightBarButtonItem = rightBarButton
         navigationItem.titleView = navTitleLabel
-        navigationController?.hidesBarsOnSwipe = true
+        
     }
 }

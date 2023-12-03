@@ -25,6 +25,8 @@ final class Network {
                 .validate()
                 .responseDecodable(of: T.self) { response in
                     
+                    print(response.request?.url)
+                    
                     var jsonString = "JSON 데이터 없음"
                     if let data = response.data {
                         jsonString = String(decoding: data, as: UTF8.self)
