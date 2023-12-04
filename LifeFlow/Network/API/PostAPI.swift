@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 
 enum PostAPI {
-    case create(request: PostCreateRequest)
+    case create
     case getPosts(request: PostGetRequest)
 }
 
@@ -57,8 +57,8 @@ extension PostAPI: Router, URLRequestConvertible {
     
     var parameters: [String: String]? {
         switch self {
-        case .create(let request):
-            request.toEncodable
+        case .create:
+            nil
         case .getPosts(let request):
             request.toEncodable
         }
@@ -69,7 +69,7 @@ extension PostAPI: Router, URLRequestConvertible {
     var encoding: ParameterEncoding? {
         switch self {
         case .create:
-            JSONEncoding.default
+            URLEncoding.default
         case .getPosts:
             URLEncoding.default
         }
@@ -87,6 +87,5 @@ extension PostAPI: Router, URLRequestConvertible {
         }
         return request
     }
-    
     
 }

@@ -13,19 +13,14 @@ final class PostRespository {
     
     func create(
         productId: String,
-        title: String,
-        content: String,
-        images: [UIImage]
+        params: PostCreateRequest,
+        images: [Data]
     ) -> Single<Result<PostEntity, PostCreateError>> {
         return Single.create { single in
             Network.shared.upload(
-                api: PostAPI.create(
-                    request: PostCreateRequest(
-                        product_id: productId,
-                        title: title,
-                        content: content)
-                ),
-                type: PostResponse.self,
+                api: PostAPI.create,
+                type: PostResponse.self, 
+                params: params.toEncodable,
                 images: images
             ).subscribe { result in
                 switch result {

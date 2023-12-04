@@ -13,6 +13,8 @@ import RxSwift
 import RxCocoa
 import RxGesture
 
+import Alamofire
+
 final class PostInputVC: BaseViewController<PostInputView, PostInputViewModel> {
     
     private var max = 5
@@ -30,6 +32,31 @@ final class PostInputVC: BaseViewController<PostInputView, PostInputViewModel> {
         bindViewModel()
         configureVC()
     }
+    
+    func uploadPost(_ title: String, content: String, images: [UIImage]) {
+            guard let url = URL(string: "https://your-api-endpoint.com/uploadPost") else {
+                print("Invalid URL")
+                return
+            }
+
+            AF.upload(multipartFormData: { multipartFormData in
+                // Add title and content parameters
+                multipartFormData.append(title.data(using: .utf8)!, withName: "title")
+                multipartFormData.append(content.data(using: .utf8)!, withName: "content")
+
+                // Add images
+                for (index, image) in images.enumerated() {
+                    guard let imageData = image.jpegData(compressionQuality: 0.5) else {
+                        print("Error converting image to data")
+                        continue
+                    }
+                    multipartFormData.append(imageData, withName: "file\(index)", fileName: "image\(index).jpg", mimeType: "image/jpeg")
+                }
+            }, to: url) { result in
+                
+            }
+        }
+
 }
 
 
@@ -47,8 +74,11 @@ extension PostInputVC: PHPickerViewControllerDelegate {
                     provider.loadObject(ofClass: UIImage.self) { (image, error) in
                         DispatchQueue.main.async {
                             if let selectedImage = image as? UIImage {
-                                self.viewModel.selectedImages.append(PhpickerImage(image: selectedImage))
-                                self.viewModel.previewImages.accept(self.viewModel.selectedImages)
+                                // TODO: 압축
+                                if let resizeImage = selectedImage.resizeWithWidth(width: 500)?.jpegData(compressionQuality: 0.5) {
+                                    self.viewModel.selectedImages.append(PhpickerImage(image: UIImage(data: resizeImage)))
+                                    self.viewModel.previewImages.accept(self.viewModel.selectedImages)
+                                }
                             }
                         }
                     }
@@ -136,20 +166,9 @@ extension PostInputVC {
             .rx
             .tap
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
-            .withLatestFrom(viewModel.previewImages)
-            .map { previewImages in
-                let realImage = previewImages.filter { pickerImage in
-                    pickerImage.image != nil
-                }
-                var uiImages: [UIImage] = []
-                uiImages.append(contentsOf: realImage.map { pickerImage in
-                    pickerImage.image!
-                })
-                return uiImages
-            }
-            .bind(with: self) { owner, images in
+            .bind(with: self) { owner, _ in
                 // TODO: 이미지 선택시 용량 체크 필요 - 10MB
-                owner.viewModel.create(images: images)
+                owner.viewModel.create()
             }
             .disposed(by: viewModel.disposeBag)
         

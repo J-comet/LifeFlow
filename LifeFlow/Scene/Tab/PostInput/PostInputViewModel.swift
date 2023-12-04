@@ -5,7 +5,7 @@
 //  Created by 장혜성 on 2023/11/29.
 //
 
-import UIKit
+import Foundation
 
 import RxSwift
 import RxCocoa
@@ -23,12 +23,13 @@ final class PostInputViewModel: BaseViewModel {
     
     var selectedImages: [PhpickerImage] = [PhpickerImage(image: nil)]
     let previewImages: BehaviorRelay<[PhpickerImage]> = BehaviorRelay(value: [PhpickerImage(image: nil)])
+    var passImageDatas: [Data] = []
     
     let createSuccess = PublishRelay<PostEntity>()
     
-    func create(images: [UIImage]) {
+    func create() {
         
-        if images.isEmpty {
+        if previewImages.value.count - 1 == 0 {
             errorMessage.accept("이미지를 선택해주세요")
             return
         }
@@ -42,14 +43,19 @@ final class PostInputViewModel: BaseViewModel {
             errorMessage.accept("내용을 입력해주세요")
             return
         }
-        
 
         isLoading.accept(true)
+
+        previewImages.value.forEach { pickerImage in
+            if let image = pickerImage.image {
+                passImageDatas.append(image.jpegData(compressionQuality: 1)!)
+            }
+        }
+        
         postRepository.create(
             productId: Constant.ProductID.post,
-            title: title.value,
-            content: content.value,
-            images: images
+            params: PostCreateRequest(product_id: Constant.ProductID.post, title: title.value, content: content.value),
+            images: passImageDatas
         ).subscribe(with: self) { owner, result in
             switch result {
             case .success(let data):

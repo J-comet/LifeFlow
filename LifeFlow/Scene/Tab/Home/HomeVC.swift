@@ -29,6 +29,7 @@ final class HomeVC: BaseViewController<HomeView, HomeViewModel> {
         bindViewModel()
         configureVC()
         
+        print(UserDefaults.token)
         viewModel.getPosts()
     }
 }

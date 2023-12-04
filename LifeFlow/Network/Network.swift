@@ -54,34 +54,45 @@ final class Network {
                 }
             return Disposables.create()
         }
-        
     }
-    
+
     func upload<T: Decodable>(
         api: Router,
         type: T.Type,
-        images: [UIImage]
+        params: Parameters,
+        images: [Data]
     ) -> Single<Result<T, NetworkError>> {
         return Single.create { single -> Disposable in
-            AF.upload(multipartFormData: { multipartData in
-                //img 추가
-                images.enumerated().forEach { idx, imageData in
-                    if let resizedImage = imageData.resizeWithWidth(width: 500) {
-                        if let image = resizedImage.jpegData(compressionQuality: 1) {
-                            multipartData.append(
-                                image,
-                                withName: "file",
-                                fileName: "\(Date().toString())/\(UUID()).jpeg",
-                                mimeType: "image/jpeg"
-                            )
-                        }
+            AF.upload(multipartFormData: { multipartFormData in
+                for (key, value) in params {
+                    if let temp = value as? String {
+                        multipartFormData.append(temp.data(using: .utf8)!, withName: key)
+                    }
+                    if let temp = value as? Int {
+                        multipartFormData.append("\(temp)".data(using: .utf8)!, withName: key)
+                    }
+                    if let temp = value as? NSArray {
+                        temp.forEach({ element in
+                            let keyObj = key + "[]"
+                            if let string = element as? String {
+                                multipartFormData.append(string.data(using: .utf8)!, withName: keyObj)
+                            } else
+                            if let num = element as? Int {
+                                let value = "\(num)"
+                                multipartFormData.append(value.data(using: .utf8)!, withName: keyObj)
+                            }
+                        })
                     }
                 }
-
-                // 배열 처리
-    //            let keywords =  try! JSONSerialization.data(withJSONObject: model.keywords, options: .prettyPrinted)
-    //            multipartFormData.append(keywords, withName: "keywords")
-
+                
+                for (index, data) in images.enumerated() {
+                    multipartFormData.append(
+                        data,
+                        withName: "file",
+                        fileName: "\(Date().toString())/\(index).jpeg",
+                        mimeType: "image/jpeg"
+                    )
+                }
             }, with: api)
             .validate()
             .responseDecodable(of: T.self) { response in
