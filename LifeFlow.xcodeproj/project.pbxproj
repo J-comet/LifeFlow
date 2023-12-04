@@ -99,6 +99,8 @@
 		C0F5AAF32B1C2E7F00B3D102 /* PostGetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F5AAF22B1C2E7F00B3D102 /* PostGetRequest.swift */; };
 		C0F5AAF52B1C482E00B3D102 /* PostListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F5AAF42B1C482E00B3D102 /* PostListResponse.swift */; };
 		C0F5AAF72B1C48F900B3D102 /* PostListEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F5AAF62B1C48F900B3D102 /* PostListEntity.swift */; };
+		C0FFFFA62B1DCAD3007D36FD /* HomeImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FFFFA52B1DCAD3007D36FD /* HomeImageCell.swift */; };
+		C0FFFFA92B1DCD7A007D36FD /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C0FFFFA82B1DCD7A007D36FD /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -187,6 +189,7 @@
 		C0F5AAF22B1C2E7F00B3D102 /* PostGetRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGetRequest.swift; sourceTree = "<group>"; };
 		C0F5AAF42B1C482E00B3D102 /* PostListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListResponse.swift; sourceTree = "<group>"; };
 		C0F5AAF62B1C48F900B3D102 /* PostListEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListEntity.swift; sourceTree = "<group>"; };
+		C0FFFFA52B1DCAD3007D36FD /* HomeImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeImageCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +201,7 @@
 				C0F5AAE72B1AD99200B3D102 /* RxGesture in Frameworks */,
 				C0B07F272B10DD3000350ECC /* IQKeyboardManagerSwift in Frameworks */,
 				C07FA7BF2B01E6FB000B93F3 /* Alamofire in Frameworks */,
+				C0FFFFA92B1DCD7A007D36FD /* Kingfisher in Frameworks */,
 				C07FA7C22B01E78E000B93F3 /* RxAlamofire in Frameworks */,
 				C02C06D92B0751A800E9AB93 /* Then in Frameworks */,
 				C07FA7BC2B01E642000B93F3 /* RxSwift in Frameworks */,
@@ -300,6 +304,7 @@
 				C020289A2B15C9EA008FB1EA /* HomeVC.swift */,
 				C020289C2B15C9F2008FB1EA /* HomeViewModel.swift */,
 				C02028AB2B15DF51008FB1EA /* HomeTableCell.swift */,
+				C0FFFFA52B1DCAD3007D36FD /* HomeImageCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -614,6 +619,7 @@
 				C02C06D82B0751A800E9AB93 /* Then */,
 				C0B07F262B10DD3000350ECC /* IQKeyboardManagerSwift */,
 				C0F5AAE62B1AD99200B3D102 /* RxGesture */,
+				C0FFFFA82B1DCD7A007D36FD /* Kingfisher */,
 			);
 			productName = LifeFlow;
 			productReference = C07FA79A2B01E43C000B93F3 /* LifeFlow.app */;
@@ -652,6 +658,7 @@
 				C02C06D72B0751A800E9AB93 /* XCRemoteSwiftPackageReference "Then" */,
 				C0B07F252B10DD3000350ECC /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				C0F5AAE52B1AD99200B3D102 /* XCRemoteSwiftPackageReference "RxGesture" */,
+				C0FFFFA72B1DCD7A007D36FD /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = C07FA79B2B01E43C000B93F3 /* Products */;
 			projectDirPath = "";
@@ -751,6 +758,7 @@
 				C0F5AAF52B1C482E00B3D102 /* PostListResponse.swift in Sources */,
 				C02028D22B17845A008FB1EA /* PostInputView.swift in Sources */,
 				C0729D622B1080E100CEA6F0 /* SpoqaHanSansNeoFonts.swift in Sources */,
+				C0FFFFA62B1DCAD3007D36FD /* HomeImageCell.swift in Sources */,
 				C01A42B62B028E2200317956 /* AuthRepository.swift in Sources */,
 				C02C06C72B0746AC00E9AB93 /* BaseTableViewCell.swift in Sources */,
 				C02028AE2B15E4FA008FB1EA /* ReusableViewProtocol.swift in Sources */,
@@ -1044,6 +1052,14 @@
 				minimumVersion = 4.0.4;
 			};
 		};
+		C0FFFFA72B1DCD7A007D36FD /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.10.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1091,6 +1107,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C0F5AAE52B1AD99200B3D102 /* XCRemoteSwiftPackageReference "RxGesture" */;
 			productName = RxGesture;
+		};
+		C0FFFFA82B1DCD7A007D36FD /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C0FFFFA72B1DCD7A007D36FD /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

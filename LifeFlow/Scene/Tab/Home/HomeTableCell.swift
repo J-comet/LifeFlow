@@ -9,6 +9,8 @@ import UIKit
 
 import SnapKit
 import Then
+import RxSwift
+import RxCocoa
 
 final class HomeTableCell: BaseTableViewCell<PostEntity> {
     
@@ -16,12 +18,28 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
     
     let locNameLabel = UILabel()
     
-    lazy var horizontalImgCollectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout())
+    lazy var horizontalImgCollectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).then {
+        $0.showsHorizontalScrollIndicator = false
+        $0.alwaysBounceHorizontal = false
+        $0.register(HomeImageCell.self, forCellWithReuseIdentifier: HomeImageCell.identifier)
+    }
     
     let bottonContainerView = UIView()
     
+    var disposeBag = DisposeBag()
+    
+    let horizontalImages: BehaviorRelay<[String]> = BehaviorRelay(value: [])
+    
     override func configCell(row: PostEntity) {
-        locNameLabel.text = row.creator.nick
+        locNameLabel.text = row.creator.nick        
+        horizontalImages.accept(row.image)
+        
+        horizontalImages
+            .asDriver(onErrorJustReturn: [])
+            .drive(horizontalImgCollectionView.rx.items(cellIdentifier: HomeImageCell.identifier, cellType: HomeImageCell.self)) { (row, element, cell) in
+                cell.configCell(row: element)
+            }
+            .disposed(by: disposeBag)
     }
     
     override func configureHierarchy() {
@@ -44,7 +62,7 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
             make.leading.equalTo(userThumbnail.snp.trailing).offset(8)
         }
         
-        horizontalImgCollectionView.backgroundColor = .blue
+//        horizontalImgCollectionView.backgroundColor = .blue
         horizontalImgCollectionView.snp.makeConstraints { make in
             make.top.equalTo(userThumbnail.snp.bottom).offset(8)
             make.horizontalEdges.equalToSuperview()
