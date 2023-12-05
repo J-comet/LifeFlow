@@ -38,7 +38,7 @@ enum TokenError: Int, Error {
     case unableToAuthenticate = 401   // 인증할 수 없는 토큰
     case forbidden = 403            // 허용되지 않은 접근
     case notExpire = 409            // 토큰 만료되지 않음
-    case needRefresh = 418          // 토큰이 만료됨 - 리프레시 필요
+    case needLoginAgain = 418        // 리프레시토큰이 만료됨 - 다시로그인
     
     var message: String {
         switch self {
@@ -50,8 +50,8 @@ enum TokenError: Int, Error {
             "허용되지 않은 접근이에요"
         case .notExpire:
             "토큰이 만료되지 않았어요"
-        case .needRefresh:
-            "토큰이 만료되었어요"
+        case .needLoginAgain:
+            "다시 로그인 해주세요"
         }
     }
 }

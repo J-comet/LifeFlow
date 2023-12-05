@@ -5,7 +5,7 @@
 //  Created by 장혜성 on 2023/11/14.
 //
 
-import UIKit
+import Foundation
 
 import Alamofire
 import RxSwift
@@ -16,12 +16,14 @@ final class Network {
     
     static let commonErrorCode = 600
     
+    private let baseInterceptor = BaseInterceptor()
+    
     func request<T: Decodable>(
         api: Router,
         type: T.Type
     ) -> Single<Result<T, NetworkError>> {
         return Single.create { single -> Disposable in
-            AF.request(api)
+            AF.request(api, interceptor: BaseInterceptor())
                 .validate()
                 .responseDecodable(of: T.self) { response in
                     
@@ -93,7 +95,7 @@ final class Network {
                         mimeType: "image/jpeg"
                     )
                 }
-            }, with: api)
+            }, with: api, interceptor: BaseInterceptor())
             .validate()
             .responseDecodable(of: T.self) { response in
                 
