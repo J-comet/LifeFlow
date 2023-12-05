@@ -14,6 +14,8 @@ import RxCocoa
 
 final class HomeTableCell: BaseTableViewCell<PostEntity> {
     
+    var disposeBag = DisposeBag()
+    
     let userThumbnail = UIImageView()
     
     let locNameLabel = UILabel()
@@ -22,18 +24,30 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
         $0.showsHorizontalScrollIndicator = false
         $0.alwaysBounceHorizontal = false
         $0.register(HomeImageCell.self, forCellWithReuseIdentifier: HomeImageCell.identifier)
+        $0.isPagingEnabled = true
+        $0.bounces = false
     }
     
     let bottonContainerView = UIView()
     
-    var disposeBag = DisposeBag()
+    private let horizontalImages: BehaviorRelay<[String]> = BehaviorRelay(value: [])
     
-    let horizontalImages: BehaviorRelay<[String]> = BehaviorRelay(value: [])
+    private let horizontalImageViewHeight = UIScreen.main.bounds.width * 1.3
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+        bindHorizontalImages()
+    }
     
     override func configCell(row: PostEntity) {
         locNameLabel.text = row.creator.nick        
         horizontalImages.accept(row.image)
         
+        bindHorizontalImages()
+    }
+    
+    private func bindHorizontalImages() {
         horizontalImages
             .asDriver(onErrorJustReturn: [])
             .drive(horizontalImgCollectionView.rx.items(cellIdentifier: HomeImageCell.identifier, cellType: HomeImageCell.self)) { (row, element, cell) in
@@ -62,11 +76,11 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
             make.leading.equalTo(userThumbnail.snp.trailing).offset(8)
         }
         
-//        horizontalImgCollectionView.backgroundColor = .blue
         horizontalImgCollectionView.snp.makeConstraints { make in
             make.top.equalTo(userThumbnail.snp.bottom).offset(8)
             make.horizontalEdges.equalToSuperview()
-            make.height.equalToSuperview().multipliedBy(0.7)
+            make.bottom.equalTo(bottonContainerView.snp.top).offset(8)
+            make.height.equalTo(horizontalImageViewHeight)
         }
         
         bottonContainerView.backgroundColor = .orange
@@ -84,10 +98,10 @@ extension HomeTableCell {
         // 비율 계산해서 디바이스 별로 UI 설정
         let layout = UICollectionViewFlowLayout()
         let spacing: CGFloat = 0
-        let count: CGFloat = 1
-        let width: CGFloat = UIScreen.main.bounds.width - (spacing * (count + 1)) // 디바이스 너비 계산
+        let width: CGFloat = UIScreen.main.bounds.width // 디바이스 너비 계산
         
-        layout.itemSize = CGSize(width: width / count, height: width / count)
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: width, height: horizontalImageViewHeight)
         layout.sectionInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)  // 컨텐츠가 잘리지 않고 자연스럽게 표시되도록 여백설정
         layout.minimumLineSpacing = spacing         // 셀과셀 위 아래 최소 간격
         layout.minimumInteritemSpacing = spacing    // 셀과셀 좌 우 최소 간격

@@ -23,4 +23,20 @@ extension UIImage {
         UIGraphicsEndImageContext()
         return result
     }
+    
+    var isAllowedFileSize: Bool {
+        let maxSize = 10.0
+        guard let bytes = self.pngData()?.count else {
+            return false
+        }
+        let kb = Double(bytes) / 1000.0
+        let mb = Double(kb) / 1000.0
+        let currentImageSize = round(mb)
+
+        if currentImageSize < maxSize {
+            return true
+        } else {
+            return false
+        }
+    }
 }

@@ -74,10 +74,13 @@ extension PostInputVC: PHPickerViewControllerDelegate {
                     provider.loadObject(ofClass: UIImage.self) { (image, error) in
                         DispatchQueue.main.async {
                             if let selectedImage = image as? UIImage {
-                                // TODO: 압축
-                                if let resizeImage = selectedImage.resizeWithWidth(width: 500)?.jpegData(compressionQuality: 0.5) {
-                                    self.viewModel.selectedImages.append(PhpickerImage(image: UIImage(data: resizeImage)))
-                                    self.viewModel.previewImages.accept(self.viewModel.selectedImages)
+                                if selectedImage.isAllowedFileSize {
+                                    if let resizeImage = selectedImage.resizeWithWidth(width: 500)?.jpegData(compressionQuality: 1) {
+                                        self.viewModel.selectedImages.append(PhpickerImage(image: UIImage(data: resizeImage)))
+                                        self.viewModel.previewImages.accept(self.viewModel.selectedImages)
+                                    }
+                                } else {
+                                    self.showToast(msg: "이미지는 최대 10MB까지 업로드 할 수 있어요")
                                 }
                             }
                         }
@@ -167,7 +170,6 @@ extension PostInputVC {
             .tap
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
             .bind(with: self) { owner, _ in
-                // TODO: 이미지 선택시 용량 체크 필요 - 10MB
                 owner.viewModel.create()
             }
             .disposed(by: viewModel.disposeBag)

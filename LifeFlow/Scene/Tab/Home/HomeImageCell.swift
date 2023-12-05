@@ -16,7 +16,8 @@ import RxCocoa
 final class HomeImageCell: BaseCollectionViewCell<String> {
     
     let imageView = UIImageView().then {
-        $0.contentMode = .scaleToFill
+        $0.contentMode = .scaleAspectFill
+        $0.clipsToBounds = true
     }
     
     override func configCell(row: String) {
