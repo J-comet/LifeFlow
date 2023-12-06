@@ -62,6 +62,7 @@ extension HomeVC {
                                 print("\(post.title) 클릭")
                                 print("\(!post.isExpand) 클릭")
                                 post.isExpand = !element.isExpand
+                                post.currentImagePage = cell.currentPage.value
                             }
                             return post
                         }

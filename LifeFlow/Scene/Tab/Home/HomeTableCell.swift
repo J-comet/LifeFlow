@@ -41,7 +41,6 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
         $0.axis = .horizontal
         $0.distribution = .fill
         $0.spacing = 0
-//        $0.alignment = .leading
     }
     
     let contentLabel = BasicLabel().then {
@@ -50,7 +49,6 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
         $0.numberOfLines = 1
         $0.lineBreakMode = .byTruncatingTail
         $0.lineBreakStrategy = .hangulWordPriority
-        $0.backgroundColor = .red
     }
     
     let expandContentLabel = BasicLabel().then {
@@ -59,7 +57,6 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
         $0.numberOfLines = 0
         $0.lineBreakMode = .byCharWrapping
         $0.lineBreakStrategy = .hangulWordPriority
-        $0.backgroundColor = .red
         $0.isHidden = true
     }
     
@@ -68,7 +65,7 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
         attString.font = UIFont(name: SpoqaHanSansNeoFonts.light.rawValue, size: 14)!
         var config = UIButton.Configuration.filled()
         config.attributedTitle = attString
-        config.baseBackgroundColor = .yellow
+        config.baseBackgroundColor = .clear
         config.baseForegroundColor = .lightGray
         $0.configuration = config
         $0.contentHorizontalAlignment = .left
@@ -84,11 +81,11 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
     
     let bottonContainerView = UIView()
     
-    private let horizontalImages: BehaviorRelay<[String]> = BehaviorRelay(value: [])
+    private let horizontalImages = PublishRelay<[String]>()
     
     private let horizontalImageViewHeight = UIScreen.main.bounds.width * 1.2
     
-    private let currentPage = BehaviorRelay(value: 0)
+    let currentPage = BehaviorRelay(value: 0)
     
     let heartView = UIImageView().then {
         $0.image = UIImage(systemName: "heart")?
@@ -99,14 +96,15 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
     let heartCntLabel = BasicLabel().then {
         $0.font(weight: .regular, size: 14)
         $0.textColor = .text
-        $0.text = "좋아요 0개"
     }
     
     let pageControl = UIPageControl(frame: .zero).then {
         $0.pageIndicatorTintColor = .systemGray4
         $0.currentPageIndicatorTintColor = .darkGray
-        $0.currentPage = 0
+        $0.hidesForSinglePage = true
         $0.isUserInteractionEnabled = false
+        $0.backgroundStyle = .minimal
+        $0.isHidden = true
     }
     
     override func prepareForReuse() {
@@ -114,11 +112,15 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
         disposeBag = DisposeBag()
         bindHorizontalImages()
         bindPagingControl()
-        currentPage
     }
     
     override func configCell(row: PostEntity) {
+        horizontalImages.accept(row.image)
         pageControl.numberOfPages = row.image.count
+        pageControl.currentPage = row.currentImagePage
+        
+        horizontalImgCollectionView.scrollToItem(at: .init(item: row.currentImagePage, section: 0), at: .centeredHorizontally, animated: false)
+        
         userThumbnail.loadImage(
             from: "",
             placeHolderImage: UIImage().defaultUser
@@ -126,24 +128,18 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
         nickNameLabel.text = row.creator.nick
         heartCntLabel.text = "좋아요 \(row.likes.count)개"
         titleLabel.text = row.title
-//        contentLabel.text = row.content
-        contentLabel.text =
-        """
-row.contentrow.contentrow.contentrow.contentrow.contentrow.contentrow.contentrow.contentcontentrow.content
-"""
-        expandContentLabel.text =
-        """
-row.contentrow.contentrow.contentrow.contentrow.contentrow.contentrow.contentrow.contentcontentrow.content
-"""
+        contentLabel.text = row.content
         expandContentLabel.isHidden = !row.isExpand
         horizontalContentStackView.isHidden = row.isExpand
         
-        horizontalImages.accept(row.image)
+        if expandContentLabel.getTextLines() > 1 {
+            moreContentButton.isHidden = false
+        } else {
+            moreContentButton.isHidden = true
+        }
     }
     
     private func bindHorizontalImages() {
-        horizontalImgCollectionView.delegate = nil
-        horizontalImgCollectionView.dataSource = nil
         horizontalImages
             .asDriver(onErrorJustReturn: [])
             .drive(horizontalImgCollectionView.rx.items(cellIdentifier: HomeImageCell.identifier, cellType: HomeImageCell.self)) { (row, element, cell) in
@@ -160,7 +156,6 @@ row.contentrow.contentrow.contentrow.contentrow.contentrow.contentrow.contentrow
                 let pageWidth = UIScreen.main.bounds.width
                 let page = floor((owner.horizontalImgCollectionView.contentOffset.x - pageWidth / 2) / pageWidth) + 1
                 owner.currentPage.accept(Int(page))
-                print("페이징컨트롤러 테스트")
             }
             .disposed(by: disposeBag)
         
@@ -217,7 +212,7 @@ row.contentrow.contentrow.contentrow.contentrow.contentrow.contentrow.contentrow
         }
         
         pageControl.snp.makeConstraints { make in
-            make.top.equalToSuperview()
+            make.top.equalToSuperview().inset(8)
             make.centerX.equalToSuperview()
         }
         
@@ -238,16 +233,10 @@ row.contentrow.contentrow.contentrow.contentrow.contentrow.contentrow.contentrow
         }
         
         parentContentStackView.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(4)
+            make.top.equalTo(titleLabel.snp.bottom)
             make.bottom.equalToSuperview()
             make.horizontalEdges.equalToSuperview().inset(16)
         }
-        
-//        horizontalContentStackView.snp.makeConstraints { make in
-//            make.top.equalTo(titleLabel.snp.bottom).offset(4)
-//            make.bottom.equalToSuperview()
-//            make.horizontalEdges.equalToSuperview().inset(16)
-//        }
         
         contentLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview()
@@ -256,12 +245,7 @@ row.contentrow.contentrow.contentrow.contentrow.contentrow.contentrow.contentrow
         moreContentButton.snp.makeConstraints { make in
             make.leading.equalTo(contentLabel.snp.trailing)
         }
-        
-//        contentLabel.snp.makeConstraints { make in
-//            make.top.equalTo(titleLabel.snp.bottom).offset(4)
-//            make.bottom.equalToSuperview()
-//            make.horizontalEdges.equalToSuperview().inset(16)
-//        }
+
     }
 }
 
