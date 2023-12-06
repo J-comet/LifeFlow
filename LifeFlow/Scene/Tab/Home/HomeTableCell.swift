@@ -33,6 +33,7 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
     let contentLabel = BasicLabel().then {
         $0.font(weight: .light, size: 14)
         $0.textColor = .text
+        $0.numberOfLines = 0
     }
     
     lazy var horizontalImgCollectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).then {
@@ -47,7 +48,7 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
     
     private let horizontalImages: BehaviorRelay<[String]> = BehaviorRelay(value: [])
     
-    private let horizontalImageViewHeight = UIScreen.main.bounds.width * 1.3
+    private let horizontalImageViewHeight = UIScreen.main.bounds.width * 1.2
     
     private let currentPage = BehaviorRelay(value: 0)
     
@@ -86,9 +87,8 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
         heartCntLabel.text = "좋아요 \(row.likes.count)개"
         titleLabel.text = row.title
         contentLabel.text = row.content
-        
+      
         horizontalImages.accept(row.image)
-        
     }
     
     private func bindHorizontalImages() {
@@ -146,7 +146,6 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
             make.height.equalTo(horizontalImageViewHeight)
         }
         
-        bottonContainerView.backgroundColor = .orange
         bottonContainerView.snp.makeConstraints { make in
             make.top.equalTo(horizontalImgCollectionView.snp.bottom).offset(8)
             make.horizontalEdges.equalToSuperview()
@@ -176,6 +175,7 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
         
         contentLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(4)
+            make.bottom.equalToSuperview()
             make.horizontalEdges.equalToSuperview().inset(16)
         }
     }
