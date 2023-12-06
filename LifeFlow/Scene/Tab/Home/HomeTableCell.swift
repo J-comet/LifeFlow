@@ -113,6 +113,8 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
         super.prepareForReuse()
         disposeBag = DisposeBag()
         bindHorizontalImages()
+        bindPagingControl()
+        currentPage
     }
     
     override func configCell(row: PostEntity) {
@@ -136,7 +138,6 @@ row.contentrow.contentrow.contentrow.contentrow.contentrow.contentrow.contentrow
         expandContentLabel.isHidden = !row.isExpand
         horizontalContentStackView.isHidden = row.isExpand
         
-        horizontalImages.accept([])
         horizontalImages.accept(row.image)
     }
     
@@ -148,6 +149,23 @@ row.contentrow.contentrow.contentrow.contentrow.contentrow.contentrow.contentrow
             .drive(horizontalImgCollectionView.rx.items(cellIdentifier: HomeImageCell.identifier, cellType: HomeImageCell.self)) { (row, element, cell) in
                 cell.configCell(row: element)
             }
+            .disposed(by: disposeBag)
+    }
+    
+    func bindPagingControl() {
+        horizontalImgCollectionView
+            .rx
+            .didEndDecelerating
+            .bind(with: self) { owner, _ in
+                let pageWidth = UIScreen.main.bounds.width
+                let page = floor((owner.horizontalImgCollectionView.contentOffset.x - pageWidth / 2) / pageWidth) + 1
+                owner.currentPage.accept(Int(page))
+                print("페이징컨트롤러 테스트")
+            }
+            .disposed(by: disposeBag)
+        
+        currentPage
+            .bind(to: pageControl.rx.currentPage)
             .disposed(by: disposeBag)
     }
     
@@ -171,21 +189,7 @@ row.contentrow.contentrow.contentrow.contentrow.contentrow.contentrow.contentrow
         parentContentStackView.addArrangedSubview(horizontalContentStackView)
         
         bindHorizontalImages()
-        
-        horizontalImgCollectionView
-            .rx
-            .didEndDecelerating
-            .bind(with: self) { owner, _ in
-                let pageWidth = UIScreen.main.bounds.width
-                let page = floor((owner.horizontalImgCollectionView.contentOffset.x - pageWidth / 2) / pageWidth) + 1
-                owner.currentPage.accept(Int(page))
-                print("페이징컨트롤러 테스트")
-            }
-            .disposed(by: disposeBag)
-        
-        currentPage
-            .bind(to: pageControl.rx.currentPage)
-            .disposed(by: disposeBag)
+        bindPagingControl()
     }
     
     override func configureLayout() {

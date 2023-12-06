@@ -39,6 +39,15 @@ extension HomeVC {
     
     func bindViewModel() {
         
+//        mainView.tableView
+//            .rx
+//            .didEndDisplayingCell
+//            .bind(with: self) { owner, endDisplayingCellEvent in
+//                guard let cell = endDisplayingCellEvent.cell as? HomeTableCell else { return }
+//                cell.disposeBag = DisposeBag()
+//            }
+//            .disposed(by: viewModel.disposeBag)
+        
         viewModel.posts
             .asDriver(onErrorJustReturn: [])
             .drive(mainView.tableView.rx.items(cellIdentifier: HomeTableCell.identifier, cellType: HomeTableCell.self)) { (row, element, cell) in
@@ -55,8 +64,9 @@ extension HomeVC {
                                 post.isExpand = !element.isExpand
                             }
                             return post
-                        }                        
+                        }
                         owner.viewModel.posts.accept(posts)
+                        
                     }
                     .disposed(by: cell.disposeBag)
                 
