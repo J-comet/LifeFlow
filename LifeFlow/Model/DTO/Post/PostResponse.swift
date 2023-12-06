@@ -12,13 +12,15 @@ struct PostResponse: Decodable, CreatEntityProtocol {
     let likes: [String]?
     let id: String?
     let creator: CreatorResponse?
+    let title: String?
+    let content: String?
     let time: String?
     
     enum CodingKeys: String, CodingKey {
         case image
         case likes
         case id = "_id"
-        case creator, time
+        case creator, title, content, time
     }
     
     func toEntity() -> PostEntity {
@@ -27,6 +29,8 @@ struct PostResponse: Decodable, CreatEntityProtocol {
             likes: likes ?? [],
             id: id ?? "",
             creator: creator?.toEntity() ?? CreatorEntity(id: "", nick: "", profile: ""),
+            title: title ?? "",
+            content: content ?? "",
             time: time ?? ""
         )
     }

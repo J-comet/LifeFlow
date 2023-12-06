@@ -12,5 +12,7 @@ struct PostEntity {
     let likes: [String]
     let id: String
     let creator: CreatorEntity
+    let title: String
+    let content: String
     let time: String
 }

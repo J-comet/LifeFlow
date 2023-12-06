@@ -20,7 +20,20 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
         $0.image = UIImage().defaultUser
     }
     
-    let locNameLabel = UILabel()
+    let nickNameLabel = BasicLabel().then {
+        $0.font(weight: .medium, size: 14)
+        $0.textColor = .text
+    }
+    
+    let titleLabel = BasicLabel().then {
+        $0.font(weight: .medium, size: 14)
+        $0.textColor = .text
+    }
+    
+    let contentLabel = BasicLabel().then {
+        $0.font(weight: .light, size: 14)
+        $0.textColor = .text
+    }
     
     lazy var horizontalImgCollectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).then {
         $0.showsHorizontalScrollIndicator = false
@@ -37,6 +50,18 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
     private let horizontalImageViewHeight = UIScreen.main.bounds.width * 1.3
     
     private let currentPage = BehaviorRelay(value: 0)
+    
+    let heartView = UIImageView().then {
+        $0.image = UIImage(systemName: "heart")?
+            .withTintColor(.text, renderingMode: .alwaysOriginal)
+            .withConfiguration(UIImage.SymbolConfiguration(weight: .light))
+    }
+    
+    let heartCntLabel = BasicLabel().then {
+        $0.font(weight: .regular, size: 14)
+        $0.textColor = .text
+        $0.text = "좋아요 0개"
+    }
     
     let pageControl = UIPageControl(frame: .zero).then {
         $0.pageIndicatorTintColor = .systemGray4
@@ -57,8 +82,13 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
             from: "",
             placeHolderImage: UIImage().defaultUser
         )
-        locNameLabel.text = row.creator.nick
+        nickNameLabel.text = row.creator.nick
+        heartCntLabel.text = "좋아요 \(row.likes.count)개"
+        titleLabel.text = row.title
+        contentLabel.text = row.content
+        
         horizontalImages.accept(row.image)
+        
     }
     
     private func bindHorizontalImages() {
@@ -72,10 +102,14 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
     
     override func configureHierarchy() {
         contentView.addSubview(userThumbnail)
-        contentView.addSubview(locNameLabel)
+        contentView.addSubview(nickNameLabel)
         contentView.addSubview(horizontalImgCollectionView)
         contentView.addSubview(bottonContainerView)
         bottonContainerView.addSubview(pageControl)
+        bottonContainerView.addSubview(heartView)
+        bottonContainerView.addSubview(heartCntLabel)
+        bottonContainerView.addSubview(titleLabel)
+        bottonContainerView.addSubview(contentLabel)
         
         bindHorizontalImages()
         
@@ -101,7 +135,7 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
             make.top.equalTo(8)
         }
         
-        locNameLabel.snp.makeConstraints { make in
+        nickNameLabel.snp.makeConstraints { make in
             make.centerY.equalTo(userThumbnail)
             make.leading.equalTo(userThumbnail.snp.trailing).offset(8)
         }
@@ -109,7 +143,6 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
         horizontalImgCollectionView.snp.makeConstraints { make in
             make.top.equalTo(userThumbnail.snp.bottom).offset(8)
             make.horizontalEdges.equalToSuperview()
-            make.bottom.equalTo(bottonContainerView.snp.top).offset(8)
             make.height.equalTo(horizontalImageViewHeight)
         }
         
@@ -123,6 +156,27 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
         pageControl.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.centerX.equalToSuperview()
+        }
+        
+        heartView.snp.makeConstraints { make in
+            make.size.equalTo(28)
+            make.leading.equalToSuperview().inset(16)
+            make.centerY.equalTo(pageControl)
+        }
+        
+        heartCntLabel.snp.makeConstraints { make in
+            make.top.equalTo(heartView.snp.bottom).offset(8)
+            make.horizontalEdges.equalToSuperview().inset(16)
+        }
+        
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(heartCntLabel.snp.bottom).offset(8)
+            make.leading.equalTo(heartView)
+        }
+        
+        contentLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(4)
+            make.horizontalEdges.equalToSuperview().inset(16)
         }
     }
 }
