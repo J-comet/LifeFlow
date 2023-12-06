@@ -43,8 +43,6 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
     override func configCell(row: PostEntity) {
         locNameLabel.text = row.creator.nick        
         horizontalImages.accept(row.image)
-        
-        bindHorizontalImages()
     }
     
     private func bindHorizontalImages() {
@@ -61,6 +59,8 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
         contentView.addSubview(locNameLabel)
         contentView.addSubview(horizontalImgCollectionView)
         contentView.addSubview(bottonContainerView)
+        
+        bindHorizontalImages()
     }
     
     override func configureLayout() {

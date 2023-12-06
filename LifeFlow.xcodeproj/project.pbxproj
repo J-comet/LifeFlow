@@ -92,6 +92,7 @@
 		C0DAE9872B05FC9C0067279A /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9862B05FC9C0067279A /* LoginResponse.swift */; };
 		C0DAE9892B05FD5C0067279A /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9882B05FD5C0067279A /* LoginRequest.swift */; };
 		C0E84F782B1F331900EB0B23 /* BaseInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E84F772B1F331900EB0B23 /* BaseInterceptor.swift */; };
+		C0E84F7A2B204F4400EB0B23 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E84F792B204F4400EB0B23 /* UIImageView+Extension.swift */; };
 		C0F5AAE72B1AD99200B3D102 /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = C0F5AAE62B1AD99200B3D102 /* RxGesture */; };
 		C0F5AAE92B1B08D300B3D102 /* PostRespository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F5AAE82B1B08D300B3D102 /* PostRespository.swift */; };
 		C0F5AAEB2B1B169C00B3D102 /* PostResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F5AAEA2B1B169C00B3D102 /* PostResponse.swift */; };
@@ -184,6 +185,7 @@
 		C0DAE9862B05FC9C0067279A /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		C0DAE9882B05FD5C0067279A /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		C0E84F772B1F331900EB0B23 /* BaseInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInterceptor.swift; sourceTree = "<group>"; };
+		C0E84F792B204F4400EB0B23 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		C0F5AAE82B1B08D300B3D102 /* PostRespository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRespository.swift; sourceTree = "<group>"; };
 		C0F5AAEA2B1B169C00B3D102 /* PostResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostResponse.swift; sourceTree = "<group>"; };
 		C0F5AAED2B1B16D700B3D102 /* CreatorEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorEntity.swift; sourceTree = "<group>"; };
@@ -484,11 +486,12 @@
 		C07FA7B62B01E558000B93F3 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				C006C69E2B1A1B7D004D14AF /* Date+Extension.swift */,
 				C07FA7D82B01FBB6000B93F3 /* Encodable+Extension.swift */,
+				C02028A92B15DD72008FB1EA /* UIImage+Extension.swift */,
+				C0E84F792B204F4400EB0B23 /* UIImageView+Extension.swift */,
 				C0729D6E2B10942900CEA6F0 /* UITextField+Extension.swift */,
 				C0B07F232B10DC0900350ECC /* UIViewController+Extension.swift */,
-				C02028A92B15DD72008FB1EA /* UIImage+Extension.swift */,
-				C006C69E2B1A1B7D004D14AF /* Date+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -749,6 +752,7 @@
 				C02C06C52B07469B00E9AB93 /* BaseCollectionViewCell.swift in Sources */,
 				C02C06CD2B07475F00E9AB93 /* LoginView.swift in Sources */,
 				C0B07F2B2B110C8100350ECC /* DuplicateEmailRequest.swift in Sources */,
+				C0E84F7A2B204F4400EB0B23 /* UIImageView+Extension.swift in Sources */,
 				C01A42B02B02888400317956 /* Network.swift in Sources */,
 				C0DAE9452B0534F20067279A /* TokenResponse.swift in Sources */,
 				C02028AA2B15DD72008FB1EA /* UIImage+Extension.swift in Sources */,

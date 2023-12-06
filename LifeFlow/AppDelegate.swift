@@ -23,15 +23,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         IQKeyboardManager.shared.enable = true
         
-        let modifier = AnyModifier { request in
-            var req = request
-            req.addValue(UserDefaults.token, forHTTPHeaderField: "Authorization")
-            req.addValue(APIManagement.key, forHTTPHeaderField: "SesacKey")
-            return req
-        }
-        KingfisherManager.shared.defaultOptions += [
-            .requestModifier(modifier)
-        ]
+//        let modifier = AnyModifier { request in
+//            var req = request
+//            req.addValue(UserDefaults.token, forHTTPHeaderField: "Authorization")
+//            req.addValue(APIManagement.key, forHTTPHeaderField: "SesacKey")
+//            return req
+//        }
+//        KingfisherManager.shared.defaultOptions += [
+//            .requestModifier(modifier)
+//        ]
         return true
     }
     

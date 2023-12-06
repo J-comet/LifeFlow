@@ -9,20 +9,25 @@ import UIKit
 
 import SnapKit
 import Then
-import Kingfisher
 import RxSwift
 import RxCocoa
 
 final class HomeImageCell: BaseCollectionViewCell<String> {
+    
+    var disposeBag = DisposeBag()
     
     let imageView = UIImageView().then {
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+    }
+    
     override func configCell(row: String) {
-        guard let url = URL(string: APIManagement.baseURL + row) else { return }
-        imageView.kf.setImage(with: url)
+        imageView.loadImage(from: row)
     }
     
     override func configureHierarchy() {
