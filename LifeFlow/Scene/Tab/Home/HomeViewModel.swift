@@ -24,6 +24,7 @@ final class HomeViewModel: BaseViewModel {
     var posts: BehaviorRelay<[PostEntity]> = BehaviorRelay(value: [])
     
     func getPosts() {
+        isLoading.accept(true)
         postRepository.getPosts(next: next)
             .subscribe(with: self) { owner, result in
                 switch result {
@@ -36,6 +37,7 @@ final class HomeViewModel: BaseViewModel {
                     print(error)
                     owner.errorMessage.accept(error.message)
                 }
+                owner.isLoading.accept(false)
             }
             .disposed(by: disposeBag)
     }

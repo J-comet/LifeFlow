@@ -59,13 +59,13 @@ extension HomeVC {
             .drive(mainView.emptyLabel.rx.isHidden)
             .disposed(by: viewModel.disposeBag)
         
-        viewModel.posts
-            .map { $0.isEmpty }
-            .asDriver(onErrorJustReturn: false)
-            .drive(with: self) { owner, isEmpty in
-                owner.navigationController?.hidesBarsOnSwipe = !isEmpty
-            }
-            .disposed(by: viewModel.disposeBag)
+//        viewModel.posts
+//            .map { $0.isEmpty }
+//            .asDriver(onErrorJustReturn: false)
+//            .drive(with: self) { owner, isEmpty in
+//                owner.navigationController?.hidesBarsOnSwipe = !isEmpty
+//            }
+//            .disposed(by: viewModel.disposeBag)
         
         
         viewModel.isLoading

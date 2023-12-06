@@ -7,11 +7,8 @@
 
 import Foundation
 
-struct CreatorEntity: Codable {
-    let id, nick: String
-
-    enum CodingKeys: String, CodingKey {
-        case id = "_id"
-        case nick
-    }
+struct CreatorEntity {
+    let id: String
+    let nick: String
+    let profile: String
 }

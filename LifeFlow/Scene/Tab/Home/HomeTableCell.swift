@@ -16,7 +16,9 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
     
     var disposeBag = DisposeBag()
     
-    let userThumbnail = UIImageView()
+    let userThumbnail = UIImageView().then {
+        $0.image = UIImage().defaultUser
+    }
     
     let locNameLabel = UILabel()
     
@@ -34,6 +36,15 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
     
     private let horizontalImageViewHeight = UIScreen.main.bounds.width * 1.3
     
+    private let currentPage = BehaviorRelay(value: 0)
+    
+    let pageControl = UIPageControl(frame: .zero).then {
+        $0.pageIndicatorTintColor = .systemGray4
+        $0.currentPageIndicatorTintColor = .darkGray
+        $0.currentPage = 0
+        $0.isUserInteractionEnabled = false
+    }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         disposeBag = DisposeBag()
@@ -41,7 +52,12 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
     }
     
     override func configCell(row: PostEntity) {
-        locNameLabel.text = row.creator.nick        
+        pageControl.numberOfPages = row.image.count
+        userThumbnail.loadImage(
+            from: "",
+            placeHolderImage: UIImage().defaultUser
+        )
+        locNameLabel.text = row.creator.nick
         horizontalImages.accept(row.image)
     }
     
@@ -59,14 +75,28 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
         contentView.addSubview(locNameLabel)
         contentView.addSubview(horizontalImgCollectionView)
         contentView.addSubview(bottonContainerView)
+        bottonContainerView.addSubview(pageControl)
         
         bindHorizontalImages()
+        
+        horizontalImgCollectionView
+            .rx
+            .didEndDecelerating
+            .bind(with: self) { owner, _ in
+                let pageWidth = UIScreen.main.bounds.width
+                let page = floor((owner.horizontalImgCollectionView.contentOffset.x - pageWidth / 2) / pageWidth) + 1
+                owner.currentPage.accept(Int(page))
+            }
+            .disposed(by: disposeBag)
+        
+        currentPage
+            .bind(to: pageControl.rx.currentPage)
+            .disposed(by: disposeBag)
     }
     
     override func configureLayout() {
-        userThumbnail.backgroundColor = .black
         userThumbnail.snp.makeConstraints { make in
-            make.size.equalTo(40)
+            make.size.equalTo(32)
             make.leading.equalToSuperview().inset(16)
             make.top.equalTo(8)
         }
@@ -88,6 +118,11 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
             make.top.equalTo(horizontalImgCollectionView.snp.bottom).offset(8)
             make.horizontalEdges.equalToSuperview()
             make.bottom.equalToSuperview()
+        }
+        
+        pageControl.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.centerX.equalToSuperview()
         }
     }
 }

@@ -33,7 +33,7 @@ final class HomeView: BaseView {
     
     override func configureLayout() {
         tableView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
+            make.top.equalTo(safeAreaLayoutGuide)
             make.bottom.equalTo(safeAreaLayoutGuide)
             make.horizontalEdges.equalToSuperview()
         }

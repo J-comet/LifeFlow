@@ -26,7 +26,7 @@ struct PostResponse: Decodable, CreatEntityProtocol {
             image: image ?? [], 
             likes: likes ?? [],
             id: id ?? "",
-            creator: creator?.toEntity() ?? CreatorEntity(id: "", nick: ""),
+            creator: creator?.toEntity() ?? CreatorEntity(id: "", nick: "", profile: ""),
             time: time ?? ""
         )
     }

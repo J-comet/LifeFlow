@@ -39,4 +39,10 @@ extension UIImage {
             return false
         }
     }
+    
+    var defaultUser: UIImage {
+        return UIImage(systemName: "person.crop.circle")!
+            .withTintColor(.systemGray4, renderingMode: .alwaysOriginal)
+            .withConfiguration(UIImage.SymbolConfiguration(weight: .light))
+    }
 }

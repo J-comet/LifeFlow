@@ -10,13 +10,15 @@ import Foundation
 struct CreatorResponse: Decodable, CreatEntityProtocol {
     let id: String?
     let nick: String?
+    let profile: String?
 
     enum CodingKeys: String, CodingKey {
         case id = "_id"
         case nick
+        case profile
     }
     
     func toEntity() -> CreatorEntity {
-        CreatorEntity(id: id ?? "", nick: nick ?? "")
+        CreatorEntity(id: id ?? "", nick: nick ?? "", profile: profile ?? "")
     }
 }
