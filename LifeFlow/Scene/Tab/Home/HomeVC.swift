@@ -42,6 +42,24 @@ extension HomeVC {
         viewModel.posts
             .asDriver(onErrorJustReturn: [])
             .drive(mainView.tableView.rx.items(cellIdentifier: HomeTableCell.identifier, cellType: HomeTableCell.self)) { (row, element, cell) in
+                
+                cell.moreContentButton
+                    .rx
+                    .tap
+                    .bind(with: self) { owner, _ in
+                        let posts = owner.viewModel.posts.value.map {
+                            var post = $0
+                            if post.id == element.id {
+                                print("\(post.title) 클릭")
+                                print("\(!post.isExpand) 클릭")
+                                post.isExpand = !element.isExpand
+                            }
+                            return post
+                        }                        
+                        owner.viewModel.posts.accept(posts)
+                    }
+                    .disposed(by: cell.disposeBag)
+                
                 cell.selectionStyle = .none
                 cell.configCell(row: element)
             }

@@ -12,6 +12,7 @@
 		C006C69D2B19D94E004D14AF /* PostAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C006C69C2B19D94E004D14AF /* PostAPI.swift */; };
 		C006C69F2B1A1B7D004D14AF /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C006C69E2B1A1B7D004D14AF /* Date+Extension.swift */; };
 		C006C6A12B1ACCAC004D14AF /* PhpickerImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C006C6A02B1ACCAC004D14AF /* PhpickerImage.swift */; };
+		C011211C2B20BB5C00C778E6 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C011211B2B20BB5C00C778E6 /* UILabel+Extension.swift */; };
 		C01A42B02B02888400317956 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A42AF2B02888400317956 /* Network.swift */; };
 		C01A42B22B02893100317956 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A42B12B02893100317956 /* AuthAPI.swift */; };
 		C01A42B62B028E2200317956 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A42B52B028E2200317956 /* AuthRepository.swift */; };
@@ -111,6 +112,7 @@
 		C006C69C2B19D94E004D14AF /* PostAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAPI.swift; sourceTree = "<group>"; };
 		C006C69E2B1A1B7D004D14AF /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		C006C6A02B1ACCAC004D14AF /* PhpickerImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhpickerImage.swift; sourceTree = "<group>"; };
+		C011211B2B20BB5C00C778E6 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		C01A42AF2B02888400317956 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		C01A42B12B02893100317956 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
 		C01A42B52B028E2200317956 /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
@@ -492,6 +494,7 @@
 				C0E84F792B204F4400EB0B23 /* UIImageView+Extension.swift */,
 				C0729D6E2B10942900CEA6F0 /* UITextField+Extension.swift */,
 				C0B07F232B10DC0900350ECC /* UIViewController+Extension.swift */,
+				C011211B2B20BB5C00C778E6 /* UILabel+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -729,6 +732,7 @@
 				C02C06D22B074CCB00E9AB93 /* ViewModelType.swift in Sources */,
 				C02C06C42B07469B00E9AB93 /* BaseView.swift in Sources */,
 				C0B07F242B10DC0900350ECC /* UIViewController+Extension.swift in Sources */,
+				C011211C2B20BB5C00C778E6 /* UILabel+Extension.swift in Sources */,
 				C07FA7D92B01FBB6000B93F3 /* Encodable+Extension.swift in Sources */,
 				C02C06D62B074F2C00E9AB93 /* BasicButton.swift in Sources */,
 				C07FA79E2B01E43C000B93F3 /* AppDelegate.swift in Sources */,

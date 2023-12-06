@@ -8,11 +8,13 @@
 import Foundation
 
 struct PostEntity {
-    let image: [String]
+    var image: [String]
     let likes: [String]
     let id: String
     let creator: CreatorEntity
-    let title: String
-    let content: String
+    var title: String
+    var content: String
     let time: String
+    var isExpand = false        // 더보기 레이블 확장 여부
+    var currentImagePage = 0     // 현재 보고 있는 이미지 위치
 }

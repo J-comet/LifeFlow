@@ -17,9 +17,9 @@ final class HomeView: BaseView {
         $0.showsVerticalScrollIndicator = false
         $0.alwaysBounceVertical = false
         $0.separatorStyle = .none
-//        $0.rowHeight = UIScreen.main.bounds.height * 0.8
         $0.rowHeight = UITableView.automaticDimension
-        $0.estimatedRowHeight = UIScreen.main.bounds.height * 0.8
+        $0.estimatedRowHeight = UIScreen.main.bounds.height
+        $0.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
     }
     
     let emptyLabel = BasicLabel().then {
