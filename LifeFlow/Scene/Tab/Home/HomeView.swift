@@ -12,6 +12,11 @@ import Then
 
 final class HomeView: BaseView {
     
+//    private let menuBottomSheetView = CommonBottomSheet().then {
+//        $0.bottomSheetColor = .lightGray
+//        $0.barViewColor = .darkGray
+//    }
+    
     let tableView = UITableView().then {
         $0.register(HomeTableCell.self, forCellReuseIdentifier: HomeTableCell.identifier)
         $0.showsVerticalScrollIndicator = false

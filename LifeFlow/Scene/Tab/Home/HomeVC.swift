@@ -54,6 +54,15 @@ extension HomeVC {
             .drive(mainView.tableView.rx.items(cellIdentifier: HomeTableCell.identifier, cellType: HomeTableCell.self)) { (row, element, cell) in
                 cell.selectionStyle = .none
                 
+                // 메뉴 버튼
+                cell.menuButton
+                    .rx
+                    .tap
+                    .bind(with: self) { owner, _ in
+                        print("메뉴 클릭")
+                    }
+                    .disposed(by: cell.disposeBag)
+                
                 // 좋아요뷰
                 cell.heartView
                     .rx

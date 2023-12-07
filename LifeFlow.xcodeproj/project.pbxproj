@@ -80,6 +80,8 @@
 		C0B07F2B2B110C8100350ECC /* DuplicateEmailRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B07F2A2B110C8100350ECC /* DuplicateEmailRequest.swift */; };
 		C0B07F2F2B111D9900350ECC /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B07F2E2B111D9900350ECC /* NetworkError.swift */; };
 		C0D9C6A42B21C287007FEA20 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D9C6A32B21C287007FEA20 /* String+Extension.swift */; };
+		C0D9C6A82B21F94F007FEA20 /* CommonBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D9C6A72B21F94F007FEA20 /* CommonBottomSheet.swift */; };
+		C0D9C6AA2B21F9B5007FEA20 /* PassThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D9C6A92B21F9B5007FEA20 /* PassThroughView.swift */; };
 		C0DAE9212B038E5D0067279A /* CommonMessageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9202B038E5D0067279A /* CommonMessageResponse.swift */; };
 		C0DAE9342B0503F40067279A /* TokenAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9332B0503F40067279A /* TokenAPI.swift */; };
 		C0DAE9382B0512E70067279A /* TokenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9372B0512E70067279A /* TokenRepository.swift */; };
@@ -175,6 +177,8 @@
 		C0B07F2A2B110C8100350ECC /* DuplicateEmailRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuplicateEmailRequest.swift; sourceTree = "<group>"; };
 		C0B07F2E2B111D9900350ECC /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		C0D9C6A32B21C287007FEA20 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		C0D9C6A72B21F94F007FEA20 /* CommonBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonBottomSheet.swift; sourceTree = "<group>"; };
+		C0D9C6A92B21F9B5007FEA20 /* PassThroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassThroughView.swift; sourceTree = "<group>"; };
 		C0DAE9202B038E5D0067279A /* CommonMessageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonMessageResponse.swift; sourceTree = "<group>"; };
 		C0DAE9332B0503F40067279A /* TokenAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenAPI.swift; sourceTree = "<group>"; };
 		C0DAE9372B0512E70067279A /* TokenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRepository.swift; sourceTree = "<group>"; };
@@ -354,6 +358,7 @@
 		C02C06CA2B07471500E9AB93 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				C0D9C6A62B21F92F007FEA20 /* Common */,
 				C02028962B15C9AB008FB1EA /* Tab */,
 				C02028952B15C99F008FB1EA /* Start */,
 			);
@@ -458,6 +463,7 @@
 				C0B07F282B1108B200350ECC /* LoadingIndicator.swift */,
 				C02028A72B15DB71008FB1EA /* NavTitleLabel.swift */,
 				C0729D702B10960E00CEA6F0 /* UnderLineTextField.swift */,
+				C0D9C6A92B21F9B5007FEA20 /* PassThroughView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -537,6 +543,14 @@
 				C0DAE9442B0534F20067279A /* TokenResponse.swift */,
 			);
 			path = Token;
+			sourceTree = "<group>";
+		};
+		C0D9C6A62B21F92F007FEA20 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				C0D9C6A72B21F94F007FEA20 /* CommonBottomSheet.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		C0DAE93D2B0531220067279A /* DTO */ = {
@@ -725,6 +739,7 @@
 				C020289B2B15C9EA008FB1EA /* HomeVC.swift in Sources */,
 				C0685C082B112B7B0098BB49 /* UserDefaultData.swift in Sources */,
 				C0DAE9212B038E5D0067279A /* CommonMessageResponse.swift in Sources */,
+				C0D9C6AA2B21F9B5007FEA20 /* PassThroughView.swift in Sources */,
 				C07FA7D72B01FB51000B93F3 /* Router.swift in Sources */,
 				C0DAE9872B05FC9C0067279A /* LoginResponse.swift in Sources */,
 				C02C06C22B07469B00E9AB93 /* BaseViewModel.swift in Sources */,
@@ -744,6 +759,7 @@
 				C0DAE94D2B059B880067279A /* JoinEntity.swift in Sources */,
 				C0DAE9412B0534D20067279A /* TokenEntity.swift in Sources */,
 				C0DAE9382B0512E70067279A /* TokenRepository.swift in Sources */,
+				C0D9C6A82B21F94F007FEA20 /* CommonBottomSheet.swift in Sources */,
 				C0729D692B10892500CEA6F0 /* SignupVC.swift in Sources */,
 				C02028A62B15D342008FB1EA /* ProfileViewModel.swift in Sources */,
 				C0B07F2F2B111D9900350ECC /* NetworkError.swift in Sources */,
