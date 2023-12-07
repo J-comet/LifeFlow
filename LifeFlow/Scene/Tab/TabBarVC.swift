@@ -8,13 +8,10 @@
 import UIKit
 
 import SnapKit
-import Then
 
 final class TabBarVC: UITabBarController {
     
-    let inputButton = UIButton(type: .custom).then {
-        $0.layer.zPosition = 1
-    }
+    let inputButton = UIButton(type: .custom)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +24,6 @@ final class TabBarVC: UITabBarController {
         tabBar.tintColor = .background
         tabBar.isTranslucent = false
         //        tabBar.unselectedItemTintColor = .black
-        
-       
         view.addSubview(inputButton)
         inputButton.backgroundColor = .white
         inputButton.layer.cornerRadius = CGFloat((UIScreen.main.bounds.width * 0.16) / 2)
@@ -37,7 +32,7 @@ final class TabBarVC: UITabBarController {
             make.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(8)
             make.centerX.equalToSuperview()
         }
-        
+
         inputButton.setBackgroundImage(UIImage(systemName: "plus.circle.fill")?.withTintColor(.main, renderingMode: .alwaysOriginal), for: .normal)
         inputButton.setBackgroundImage(UIImage(systemName: "plus.circle.fill")?.withTintColor(.main, renderingMode: .alwaysOriginal), for: .highlighted)
         inputButton.addTarget(self, action: #selector(addBtnTabbed), for:.touchUpInside)
@@ -90,7 +85,7 @@ extension TabBarVC {
             case .home:
                 return .tabHome
             case .emty:
-                return UIImage(systemName: "xmark")!
+                return UIImage(systemName: "star")!
             case .profile:
                 return UIImage(systemName: "person.circle")!
             }

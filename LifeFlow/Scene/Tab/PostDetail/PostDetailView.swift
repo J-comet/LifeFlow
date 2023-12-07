@@ -12,6 +12,19 @@ import Then
 
 final class PostDetailView: BaseView {
     
+    private let topView = UIView().then {
+        $0.isUserInteractionEnabled = true
+    }
+    
+    let backButton = UIButton().then {
+        var config = UIButton.Configuration.filled()
+        config.image = UIImage(systemName: "chevron.backward")
+        config.contentInsets = .init(top: 8, leading: 8, bottom: 8, trailing: 8)
+        config.baseBackgroundColor = .clear
+        config.baseForegroundColor = .text
+        $0.configuration = config
+    }
+    
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).then {
         $0.register(
             PostHeaderView.self,
@@ -22,12 +35,26 @@ final class PostDetailView: BaseView {
     }
     
     override func configureHierarchy() {
+        addSubview(topView)
+        topView.addSubview(backButton)
         addSubview(collectionView)
     }
     
     override func configureLayout() {
+        topView.snp.makeConstraints { make in
+            make.top.equalTo(safeAreaLayoutGuide)
+            make.horizontalEdges.equalToSuperview()
+            make.height.equalTo(44)
+        }
+        
+        backButton.snp.makeConstraints { make in
+            make.leading.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
+        
         collectionView.snp.makeConstraints { make in
-            make.top.bottom.equalTo(safeAreaLayoutGuide)
+            make.top.equalTo(topView.snp.bottom)
+            make.bottom.equalTo(safeAreaLayoutGuide)
             make.horizontalEdges.equalToSuperview()
         }
     }

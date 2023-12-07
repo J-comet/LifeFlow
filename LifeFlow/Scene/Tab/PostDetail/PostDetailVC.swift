@@ -12,13 +12,6 @@ import RxCocoa
 
 final class PostDetailVC: BaseViewController<PostDetailView, PostDetailViewModel> {
     
-    private let leftBarButton = UIBarButtonItem(
-        image: UIImage(systemName: "chevron.backward")!.defaultIconStyle,
-        style: .plain,
-        target: nil,
-        action: nil
-    )
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         bindViewModel()
@@ -30,10 +23,13 @@ final class PostDetailVC: BaseViewController<PostDetailView, PostDetailViewModel
 extension PostDetailVC {
     
     func bindViewModel() {
-        leftBarButton.rx.tap
+        mainView.backButton
+            .rx
+            .tap
+            .debug()
             .bind(with: self) { owner, _ in
-                owner.navigationController?.popViewController(animated: true)
-            }
+                owner.dismiss(animated: false)
+            }            
             .disposed(by: viewModel.disposeBag)
         
         viewModel.postDetail
@@ -44,6 +40,6 @@ extension PostDetailVC {
     }
     
     func configureVC() {
-        navigationItem.leftBarButtonItem = leftBarButton
+        
     }
 }

@@ -33,11 +33,6 @@ final class HomeVC: BaseViewController<HomeView, HomeViewModel> {
 //        print(UserDefaults.token)
         viewModel.getPosts()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        showTabBarPostInputBtn()
-    }
 }
 
 
@@ -108,9 +103,8 @@ extension HomeVC {
         Observable.zip(mainView.tableView.rx.itemSelected, mainView.tableView.rx.modelSelected(PostEntity.self))
             .subscribe(with: self) { owner, selectedItem in
                 let vc = PostDetailVC(viewModel: PostDetailViewModel(postDetail: BehaviorRelay(value: selectedItem.1)))
-                vc.hidesBottomBarWhenPushed = true
-                owner.hideTabBarPostInputBtn()
-                owner.navigationController?.pushViewController(vc, animated: true)
+                vc.modalPresentationStyle = .fullScreen
+                owner.present(vc, animated: false)
             }
             .disposed(by: viewModel.disposeBag)
         

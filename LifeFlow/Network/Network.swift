@@ -36,7 +36,7 @@ final class Network {
                     let statusCode = response.response?.statusCode ?? -1
                     let errorMessage = "<\(self)> : [JSONDecoder Error] code = \(statusCode)\njsonString = \(jsonString)"
                     
-                    print("request = ", jsonString)
+//                    print("request = ", jsonString)
                     
                     switch response.result {
                     case .success(let data):

@@ -48,16 +48,6 @@ class ViewController<T: BaseView, U: BaseViewModel>: UIViewController {
         super.viewDidLoad()
     }
     
-    // 탭바 센터 플러스버튼 show
-    func showTabBarPostInputBtn() {
-        tabBarVC?.inputButton.isHidden = false
-    }
-    
-    // 탭바 센터 플러스버튼 hide
-    func hideTabBarPostInputBtn() {
-        tabBarVC?.inputButton.isHidden = true
-    }
-    
     deinit {
         if isShowDeinit {
             print("[",String(describing: type(of: self)), "] / [deinit]")
