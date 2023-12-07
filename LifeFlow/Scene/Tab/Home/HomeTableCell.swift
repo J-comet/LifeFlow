@@ -107,6 +107,11 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
         $0.isHidden = true
     }
     
+    let dateLabel = BasicLabel().then {
+        $0.font(weight: .light, size: 11)
+        $0.textColor = .lightGray
+    }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         disposeBag = DisposeBag()
@@ -129,6 +134,8 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
         heartCntLabel.text = "좋아요 \(row.likes.count)개"
         titleLabel.text = row.title
         contentLabel.text = row.content
+        
+        dateLabel.text = row.date
         expandContentLabel.isHidden = !row.isExpand
         horizontalContentStackView.isHidden = row.isExpand
         
@@ -182,6 +189,7 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
         
         parentContentStackView.addArrangedSubview(expandContentLabel)
         parentContentStackView.addArrangedSubview(horizontalContentStackView)
+        parentContentStackView.addArrangedSubview(dateLabel)
         
         bindHorizontalImages()
         bindPagingControl()

@@ -79,6 +79,7 @@
 		C0B07F292B1108B200350ECC /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B07F282B1108B200350ECC /* LoadingIndicator.swift */; };
 		C0B07F2B2B110C8100350ECC /* DuplicateEmailRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B07F2A2B110C8100350ECC /* DuplicateEmailRequest.swift */; };
 		C0B07F2F2B111D9900350ECC /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B07F2E2B111D9900350ECC /* NetworkError.swift */; };
+		C0D9C6A42B21C287007FEA20 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D9C6A32B21C287007FEA20 /* String+Extension.swift */; };
 		C0DAE9212B038E5D0067279A /* CommonMessageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9202B038E5D0067279A /* CommonMessageResponse.swift */; };
 		C0DAE9342B0503F40067279A /* TokenAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9332B0503F40067279A /* TokenAPI.swift */; };
 		C0DAE9382B0512E70067279A /* TokenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DAE9372B0512E70067279A /* TokenRepository.swift */; };
@@ -173,6 +174,7 @@
 		C0B07F282B1108B200350ECC /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		C0B07F2A2B110C8100350ECC /* DuplicateEmailRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuplicateEmailRequest.swift; sourceTree = "<group>"; };
 		C0B07F2E2B111D9900350ECC /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		C0D9C6A32B21C287007FEA20 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		C0DAE9202B038E5D0067279A /* CommonMessageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonMessageResponse.swift; sourceTree = "<group>"; };
 		C0DAE9332B0503F40067279A /* TokenAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenAPI.swift; sourceTree = "<group>"; };
 		C0DAE9372B0512E70067279A /* TokenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRepository.swift; sourceTree = "<group>"; };
@@ -495,6 +497,7 @@
 				C0729D6E2B10942900CEA6F0 /* UITextField+Extension.swift */,
 				C0B07F232B10DC0900350ECC /* UIViewController+Extension.swift */,
 				C011211B2B20BB5C00C778E6 /* UILabel+Extension.swift */,
+				C0D9C6A32B21C287007FEA20 /* String+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -749,6 +752,7 @@
 				C07FA7A02B01E43C000B93F3 /* SceneDelegate.swift in Sources */,
 				C020289F2B15CA5A008FB1EA /* TabBarVC.swift in Sources */,
 				C02028AC2B15DF51008FB1EA /* HomeTableCell.swift in Sources */,
+				C0D9C6A42B21C287007FEA20 /* String+Extension.swift in Sources */,
 				C07FA7CC2B01E929000B93F3 /* APIManagement.swift in Sources */,
 				C02C06CF2B07476700E9AB93 /* LoginViewModel.swift in Sources */,
 				C0F5AAF12B1B16FC00B3D102 /* CreatorResponse.swift in Sources */,
