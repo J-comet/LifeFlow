@@ -16,34 +16,42 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
     
     var disposeBag = DisposeBag()
     
-    let userThumbnail = UIImageView().then {
+    private let userThumbnail = UIImageView().then {
         $0.image = UIImage().defaultUser
     }
     
-    let nickNameLabel = BasicLabel().then {
+    private let nickNameLabel = BasicLabel().then {
         $0.font(weight: .medium, size: 14)
         $0.textColor = .text
     }
     
-    let titleLabel = BasicLabel().then {
+    let menuButton = UIButton().then {
+        var config = UIButton.Configuration.filled()
+        config.image = UIImage(systemName: "ellipsis")!
+        config.baseBackgroundColor = .clear
+        config.baseForegroundColor = .text
+        $0.configuration = config
+    }
+    
+    private let titleLabel = BasicLabel().then {
         $0.font(weight: .medium, size: 14)
         $0.textColor = .text
     }
     
     // 확장레이블 + 기본레이블
-    let parentContentStackView = UIStackView().then {
+    private let parentContentStackView = UIStackView().then {
         $0.axis = .vertical
         $0.distribution = .fill
     }
     
     // 더보기 레이블용 ex) abcde ...더보기
-    let horizontalContentStackView = UIStackView().then {
+    private let horizontalContentStackView = UIStackView().then {
         $0.axis = .horizontal
         $0.distribution = .fill
         $0.spacing = 0
     }
     
-    let contentLabel = BasicLabel().then {
+    private let contentLabel = BasicLabel().then {
         $0.font(weight: .light, size: 14)
         $0.textColor = .text
         $0.numberOfLines = 1
@@ -51,7 +59,7 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
         $0.lineBreakStrategy = .hangulWordPriority
     }
     
-    let expandContentLabel = BasicLabel().then {
+    private let expandContentLabel = BasicLabel().then {
         $0.font(weight: .light, size: 14)
         $0.textColor = .text
         $0.numberOfLines = 0
@@ -98,6 +106,12 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
         $0.textColor = .text
     }
     
+    let commentView = UIImageView().then {
+        $0.image = UIImage(systemName: "bubble.right")?
+            .withTintColor(.text, renderingMode: .alwaysOriginal)
+            .withConfiguration(UIImage.SymbolConfiguration(weight: .light))
+    }
+    
     let pageControl = UIPageControl(frame: .zero).then {
         $0.pageIndicatorTintColor = .systemGray4
         $0.currentPageIndicatorTintColor = .darkGray
@@ -120,6 +134,8 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
     }
     
     override func configCell(row: PostEntity) {
+        menuButton.isHidden = UserDefaults.userId != row.creator.id
+        
         horizontalImages.accept(row.image)
         pageControl.numberOfPages = row.image.count
         pageControl.currentPage = row.currentImagePage
@@ -174,10 +190,12 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
     override func configureHierarchy() {
         contentView.addSubview(userThumbnail)
         contentView.addSubview(nickNameLabel)
+        contentView.addSubview(menuButton)
         contentView.addSubview(horizontalImgCollectionView)
         contentView.addSubview(bottonContainerView)
         bottonContainerView.addSubview(pageControl)
         bottonContainerView.addSubview(heartView)
+        bottonContainerView.addSubview(commentView)
         bottonContainerView.addSubview(heartCntLabel)
         bottonContainerView.addSubview(titleLabel)
         bottonContainerView.addSubview(parentContentStackView)
@@ -207,6 +225,12 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
             make.leading.equalTo(userThumbnail.snp.trailing).offset(8)
         }
         
+        menuButton.snp.makeConstraints { make in
+            make.size.equalTo(28)
+            make.trailing.equalToSuperview().inset(16)
+            make.centerY.equalTo(userThumbnail)
+        }
+        
         horizontalImgCollectionView.snp.makeConstraints { make in
             make.top.equalTo(userThumbnail.snp.bottom).offset(8)
             make.horizontalEdges.equalToSuperview()
@@ -233,6 +257,12 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
         heartCntLabel.snp.makeConstraints { make in
             make.top.equalTo(heartView.snp.bottom).offset(8)
             make.horizontalEdges.equalToSuperview().inset(16)
+        }
+        
+        commentView.snp.makeConstraints { make in
+            make.size.equalTo(28)
+            make.leading.equalTo(heartView.snp.trailing).offset(16)
+            make.centerY.equalTo(heartView)
         }
         
         titleLabel.snp.makeConstraints { make in

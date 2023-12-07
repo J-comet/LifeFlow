@@ -9,6 +9,7 @@ import UIKit
 
 import RxSwift
 import RxCocoa
+import RxGesture
 import Then
 
 final class HomeVC: BaseViewController<HomeView, HomeViewModel> {
@@ -51,7 +52,31 @@ extension HomeVC {
         viewModel.posts
             .asDriver(onErrorJustReturn: [])
             .drive(mainView.tableView.rx.items(cellIdentifier: HomeTableCell.identifier, cellType: HomeTableCell.self)) { (row, element, cell) in
+                cell.selectionStyle = .none
                 
+                // 좋아요뷰
+                cell.heartView
+                    .rx
+                    .tapGesture()
+                    .when(.recognized)
+                    .asDriver { _ in .never() }
+                    .drive(with: self, onNext: { owner, tap in
+                        print(element.title + "좋아요 클릭")
+                    })
+                    .disposed(by: cell.disposeBag)
+                
+                // 댓글뷰
+                cell.commentView
+                    .rx
+                    .tapGesture()
+                    .when(.recognized)
+                    .asDriver { _ in .never() }
+                    .drive(with: self, onNext: { owner, tap in
+                        print(element.title + "댓글 입력 클릭")
+                    })
+                    .disposed(by: cell.disposeBag)
+                
+                // 더보기 버튼
                 cell.moreContentButton
                     .rx
                     .tap
@@ -59,8 +84,6 @@ extension HomeVC {
                         let posts = owner.viewModel.posts.value.map {
                             var post = $0
                             if post.id == element.id {
-                                print("\(post.title) 클릭")
-                                print("\(!post.isExpand) 클릭")
                                 post.isExpand = !element.isExpand
                                 post.currentImagePage = cell.currentPage.value
                             }
@@ -71,7 +94,7 @@ extension HomeVC {
                     }
                     .disposed(by: cell.disposeBag)
                 
-                cell.selectionStyle = .none
+                
                 cell.configCell(row: element)
             }
             .disposed(by: viewModel.disposeBag)

@@ -111,6 +111,7 @@ final class LoginVC: BaseViewController<LoginView, LoginViewModel> {
                 UserDefaults.isLogin = true
                 UserDefaults.token = login.token
                 UserDefaults.refreshToken = login.refreshToken
+                UserDefaults.userId = login.id
                 
                 let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
                 let sceneDelegate = windowScene?.delegate as? SceneDelegate

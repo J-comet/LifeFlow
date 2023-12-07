@@ -26,6 +26,7 @@ enum UserDefaultsKey: String {
     case isLogin
     case token
     case refreshToken
+    case userId
 }
 
 extension UserDefaults {
@@ -37,4 +38,8 @@ extension UserDefaults {
     
     @UserDefaultData(key: UserDefaultsKey.refreshToken.rawValue, defaultValue: "")
     static var refreshToken: String
+    
+    @UserDefaultData(key: UserDefaultsKey.userId.rawValue, defaultValue: "")
+    static var userId: String
+    
 }
