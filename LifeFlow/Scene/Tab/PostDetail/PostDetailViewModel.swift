@@ -11,5 +11,11 @@ import RxSwift
 import RxCocoa
 
 final class PostDetailViewModel: BaseViewModel {
+//    let postDetail: PostEntity
     
+    let postDetail: BehaviorRelay<PostEntity>
+    
+    init(postDetail: BehaviorRelay<PostEntity>) {
+        self.postDetail = postDetail
+    }
 }

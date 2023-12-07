@@ -42,6 +42,9 @@
 		C02C06D52B074F2C00E9AB93 /* BasicTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02C06D32B074F2C00E9AB93 /* BasicTextField.swift */; };
 		C02C06D62B074F2C00E9AB93 /* BasicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02C06D42B074F2C00E9AB93 /* BasicButton.swift */; };
 		C02C06D92B0751A800E9AB93 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = C02C06D82B0751A800E9AB93 /* Then */; };
+		C05352962B220D060077EF3C /* TitleSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05352952B220D060077EF3C /* TitleSupplementaryView.swift */; };
+		C05352982B2217500077EF3C /* PostHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05352972B2217500077EF3C /* PostHeaderView.swift */; };
+		C053529B2B221A180077EF3C /* PostCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C053529A2B221A180077EF3C /* PostCommentCell.swift */; };
 		C0685C082B112B7B0098BB49 /* UserDefaultData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0685C072B112B7B0098BB49 /* UserDefaultData.swift */; };
 		C0729D5B2B10806D00CEA6F0 /* SpoqaHanSansNeo-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = C0729D562B10806D00CEA6F0 /* SpoqaHanSansNeo-Thin.otf */; };
 		C0729D5C2B10806D00CEA6F0 /* SpoqaHanSansNeo-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = C0729D572B10806D00CEA6F0 /* SpoqaHanSansNeo-Light.otf */; };
@@ -147,6 +150,9 @@
 		C02C06D12B074CCB00E9AB93 /* ViewModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		C02C06D32B074F2C00E9AB93 /* BasicTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicTextField.swift; sourceTree = "<group>"; };
 		C02C06D42B074F2C00E9AB93 /* BasicButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicButton.swift; sourceTree = "<group>"; };
+		C05352952B220D060077EF3C /* TitleSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSupplementaryView.swift; sourceTree = "<group>"; };
+		C05352972B2217500077EF3C /* PostHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostHeaderView.swift; sourceTree = "<group>"; };
+		C053529A2B221A180077EF3C /* PostCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCommentCell.swift; sourceTree = "<group>"; };
 		C0685C072B112B7B0098BB49 /* UserDefaultData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultData.swift; sourceTree = "<group>"; };
 		C0729D562B10806D00CEA6F0 /* SpoqaHanSansNeo-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Thin.otf"; sourceTree = "<group>"; };
 		C0729D572B10806D00CEA6F0 /* SpoqaHanSansNeo-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SpoqaHanSansNeo-Light.otf"; sourceTree = "<group>"; };
@@ -365,7 +371,8 @@
 		C02C06CA2B07471500E9AB93 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				C0D9C6A62B21F92F007FEA20 /* Common */,
+				C05352942B220CD50077EF3C /* CommonCellHeaderView */,
+				C0D9C6A62B21F92F007FEA20 /* CommonView */,
 				C02028962B15C9AB008FB1EA /* Tab */,
 				C02028952B15C99F008FB1EA /* Start */,
 			);
@@ -389,6 +396,23 @@
 				C07FA7A62B01E43D000B93F3 /* Assets.xcassets */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		C05352942B220CD50077EF3C /* CommonCellHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				C05352952B220D060077EF3C /* TitleSupplementaryView.swift */,
+			);
+			path = CommonCellHeaderView;
+			sourceTree = "<group>";
+		};
+		C05352992B221A0B0077EF3C /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C05352972B2217500077EF3C /* PostHeaderView.swift */,
+				C053529A2B221A180077EF3C /* PostCommentCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		C0729D552B10806D00CEA6F0 /* Font */ = {
@@ -552,17 +576,18 @@
 			path = Token;
 			sourceTree = "<group>";
 		};
-		C0D9C6A62B21F92F007FEA20 /* Common */ = {
+		C0D9C6A62B21F92F007FEA20 /* CommonView */ = {
 			isa = PBXGroup;
 			children = (
 				C0D9C6A72B21F94F007FEA20 /* CommonBottomSheet.swift */,
 			);
-			path = Common;
+			path = CommonView;
 			sourceTree = "<group>";
 		};
 		C0D9C6AB2B220217007FEA20 /* PostDetail */ = {
 			isa = PBXGroup;
 			children = (
+				C05352992B221A0B0077EF3C /* Cell */,
 				C0D9C6AC2B220236007FEA20 /* PostDetailVC.swift */,
 				C0D9C6AE2B22023E007FEA20 /* PostDetailView.swift */,
 				C0D9C6B02B220247007FEA20 /* PostDetailViewModel.swift */,
@@ -767,13 +792,16 @@
 				C0F5AAF72B1C48F900B3D102 /* PostListEntity.swift in Sources */,
 				C02C06D22B074CCB00E9AB93 /* ViewModelType.swift in Sources */,
 				C02C06C42B07469B00E9AB93 /* BaseView.swift in Sources */,
+				C05352982B2217500077EF3C /* PostHeaderView.swift in Sources */,
 				C0B07F242B10DC0900350ECC /* UIViewController+Extension.swift in Sources */,
 				C011211C2B20BB5C00C778E6 /* UILabel+Extension.swift in Sources */,
 				C0D9C6B12B220247007FEA20 /* PostDetailViewModel.swift in Sources */,
+				C05352962B220D060077EF3C /* TitleSupplementaryView.swift in Sources */,
 				C07FA7D92B01FBB6000B93F3 /* Encodable+Extension.swift in Sources */,
 				C02C06D62B074F2C00E9AB93 /* BasicButton.swift in Sources */,
 				C07FA79E2B01E43C000B93F3 /* AppDelegate.swift in Sources */,
 				C082C9FD2B17979C004C53B3 /* PostInputImageCell.swift in Sources */,
+				C053529B2B221A180077EF3C /* PostCommentCell.swift in Sources */,
 				C0F5AAEE2B1B16D700B3D102 /* CreatorEntity.swift in Sources */,
 				C0D9C6AF2B22023E007FEA20 /* PostDetailView.swift in Sources */,
 				C0DAE94D2B059B880067279A /* JoinEntity.swift in Sources */,

@@ -30,8 +30,13 @@ final class HomeVC: BaseViewController<HomeView, HomeViewModel> {
         bindViewModel()
         configureVC()
         
-        print(UserDefaults.token)
+//        print(UserDefaults.token)
         viewModel.getPosts()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        showTabBarPostInputBtn()
     }
 }
 
@@ -40,14 +45,14 @@ extension HomeVC {
     
     func bindViewModel() {
         
-//        mainView.tableView
-//            .rx
-//            .didEndDisplayingCell
-//            .bind(with: self) { owner, endDisplayingCellEvent in
-//                guard let cell = endDisplayingCellEvent.cell as? HomeTableCell else { return }
-//                cell.disposeBag = DisposeBag()
-//            }
-//            .disposed(by: viewModel.disposeBag)
+        //        mainView.tableView
+        //            .rx
+        //            .didEndDisplayingCell
+        //            .bind(with: self) { owner, endDisplayingCellEvent in
+        //                guard let cell = endDisplayingCellEvent.cell as? HomeTableCell else { return }
+        //                cell.disposeBag = DisposeBag()
+        //            }
+        //            .disposed(by: viewModel.disposeBag)
         
         viewModel.posts
             .asDriver(onErrorJustReturn: [])
@@ -100,13 +105,23 @@ extension HomeVC {
             .drive(mainView.emptyLabel.rx.isHidden)
             .disposed(by: viewModel.disposeBag)
         
-//        viewModel.posts
-//            .map { $0.isEmpty }
-//            .asDriver(onErrorJustReturn: false)
-//            .drive(with: self) { owner, isEmpty in
-//                owner.navigationController?.hidesBarsOnSwipe = !isEmpty
-//            }
-//            .disposed(by: viewModel.disposeBag)
+        Observable.zip(mainView.tableView.rx.itemSelected, mainView.tableView.rx.modelSelected(PostEntity.self))
+            .subscribe(with: self) { owner, selectedItem in
+                let vc = PostDetailVC(viewModel: PostDetailViewModel(postDetail: BehaviorRelay(value: selectedItem.1)))
+                vc.hidesBottomBarWhenPushed = true
+                owner.hideTabBarPostInputBtn()
+                owner.navigationController?.pushViewController(vc, animated: true)
+            }
+            .disposed(by: viewModel.disposeBag)
+        
+        
+        //        viewModel.posts
+        //            .map { $0.isEmpty }
+        //            .asDriver(onErrorJustReturn: false)
+        //            .drive(with: self) { owner, isEmpty in
+        //                owner.navigationController?.hidesBarsOnSwipe = !isEmpty
+        //            }
+        //            .disposed(by: viewModel.disposeBag)
         
         
         viewModel.isLoading
@@ -132,6 +147,6 @@ extension HomeVC {
         navigationController?.navigationBar.backgroundColor = .white
         navigationItem.rightBarButtonItem = rightBarButton
         navigationItem.titleView = navTitleLabel
-        
+        navigationItem.backButtonDisplayMode = .minimal
     }
 }

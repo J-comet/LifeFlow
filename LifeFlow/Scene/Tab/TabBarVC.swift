@@ -8,8 +8,13 @@
 import UIKit
 
 import SnapKit
+import Then
 
 final class TabBarVC: UITabBarController {
+    
+    let inputButton = UIButton(type: .custom).then {
+        $0.layer.zPosition = 1
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,20 +28,19 @@ final class TabBarVC: UITabBarController {
         tabBar.isTranslucent = false
         //        tabBar.unselectedItemTintColor = .black
         
-        let button = UIButton(type: .custom)
-        view.addSubview(button)
-        button.backgroundColor = .white
-        button.layer.cornerRadius = CGFloat((UIScreen.main.bounds.width * 0.16) / 2)
-        button.snp.makeConstraints { make in
+       
+        view.addSubview(inputButton)
+        inputButton.backgroundColor = .white
+        inputButton.layer.cornerRadius = CGFloat((UIScreen.main.bounds.width * 0.16) / 2)
+        inputButton.snp.makeConstraints { make in
             make.size.equalTo(self.view.snp.width).multipliedBy(0.16)
             make.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(8)
             make.centerX.equalToSuperview()
         }
         
-        button.setBackgroundImage(UIImage(systemName: "plus.circle.fill")?.withTintColor(.main, renderingMode: .alwaysOriginal), for: .normal)
-        button.setBackgroundImage(UIImage(systemName: "plus.circle.fill")?.withTintColor(.main, renderingMode: .alwaysOriginal), for: .highlighted)
-        button.addTarget(self, action: #selector(addBtnTabbed), for:.touchUpInside)
-        
+        inputButton.setBackgroundImage(UIImage(systemName: "plus.circle.fill")?.withTintColor(.main, renderingMode: .alwaysOriginal), for: .normal)
+        inputButton.setBackgroundImage(UIImage(systemName: "plus.circle.fill")?.withTintColor(.main, renderingMode: .alwaysOriginal), for: .highlighted)
+        inputButton.addTarget(self, action: #selector(addBtnTabbed), for:.touchUpInside)
     }
     
     @objc

@@ -16,6 +16,8 @@ protocol BaseViewContollerProtocol {
 
 class ViewController<T: BaseView, U: BaseViewModel>: UIViewController {
     
+    private lazy var tabBarVC = tabBarController as? TabBarVC
+    
     var isShowDeinit: Bool { false }
     
     var mainView: T {
@@ -44,6 +46,16 @@ class ViewController<T: BaseView, U: BaseViewModel>: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    // 탭바 센터 플러스버튼 show
+    func showTabBarPostInputBtn() {
+        tabBarVC?.inputButton.isHidden = false
+    }
+    
+    // 탭바 센터 플러스버튼 hide
+    func hideTabBarPostInputBtn() {
+        tabBarVC?.inputButton.isHidden = true
     }
     
     deinit {
