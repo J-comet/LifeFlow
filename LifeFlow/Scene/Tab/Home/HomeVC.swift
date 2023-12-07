@@ -65,17 +65,6 @@ extension HomeVC {
                     })
                     .disposed(by: cell.disposeBag)
                 
-                // 댓글뷰
-                cell.commentView
-                    .rx
-                    .tapGesture()
-                    .when(.recognized)
-                    .asDriver { _ in .never() }
-                    .drive(with: self, onNext: { owner, tap in
-                        print(element.title + "댓글 입력 클릭")
-                    })
-                    .disposed(by: cell.disposeBag)
-                
                 // 더보기 버튼
                 cell.moreContentButton
                     .rx

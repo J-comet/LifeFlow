@@ -106,11 +106,11 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
         $0.textColor = .text
     }
     
-    let commentView = UIImageView().then {
-        $0.image = UIImage(systemName: "bubble.right")?
-            .withTintColor(.text, renderingMode: .alwaysOriginal)
-            .withConfiguration(UIImage.SymbolConfiguration(weight: .light))
-    }
+//    let commentView = UIImageView().then {
+//        $0.image = UIImage(systemName: "bubble.right")?
+//            .withTintColor(.text, renderingMode: .alwaysOriginal)
+//            .withConfiguration(UIImage.SymbolConfiguration(weight: .light))
+//    }
     
     let pageControl = UIPageControl(frame: .zero).then {
         $0.pageIndicatorTintColor = .systemGray4
@@ -192,7 +192,6 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
         contentView.addSubview(bottonContainerView)
         bottonContainerView.addSubview(pageControl)
         bottonContainerView.addSubview(heartView)
-        bottonContainerView.addSubview(commentView)
         bottonContainerView.addSubview(heartCntLabel)
         bottonContainerView.addSubview(titleLabel)
         bottonContainerView.addSubview(parentContentStackView)
@@ -248,12 +247,6 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
         heartCntLabel.snp.makeConstraints { make in
             make.top.equalTo(heartView.snp.bottom).offset(8)
             make.horizontalEdges.equalToSuperview().inset(16)
-        }
-        
-        commentView.snp.makeConstraints { make in
-            make.size.equalTo(28)
-            make.leading.equalTo(heartView.snp.trailing).offset(16)
-            make.centerY.equalTo(heartView)
         }
         
         titleLabel.snp.makeConstraints { make in

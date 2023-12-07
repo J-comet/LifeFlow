@@ -32,31 +32,6 @@ final class PostInputVC: BaseViewController<PostInputView, PostInputViewModel> {
         bindViewModel()
         configureVC()
     }
-    
-    func uploadPost(_ title: String, content: String, images: [UIImage]) {
-            guard let url = URL(string: "https://your-api-endpoint.com/uploadPost") else {
-                print("Invalid URL")
-                return
-            }
-
-            AF.upload(multipartFormData: { multipartFormData in
-                // Add title and content parameters
-                multipartFormData.append(title.data(using: .utf8)!, withName: "title")
-                multipartFormData.append(content.data(using: .utf8)!, withName: "content")
-
-                // Add images
-                for (index, image) in images.enumerated() {
-                    guard let imageData = image.jpegData(compressionQuality: 0.5) else {
-                        print("Error converting image to data")
-                        continue
-                    }
-                    multipartFormData.append(imageData, withName: "file\(index)", fileName: "image\(index).jpg", mimeType: "image/jpeg")
-                }
-            }, to: url) { result in
-                
-            }
-        }
-
 }
 
 
