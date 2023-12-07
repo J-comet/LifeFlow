@@ -25,13 +25,13 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
         $0.textColor = .text
     }
     
-    let menuButton = UIButton().then {
-        var config = UIButton.Configuration.filled()
-        config.image = UIImage(systemName: "ellipsis")!
-        config.baseBackgroundColor = .clear
-        config.baseForegroundColor = .text
-        $0.configuration = config
-    }
+//    let menuButton = UIButton().then {
+//        var config = UIButton.Configuration.filled()
+//        config.image = UIImage(systemName: "ellipsis")!
+//        config.baseBackgroundColor = .clear
+//        config.baseForegroundColor = .text
+//        $0.configuration = config
+//    }
     
     private let titleLabel = BasicLabel().then {
         $0.font(weight: .medium, size: 14)
@@ -134,8 +134,6 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
     }
     
     override func configCell(row: PostEntity) {
-        menuButton.isHidden = UserDefaults.userId != row.creator.id
-        
         horizontalImages.accept(row.image)
         pageControl.numberOfPages = row.image.count
         pageControl.currentPage = row.currentImagePage
@@ -190,7 +188,6 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
     override func configureHierarchy() {
         contentView.addSubview(userThumbnail)
         contentView.addSubview(nickNameLabel)
-        contentView.addSubview(menuButton)
         contentView.addSubview(horizontalImgCollectionView)
         contentView.addSubview(bottonContainerView)
         bottonContainerView.addSubview(pageControl)
@@ -223,12 +220,6 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
         nickNameLabel.snp.makeConstraints { make in
             make.centerY.equalTo(userThumbnail)
             make.leading.equalTo(userThumbnail.snp.trailing).offset(8)
-        }
-        
-        menuButton.snp.makeConstraints { make in
-            make.size.equalTo(28)
-            make.trailing.equalToSuperview().inset(16)
-            make.centerY.equalTo(userThumbnail)
         }
         
         horizontalImgCollectionView.snp.makeConstraints { make in
