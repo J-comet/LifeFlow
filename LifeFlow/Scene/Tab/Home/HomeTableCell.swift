@@ -11,6 +11,7 @@ import SnapKit
 import Then
 import RxSwift
 import RxCocoa
+import RxGesture
 
 final class HomeTableCell: BaseTableViewCell<PostEntity> {
     
@@ -126,11 +127,14 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
         $0.textColor = .lightGray
     }
     
+    var moveDetail: (() -> Void)?
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         disposeBag = DisposeBag()
         bindHorizontalImages()
         bindPagingControl()
+        moveDetail = nil
     }
     
     override func configCell(row: PostEntity) {
@@ -164,6 +168,18 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
         horizontalImages
             .asDriver(onErrorJustReturn: [])
             .drive(horizontalImgCollectionView.rx.items(cellIdentifier: HomeImageCell.identifier, cellType: HomeImageCell.self)) { (row, element, cell) in
+                
+                // 이미지 슬라이드쪽 터치시 화면전환
+                cell.imageView
+                    .rx
+                    .tapGesture()
+                    .when(.recognized)
+                    .asDriver { _ in .never() }
+                    .drive(with: self, onNext: { owner, tap in
+                        owner.moveDetail?()
+                    })
+                    .disposed(by: cell.disposeBag)
+                
                 cell.configCell(row: element)
             }
             .disposed(by: disposeBag)

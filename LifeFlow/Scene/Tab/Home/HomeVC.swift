@@ -54,6 +54,12 @@ extension HomeVC {
             .drive(mainView.tableView.rx.items(cellIdentifier: HomeTableCell.identifier, cellType: HomeTableCell.self)) { (row, element, cell) in
                 cell.selectionStyle = .none
                 
+                cell.moveDetail = {
+                    let vc = PostDetailVC(viewModel: PostDetailViewModel(postDetail: BehaviorRelay(value: element)))
+                    vc.modalPresentationStyle = .fullScreen
+                    self.present(vc, animated: false)
+                }
+                
                 // 좋아요뷰
                 cell.heartView
                     .rx
