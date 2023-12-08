@@ -63,14 +63,40 @@ final class PostDetailView: BaseView {
 extension PostDetailView {
 
     func createLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewFlowLayout()
-        let spacing: CGFloat = 8
-        let width: CGFloat = UIScreen.main.bounds.width
-        
-        layout.itemSize = CGSize(width: width, height: 55)
-        layout.sectionInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)  // 컨텐츠가 잘리지 않고 자연스럽게 표시되도록 여백설정
-        layout.minimumLineSpacing = 0         // 셀과셀 위 아래 최소 간격
-        layout.minimumInteritemSpacing = 0    // 셀과셀 좌 우 최소 간격
+        let config = UICollectionViewCompositionalLayoutConfiguration()
+//        config.interSectionSpacing = 16
+//
+        // 매개변수 sectionProvider, configuration
+        let layout = UICollectionViewCompositionalLayout(sectionProvider: {
+            (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+
+            let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0)))
+            item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+            
+            let groupHeight = NSCollectionLayoutDimension.estimated(60)
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                  heightDimension: groupHeight)
+            
+            let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+            
+            let section = NSCollectionLayoutSection(group: group)
+            
+            section.contentInsets = .init(top: 8, leading: 0, bottom: 0, trailing: 0)
+            
+            // header 설정
+            let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                   heightDimension: .estimated(UIScreen.main.bounds.size.height * 0.5)),
+                elementKind: UICollectionView.elementKindSectionHeader,
+                alignment: .top)
+            
+//            sectionHeader.systemLayoutSizeFitting(CGSize(width: collectionView.frame.width, height: UIView.layoutFittingExpandedSize.height),withHorizontalFittingPriority: .required, verticalFittingPriority: .fittingSizeLevel)
+            
+            section.boundarySupplementaryItems = [sectionHeader]
+            return section
+            
+        }, configuration: config)
         return layout
     }
     

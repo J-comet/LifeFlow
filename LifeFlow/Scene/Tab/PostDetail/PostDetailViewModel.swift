@@ -11,11 +11,18 @@ import RxSwift
 import RxCocoa
 
 final class PostDetailViewModel: BaseViewModel {
-//    let postDetail: PostEntity
-    
     let postDetail: BehaviorRelay<PostEntity>
+    let collectionViewDataSource: BehaviorRelay<[PostDetailSectionModel]> = BehaviorRelay(value: [])
     
     init(postDetail: BehaviorRelay<PostEntity>) {
         self.postDetail = postDetail
+        self.collectionViewDataSource.accept(
+            [
+                PostDetailSectionModel(header: postDetail.value, items: ["4","5","6","7"])
+            ]
+        )
     }
+    
+    
+    
 }

@@ -82,6 +82,9 @@
 		C0B07F292B1108B200350ECC /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B07F282B1108B200350ECC /* LoadingIndicator.swift */; };
 		C0B07F2B2B110C8100350ECC /* DuplicateEmailRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B07F2A2B110C8100350ECC /* DuplicateEmailRequest.swift */; };
 		C0B07F2F2B111D9900350ECC /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B07F2E2B111D9900350ECC /* NetworkError.swift */; };
+		C0C60B472B22DDE200095535 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = C0C60B462B22DDE200095535 /* RxDataSources */; };
+		C0C60B4A2B22DE4600095535 /* PostDetailSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C60B492B22DE4600095535 /* PostDetailSectionModel.swift */; };
+		C0C60B4C2B22DF3600095535 /* PostDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C60B4B2B22DF3600095535 /* PostDetailController.swift */; };
 		C0D9C6A42B21C287007FEA20 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D9C6A32B21C287007FEA20 /* String+Extension.swift */; };
 		C0D9C6A82B21F94F007FEA20 /* CommonBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D9C6A72B21F94F007FEA20 /* CommonBottomSheet.swift */; };
 		C0D9C6AA2B21F9B5007FEA20 /* PassThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D9C6A92B21F9B5007FEA20 /* PassThroughView.swift */; };
@@ -185,6 +188,8 @@
 		C0B07F282B1108B200350ECC /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		C0B07F2A2B110C8100350ECC /* DuplicateEmailRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuplicateEmailRequest.swift; sourceTree = "<group>"; };
 		C0B07F2E2B111D9900350ECC /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		C0C60B492B22DE4600095535 /* PostDetailSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailSectionModel.swift; sourceTree = "<group>"; };
+		C0C60B4B2B22DF3600095535 /* PostDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailController.swift; sourceTree = "<group>"; };
 		C0D9C6A32B21C287007FEA20 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		C0D9C6A72B21F94F007FEA20 /* CommonBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonBottomSheet.swift; sourceTree = "<group>"; };
 		C0D9C6A92B21F9B5007FEA20 /* PassThroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassThroughView.swift; sourceTree = "<group>"; };
@@ -226,6 +231,7 @@
 				C0B07F272B10DD3000350ECC /* IQKeyboardManagerSwift in Frameworks */,
 				C07FA7BF2B01E6FB000B93F3 /* Alamofire in Frameworks */,
 				C0FFFFA92B1DCD7A007D36FD /* Kingfisher in Frameworks */,
+				C0C60B472B22DDE200095535 /* RxDataSources in Frameworks */,
 				C07FA7C22B01E78E000B93F3 /* RxAlamofire in Frameworks */,
 				C02C06D92B0751A800E9AB93 /* Then in Frameworks */,
 				C07FA7BC2B01E642000B93F3 /* RxSwift in Frameworks */,
@@ -576,6 +582,14 @@
 			path = Token;
 			sourceTree = "<group>";
 		};
+		C0C60B482B22DE3300095535 /* SectionModel */ = {
+			isa = PBXGroup;
+			children = (
+				C0C60B492B22DE4600095535 /* PostDetailSectionModel.swift */,
+			);
+			path = SectionModel;
+			sourceTree = "<group>";
+		};
 		C0D9C6A62B21F92F007FEA20 /* CommonView */ = {
 			isa = PBXGroup;
 			children = (
@@ -587,10 +601,12 @@
 		C0D9C6AB2B220217007FEA20 /* PostDetail */ = {
 			isa = PBXGroup;
 			children = (
+				C0C60B482B22DE3300095535 /* SectionModel */,
 				C05352992B221A0B0077EF3C /* Cell */,
 				C0D9C6AC2B220236007FEA20 /* PostDetailVC.swift */,
 				C0D9C6AE2B22023E007FEA20 /* PostDetailView.swift */,
 				C0D9C6B02B220247007FEA20 /* PostDetailViewModel.swift */,
+				C0C60B4B2B22DF3600095535 /* PostDetailController.swift */,
 			);
 			path = PostDetail;
 			sourceTree = "<group>";
@@ -688,6 +704,7 @@
 				C0B07F262B10DD3000350ECC /* IQKeyboardManagerSwift */,
 				C0F5AAE62B1AD99200B3D102 /* RxGesture */,
 				C0FFFFA82B1DCD7A007D36FD /* Kingfisher */,
+				C0C60B462B22DDE200095535 /* RxDataSources */,
 			);
 			productName = LifeFlow;
 			productReference = C07FA79A2B01E43C000B93F3 /* LifeFlow.app */;
@@ -727,6 +744,7 @@
 				C0B07F252B10DD3000350ECC /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				C0F5AAE52B1AD99200B3D102 /* XCRemoteSwiftPackageReference "RxGesture" */,
 				C0FFFFA72B1DCD7A007D36FD /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				C0C60B452B22DDE200095535 /* XCRemoteSwiftPackageReference "RxDataSources" */,
 			);
 			productRefGroup = C07FA79B2B01E43C000B93F3 /* Products */;
 			projectDirPath = "";
@@ -764,6 +782,7 @@
 				C0B07F292B1108B200350ECC /* LoadingIndicator.swift in Sources */,
 				C0729D6B2B10892D00CEA6F0 /* SignupView.swift in Sources */,
 				C02028D02B17843C008FB1EA /* PostInputVC.swift in Sources */,
+				C0C60B4A2B22DE4600095535 /* PostDetailSectionModel.swift in Sources */,
 				C0F5AAEB2B1B169C00B3D102 /* PostResponse.swift in Sources */,
 				C0B07F222B10DB5D00350ECC /* ValidateManager.swift in Sources */,
 				C020289D2B15C9F2008FB1EA /* HomeViewModel.swift in Sources */,
@@ -845,6 +864,7 @@
 				C006C69B2B19D6BF004D14AF /* PostCreateRequest.swift in Sources */,
 				C0F5AAE92B1B08D300B3D102 /* PostRespository.swift in Sources */,
 				C02028A82B15DB71008FB1EA /* NavTitleLabel.swift in Sources */,
+				C0C60B4C2B22DF3600095535 /* PostDetailController.swift in Sources */,
 				C02028992B15C9CF008FB1EA /* HomeView.swift in Sources */,
 				C0729D712B10960E00CEA6F0 /* UnderLineTextField.swift in Sources */,
 				C01A42B22B02893100317956 /* AuthAPI.swift in Sources */,
@@ -1124,6 +1144,14 @@
 				minimumVersion = 6.5.16;
 			};
 		};
+		C0C60B452B22DDE200095535 /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.2;
+			};
+		};
 		C0F5AAE52B1AD99200B3D102 /* XCRemoteSwiftPackageReference "RxGesture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/RxSwiftCommunity/RxGesture";
@@ -1182,6 +1210,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C0B07F252B10DD3000350ECC /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
 			productName = IQKeyboardManagerSwift;
+		};
+		C0C60B462B22DDE200095535 /* RxDataSources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C0C60B452B22DDE200095535 /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = RxDataSources;
 		};
 		C0F5AAE62B1AD99200B3D102 /* RxGesture */ = {
 			isa = XCSwiftPackageProductDependency;

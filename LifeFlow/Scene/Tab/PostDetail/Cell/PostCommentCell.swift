@@ -12,22 +12,48 @@ import Then
 
 final class PostCommentCell: BaseCollectionViewCell<String> {
     
-    let commentLabel = BasicLabel().then {
-        $0.font(weight: .regular, size: 14)
+    private let commentLabel = BasicLabel().then {
+        $0.font(weight: .regular, size: 12)
+        $0.textColor = .text
+    }
+    
+    private let profileImageView = UIImageView().then {
+        $0.image = UIImage().defaultUser
+    }
+    
+    private let nicknameLabel = BasicLabel().then {
+        $0.font(weight: .regular, size: 12)
         $0.textColor = .text
     }
     
     override func configCell(row: String) {
         commentLabel.text = row
+        nicknameLabel.text = row
+        profileImageView.loadImage(from: "", placeHolderImage: UIImage().defaultUser)
     }
     
     override func configureHierarchy() {
         contentView.addSubview(commentLabel)
+        contentView.addSubview(profileImageView)
+        contentView.addSubview(nicknameLabel)
     }
     
     override func configureLayout() {
+        profileImageView.snp.makeConstraints { make in
+            make.size.equalTo(24)
+            make.top.equalToSuperview()
+            make.leading.equalToSuperview().inset(16)
+        }
+        
+        nicknameLabel.snp.makeConstraints { make in
+            make.leading.equalTo(profileImageView.snp.trailing).offset(8)
+            make.centerY.equalTo(profileImageView)
+        }
+        
         commentLabel.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.equalTo(profileImageView.snp.bottom).offset(4)
+            make.horizontalEdges.equalToSuperview().inset(20)
+            make.bottom.lessThanOrEqualToSuperview()
         }
     }
 }
