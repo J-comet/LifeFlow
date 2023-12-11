@@ -10,16 +10,30 @@ import UIKit
 import SnapKit
 import Then
 import Kingfisher
+import RxSwift
+import RxCocoa
 
 final class PostHeaderView: UICollectionReusableView, BaseCellProtocol {
     
     typealias T = PostEntity
     
+    var disposeBag = DisposeBag()
+    
     private let containerView = UIView()
     
-    private let imageContainerView = UIView().then {
-        $0.backgroundColor = .blue
+    private lazy var horizontalImgCollectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).then {
+        $0.showsHorizontalScrollIndicator = false
+        $0.alwaysBounceHorizontal = false
+        $0.register(HomeImageCell.self, forCellWithReuseIdentifier: HomeImageCell.identifier)
+        $0.isPagingEnabled = true
+        $0.bounces = false
     }
+    
+    private let horizontalImages = PublishRelay<[String]>()
+    
+//    private let imageContainerView = UIView().then {
+//        $0.backgroundColor = .blue
+//    }
     
     private let userContainerView = UIView()
     
@@ -61,9 +75,16 @@ final class PostHeaderView: UICollectionReusableView, BaseCellProtocol {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+        bindHorizontalImages()
+    }
+    
+    
     func configureHierarchy() {
         addSubview(containerView)
-        addSubview(imageContainerView)
+        addSubview(horizontalImgCollectionView)
         containerView.addSubview(userContainerView)
         userContainerView.addSubview(profileImageView)
         userContainerView.addSubview(nicknameLabel)
@@ -71,18 +92,29 @@ final class PostHeaderView: UICollectionReusableView, BaseCellProtocol {
         containerView.addSubview(titleLabel)
         containerView.addSubview(contentLabel)
         containerView.addSubview(commentGuideLabel)
+        
+        bindHorizontalImages()
+    }
+    
+    private func bindHorizontalImages() {
+        horizontalImages
+            .asDriver(onErrorJustReturn: [])
+            .drive(horizontalImgCollectionView.rx.items(cellIdentifier: HomeImageCell.identifier, cellType: HomeImageCell.self)) { (row, element, cell) in
+                cell.configCell(row: element)
+            }
+            .disposed(by: disposeBag)
     }
     
     func configureLayout() {
         
-        imageContainerView.snp.makeConstraints { make in
+        horizontalImgCollectionView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.horizontalEdges.equalToSuperview()
             make.height.equalTo(UIScreen.main.bounds.size.width * 1.1)
         }
         
         containerView.snp.makeConstraints { make in
-            make.top.equalTo(imageContainerView.snp.bottom)
+            make.top.equalTo(horizontalImgCollectionView.snp.bottom)
             make.horizontalEdges.equalToSuperview()
             make.bottom.equalToSuperview()  // snapKit error 발생
         }
@@ -124,11 +156,30 @@ final class PostHeaderView: UICollectionReusableView, BaseCellProtocol {
     }
     
     func configCell(row item: PostEntity) {
+        horizontalImages.accept(item.image)
         profileImageView.loadImage(from: item.creator.profile, placeHolderImage: UIImage().defaultUser)
         nicknameLabel.text = item.creator.nick
         titleLabel.text = item.title
         contentLabel.text = item.content
     }
+}
+
+extension PostHeaderView {
+    
+    func createLayout() -> UICollectionViewLayout {
+        // 비율 계산해서 디바이스 별로 UI 설정
+        let layout = UICollectionViewFlowLayout()
+        let spacing: CGFloat = 8
+        let width: CGFloat = UIScreen.main.bounds.width
+        
+        layout.itemSize = CGSize(width: width, height: width * 1.1)
+        layout.sectionInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)  // 컨텐츠가 잘리지 않고 자연스럽게 표시되도록 여백설정
+        layout.minimumLineSpacing = spacing         // 셀과셀 위 아래 최소 간격
+        layout.minimumInteritemSpacing = spacing    // 셀과셀 좌 우 최소 간격
+        
+        return layout
+    }
+    
 }
 
 
