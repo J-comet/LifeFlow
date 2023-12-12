@@ -47,15 +47,15 @@ final class BaseInterceptor: RequestInterceptor {
                 completion(.retry)
             case .failure(let error):
                 switch error {
-                case .needLoginAgain:
+                case .notExpire: // 토큰 만료 되지 않음
+                    completion(.doNotRetryWithError(error))
+                default:
                     UserDefaults.isLogin = false
                     UserDefaults.token = ""
                     UserDefaults.refreshToken = ""
                     let window = UIApplication.shared.connectedScenes.first as? UIWindowScene
                     let vc = LoginVC(viewModel: LoginViewModel(userRepository: AuthRepository()))
                     window?.windows.first?.rootViewController = UINavigationController(rootViewController: vc)
-                default:
-                    completion(.doNotRetryWithError(error))
                 }
             }
         }

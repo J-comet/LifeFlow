@@ -19,6 +19,8 @@ final class PostHeaderView: UICollectionReusableView, BaseCellProtocol {
     
     var disposeBag = DisposeBag()
     
+    private let horizontalImageViewHeight = UIScreen.main.bounds.width * 1.1
+    
     private let containerView = UIView()
     
     private lazy var horizontalImgCollectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).then {
@@ -110,7 +112,7 @@ final class PostHeaderView: UICollectionReusableView, BaseCellProtocol {
         horizontalImgCollectionView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.horizontalEdges.equalToSuperview()
-            make.height.equalTo(UIScreen.main.bounds.size.width * 1.1)
+            make.height.equalTo(horizontalImageViewHeight)
         }
         
         containerView.snp.makeConstraints { make in
@@ -167,16 +169,14 @@ final class PostHeaderView: UICollectionReusableView, BaseCellProtocol {
 extension PostHeaderView {
     
     func createLayout() -> UICollectionViewLayout {
-        // 비율 계산해서 디바이스 별로 UI 설정
         let layout = UICollectionViewFlowLayout()
-        let spacing: CGFloat = 8
-        let width: CGFloat = UIScreen.main.bounds.width
+        let width: CGFloat = UIScreen.main.bounds.width // 디바이스 너비 계산
         
-        layout.itemSize = CGSize(width: width, height: width * 1.1)
-        layout.sectionInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)  // 컨텐츠가 잘리지 않고 자연스럽게 표시되도록 여백설정
-        layout.minimumLineSpacing = spacing         // 셀과셀 위 아래 최소 간격
-        layout.minimumInteritemSpacing = spacing    // 셀과셀 좌 우 최소 간격
-        
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: width, height: horizontalImageViewHeight)
+        layout.sectionInset = .zero
+        layout.minimumLineSpacing = 0         // 셀과셀 위 아래 최소 간격
+        layout.minimumInteritemSpacing = 0    // 셀과셀 좌 우 최소 간격
         return layout
     }
     
