@@ -78,6 +78,10 @@
 		C082CA262B18AF3B004C53B3 /* BasicTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C082CA252B18AF3B004C53B3 /* BasicTextView.swift */; };
 		C0A002BB2B297C0E0043D869 /* CommentEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A002BA2B297C0E0043D869 /* CommentEntity.swift */; };
 		C0A002BD2B297CC40043D869 /* CommentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A002BC2B297CC40043D869 /* CommentResponse.swift */; };
+		C0A002BF2B29A0140043D869 /* PostDeleteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A002BE2B29A0140043D869 /* PostDeleteRequest.swift */; };
+		C0A002C12B29A3480043D869 /* PostDeleteResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A002C02B29A3480043D869 /* PostDeleteResponse.swift */; };
+		C0A002C32B29A39A0043D869 /* PostDeleteEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A002C22B29A39A0043D869 /* PostDeleteEntity.swift */; };
+		C0A002C52B29DF400043D869 /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A002C42B29DF400043D869 /* Notification+Extension.swift */; };
 		C0B07F222B10DB5D00350ECC /* ValidateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B07F212B10DB5D00350ECC /* ValidateManager.swift */; };
 		C0B07F242B10DC0900350ECC /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B07F232B10DC0900350ECC /* UIViewController+Extension.swift */; };
 		C0B07F272B10DD3000350ECC /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C0B07F262B10DD3000350ECC /* IQKeyboardManagerSwift */; };
@@ -187,6 +191,10 @@
 		C082CA252B18AF3B004C53B3 /* BasicTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicTextView.swift; sourceTree = "<group>"; };
 		C0A002BA2B297C0E0043D869 /* CommentEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentEntity.swift; sourceTree = "<group>"; };
 		C0A002BC2B297CC40043D869 /* CommentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentResponse.swift; sourceTree = "<group>"; };
+		C0A002BE2B29A0140043D869 /* PostDeleteRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDeleteRequest.swift; sourceTree = "<group>"; };
+		C0A002C02B29A3480043D869 /* PostDeleteResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDeleteResponse.swift; sourceTree = "<group>"; };
+		C0A002C22B29A39A0043D869 /* PostDeleteEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDeleteEntity.swift; sourceTree = "<group>"; };
+		C0A002C42B29DF400043D869 /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extension.swift"; sourceTree = "<group>"; };
 		C0B07F212B10DB5D00350ECC /* ValidateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateManager.swift; sourceTree = "<group>"; };
 		C0B07F232B10DC0900350ECC /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		C0B07F282B1108B200350ECC /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
@@ -253,6 +261,7 @@
 				C0F5AAEA2B1B169C00B3D102 /* PostResponse.swift */,
 				C0F5AAF42B1C482E00B3D102 /* PostListResponse.swift */,
 				C0A002BC2B297CC40043D869 /* CommentResponse.swift */,
+				C0A002C02B29A3480043D869 /* PostDeleteResponse.swift */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -280,6 +289,7 @@
 				C006C6972B19D674004D14AF /* PostEntity.swift */,
 				C0F5AAF62B1C48F900B3D102 /* PostListEntity.swift */,
 				C0A002BA2B297C0E0043D869 /* CommentEntity.swift */,
+				C0A002C22B29A39A0043D869 /* PostDeleteEntity.swift */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -288,6 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				C006C69A2B19D6BF004D14AF /* PostCreateRequest.swift */,
+				C0A002BE2B29A0140043D869 /* PostDeleteRequest.swift */,
 				C0F5AAF22B1C2E7F00B3D102 /* PostGetRequest.swift */,
 			);
 			path = Post;
@@ -547,6 +558,7 @@
 				C0B07F232B10DC0900350ECC /* UIViewController+Extension.swift */,
 				C011211B2B20BB5C00C778E6 /* UILabel+Extension.swift */,
 				C0D9C6A32B21C287007FEA20 /* String+Extension.swift */,
+				C0A002C42B29DF400043D869 /* Notification+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -822,11 +834,13 @@
 				C0B07F242B10DC0900350ECC /* UIViewController+Extension.swift in Sources */,
 				C011211C2B20BB5C00C778E6 /* UILabel+Extension.swift in Sources */,
 				C0D9C6B12B220247007FEA20 /* PostDetailViewModel.swift in Sources */,
+				C0A002C52B29DF400043D869 /* Notification+Extension.swift in Sources */,
 				C0A002BB2B297C0E0043D869 /* CommentEntity.swift in Sources */,
 				C05352962B220D060077EF3C /* TitleSupplementaryView.swift in Sources */,
 				C07FA7D92B01FBB6000B93F3 /* Encodable+Extension.swift in Sources */,
 				C02C06D62B074F2C00E9AB93 /* BasicButton.swift in Sources */,
 				C07FA79E2B01E43C000B93F3 /* AppDelegate.swift in Sources */,
+				C0A002C32B29A39A0043D869 /* PostDeleteEntity.swift in Sources */,
 				C082C9FD2B17979C004C53B3 /* PostInputImageCell.swift in Sources */,
 				C053529B2B221A180077EF3C /* PostCommentCell.swift in Sources */,
 				C0F5AAEE2B1B16D700B3D102 /* CreatorEntity.swift in Sources */,
@@ -849,10 +863,12 @@
 				C0F5AAF12B1B16FC00B3D102 /* CreatorResponse.swift in Sources */,
 				C07FA7B32B01E525000B93F3 /* LoginVC.swift in Sources */,
 				C02C06C52B07469B00E9AB93 /* BaseCollectionViewCell.swift in Sources */,
+				C0A002C12B29A3480043D869 /* PostDeleteResponse.swift in Sources */,
 				C02C06CD2B07475F00E9AB93 /* LoginView.swift in Sources */,
 				C0B07F2B2B110C8100350ECC /* DuplicateEmailRequest.swift in Sources */,
 				C0E84F7A2B204F4400EB0B23 /* UIImageView+Extension.swift in Sources */,
 				C01A42B02B02888400317956 /* Network.swift in Sources */,
+				C0A002BF2B29A0140043D869 /* PostDeleteRequest.swift in Sources */,
 				C0DAE9452B0534F20067279A /* TokenResponse.swift in Sources */,
 				C02028AA2B15DD72008FB1EA /* UIImage+Extension.swift in Sources */,
 				C006C69F2B1A1B7D004D14AF /* Date+Extension.swift in Sources */,

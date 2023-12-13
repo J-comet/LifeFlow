@@ -23,6 +23,11 @@ final class HomeViewModel: BaseViewModel {
     
     var posts: BehaviorRelay<[PostEntity]> = BehaviorRelay(value: [])
     
+    func resetData() {
+        tmpPosts = []
+        posts.accept(tmpPosts)
+    }
+    
     func getPosts() {
         isLoading.accept(true)
         postRepository.getPosts(next: next)

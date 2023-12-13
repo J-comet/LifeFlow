@@ -12,10 +12,18 @@ import RxCocoa
 
 final class PostDetailViewModel: BaseViewModel {
     let postDetail: BehaviorRelay<PostEntity>
+    let postRepository: PostRespository
+    
     let collectionViewDataSource: BehaviorRelay<[PostDetailSectionModel]> = BehaviorRelay(value: [])
     
-    init(postDetail: BehaviorRelay<PostEntity>) {
+    let deletedPostID = PublishRelay<String>()
+    
+    init(
+        postDetail: BehaviorRelay<PostEntity>,
+        postRepository: PostRespository
+    ) {
         self.postDetail = postDetail
+        self.postRepository = postRepository
         self.collectionViewDataSource.accept(
             [
                 PostDetailSectionModel(header: postDetail.value, items: postDetail.value.comments)
@@ -23,6 +31,20 @@ final class PostDetailViewModel: BaseViewModel {
         )
     }
     
-    
+    func delete(){
+        isLoading.accept(true)
+        postRepository.deletePost(id: postDetail.value.id)
+            .subscribe(with: self) { owner, result in
+                switch result {
+                case .success(let entity):
+                    dump(entity)
+                    owner.deletedPostID.accept(entity.id)
+                case .failure(let error):
+                    owner.errorMessage.accept(error.message)
+                }
+                owner.isLoading.accept(false)
+            }
+            .disposed(by: disposeBag)
+    }
     
 }

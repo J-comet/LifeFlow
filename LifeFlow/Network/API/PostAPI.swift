@@ -12,6 +12,7 @@ import Alamofire
 enum PostAPI {
     case create
     case getPosts(request: PostGetRequest)
+    case delete(request: PostDeleteRequest)
 }
 
 extension PostAPI: Router, URLRequestConvertible {
@@ -26,6 +27,8 @@ extension PostAPI: Router, URLRequestConvertible {
             "post"
         case .getPosts:
             "post"
+        case .delete(let request):
+            "post/\(request.id)"
         }
     }
     
@@ -35,6 +38,8 @@ extension PostAPI: Router, URLRequestConvertible {
                 .post
         case .getPosts:
                 .get
+        case .delete:
+                .delete
         }
     }
     
@@ -46,7 +51,7 @@ extension PostAPI: Router, URLRequestConvertible {
                 "SesacKey": APIManagement.key,
                 "Content-Type": "multipart/form-data"
             ]
-        case .getPosts:
+        case .getPosts, .delete:
             [
                 "Authorization": UserDefaults.token,
                 "SesacKey": APIManagement.key,
@@ -57,7 +62,7 @@ extension PostAPI: Router, URLRequestConvertible {
     
     var parameters: [String: String]? {
         switch self {
-        case .create:
+        case .create, .delete:
             nil
         case .getPosts(let request):
             request.toEncodable
@@ -71,6 +76,8 @@ extension PostAPI: Router, URLRequestConvertible {
         case .create:
             URLEncoding.default
         case .getPosts:
+            URLEncoding.default
+        case .delete:
             URLEncoding.default
         }
     }

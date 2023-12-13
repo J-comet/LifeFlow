@@ -30,7 +30,19 @@ final class HomeVC: BaseViewController<HomeView, HomeViewModel> {
         bindViewModel()
         configureVC()
         
-//        print(UserDefaults.token)
+        viewModel.getPosts()
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(reloadPostObserver),
+            name: .reloadPost,
+            object: nil
+        )
+    }
+    
+    @objc
+    func reloadPostObserver() {
+        viewModel.resetData()
         viewModel.getPosts()
     }
 }
@@ -55,7 +67,11 @@ extension HomeVC {
                 cell.selectionStyle = .none
                 
                 cell.moveDetail = {
-                    let vc = PostDetailVC(viewModel: PostDetailViewModel(postDetail: BehaviorRelay(value: element)))
+                    let vc = PostDetailVC(
+                        viewModel: PostDetailViewModel(
+                            postDetail: BehaviorRelay(value: element),
+                            postRepository: PostRespository())
+                    )
                     vc.modalPresentationStyle = .fullScreen
                     self.present(vc, animated: false)
                 }
@@ -108,7 +124,12 @@ extension HomeVC {
         
         Observable.zip(mainView.tableView.rx.itemSelected, mainView.tableView.rx.modelSelected(PostEntity.self))
             .subscribe(with: self) { owner, selectedItem in
-                let vc = PostDetailVC(viewModel: PostDetailViewModel(postDetail: BehaviorRelay(value: selectedItem.1)))
+                let vc = PostDetailVC(
+                    viewModel: PostDetailViewModel(
+                        postDetail: BehaviorRelay(value: selectedItem.1),
+                        postRepository: PostRespository()
+                    )
+                )
                 vc.modalPresentationStyle = .fullScreen
                 owner.present(vc, animated: false)
             }

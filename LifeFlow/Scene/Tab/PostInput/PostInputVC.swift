@@ -152,7 +152,17 @@ extension PostInputVC {
         viewModel.createSuccess
             .bind(with: self) { owner, value in
                 print("성공성공")
-                //
+                guard let pvc = owner.presentingViewController else { return }
+                owner.dismiss(animated: true) {
+                    let vc = PostDetailVC(
+                        viewModel: PostDetailViewModel(
+                            postDetail: .init(value: value),
+                            postRepository: PostRespository()
+                        )
+                    )
+                    vc.modalPresentationStyle = .fullScreen
+                    pvc.present(vc, animated: false)
+                }
             }
             .disposed(by: viewModel.disposeBag)
         

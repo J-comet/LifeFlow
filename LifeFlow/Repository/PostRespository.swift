@@ -31,7 +31,7 @@ final class PostRespository {
                     case .failure(let error):
                         single(.success(.failure(PostCreateError(rawValue: error.statusCode) ?? .commonError)))
                     }
-                case .failure(let _):
+                case .failure:
                     single(.success(.failure(PostCreateError.commonError)))
                 }
             }
@@ -58,8 +58,29 @@ final class PostRespository {
                     case .failure(let error):
                         single(.success(.failure(PostGetError(rawValue: error.statusCode) ?? .commonError)))
                     }
-                case .failure(let _):
+                case .failure:
                     single(.success(.failure(PostGetError.commonError)))
+                }
+            }
+        }
+    }
+    
+    func deletePost(id: String) -> Single<Result<PostDeleteEntity, PostDeleteError>> {
+        return Single.create { single in
+            Network.shared.request(
+                api: PostAPI.delete(request: PostDeleteRequest(id: id)),
+                type: PostDeleteResponse.self
+            ).subscribe { result in
+                switch result {
+                case .success(let result):
+                    switch result {
+                    case .success(let value):
+                        single(.success(.success(value.toEntity())))
+                    case .failure(let error):
+                        single(.success(.failure(PostDeleteError(rawValue: error.statusCode) ?? .commonError)))
+                    }
+                case .failure:
+                    single(.success(.failure(PostDeleteError.commonError)))
                 }
             }
         }
@@ -111,6 +132,32 @@ enum PostGetError: Int, Error {
             "허용되지 않은 접근이에요"
         case .needRefresh:
             "토큰이 만료되었어요"
+        }
+    }
+}
+
+enum PostDeleteError: Int, Error {
+    case commonError = 600           // API 공통으로 받을 수 있는 응답코드 - Message 파싱해서 사용하기
+    case unableToAuthenticate = 401   // 인증할 수 없는 토큰
+    case forbidden = 403             // 허용되지 않은 접근
+    case alreadyDeleted = 410         // 이미 삭제된 게시글
+    case needRefresh = 419            // 토큰이 만료됨 - 리프레시 필요
+    case notOwner = 445              // 삭제 권한이 없습니다
+    
+    var message: String {
+        switch self {
+        case .commonError:
+            "알 수 없는 오류가 발생했어요"
+        case .unableToAuthenticate:
+            "인증할 수 없는 토큰이에요"
+        case .forbidden:
+            "허용되지 않은 접근이에요"
+        case .alreadyDeleted:
+            "이미 삭제된 글이에요"
+        case .needRefresh:
+            "토큰이 만료되었어요"
+        case .notOwner:
+            "게시글 권한이 없"
         }
     }
 }
