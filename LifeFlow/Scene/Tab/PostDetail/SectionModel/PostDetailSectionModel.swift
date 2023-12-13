@@ -15,10 +15,10 @@ struct PostDetailSectionModel {
 }
 
 extension PostDetailSectionModel: SectionModelType {
-    typealias Item = String
+    typealias Item = CommentEntity
     
     // String -> 댓글 구조체로 추후 수정
-    init(original: PostDetailSectionModel, items: [String]) {
+    init(original: PostDetailSectionModel, items: [CommentEntity]) {
         self = original
         self.items = items
     }

@@ -65,7 +65,7 @@ extension PostDetailVC {
         viewModel.collectionViewDataSource
             .bind(to: mainView.collectionView.rx.items(dataSource: dataSource))
             .disposed(by: viewModel.disposeBag)
-
+        
     }
     
     func configureVC() {

@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class PostCommentCell: BaseCollectionViewCell<String> {
+final class PostCommentCell: BaseCollectionViewCell<CommentEntity> {
     
     private let commentLabel = BasicLabel().then {
         $0.font(weight: .regular, size: 12)
@@ -26,10 +26,10 @@ final class PostCommentCell: BaseCollectionViewCell<String> {
         $0.textColor = .text
     }
     
-    override func configCell(row: String) {
-        commentLabel.text = row
-        nicknameLabel.text = row
-        profileImageView.loadImage(from: "", placeHolderImage: UIImage().defaultUser)
+    override func configCell(row: CommentEntity) {
+        commentLabel.text = row.content
+        nicknameLabel.text = row.creator.nick
+        profileImageView.loadImage(from: row.creator.profile, placeHolderImage: UIImage().defaultUser)
     }
     
     override func configureHierarchy() {

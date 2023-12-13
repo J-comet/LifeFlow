@@ -67,6 +67,12 @@ final class PostHeaderView: UICollectionReusableView, BaseCellProtocol {
         $0.text = "댓글"
     }
     
+    private let commentCntLabel = BasicLabel().then {
+        $0.font(weight: .medium, size: 14)
+        $0.textColor = .text
+        $0.text = "0개"
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureHierarchy()
@@ -94,6 +100,7 @@ final class PostHeaderView: UICollectionReusableView, BaseCellProtocol {
         containerView.addSubview(titleLabel)
         containerView.addSubview(contentLabel)
         containerView.addSubview(commentGuideLabel)
+        containerView.addSubview(commentCntLabel)
         
         bindHorizontalImages()
     }
@@ -155,6 +162,10 @@ final class PostHeaderView: UICollectionReusableView, BaseCellProtocol {
             make.bottom.lessThanOrEqualTo(containerView.snp.bottom)
         }
         
+        commentCntLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(commentGuideLabel)
+            make.leading.equalTo(commentGuideLabel.snp.trailing).offset(4)
+        }
     }
     
     func configCell(row item: PostEntity) {
@@ -163,6 +174,7 @@ final class PostHeaderView: UICollectionReusableView, BaseCellProtocol {
         nicknameLabel.text = item.creator.nick
         titleLabel.text = item.title
         contentLabel.text = item.content
+        commentCntLabel.text = "\(item.comments.count)개"
     }
 }
 

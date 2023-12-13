@@ -18,7 +18,7 @@ final class PostDetailViewModel: BaseViewModel {
         self.postDetail = postDetail
         self.collectionViewDataSource.accept(
             [
-                PostDetailSectionModel(header: postDetail.value, items: ["4","5","6","7"])
+                PostDetailSectionModel(header: postDetail.value, items: postDetail.value.comments)
             ]
         )
     }
