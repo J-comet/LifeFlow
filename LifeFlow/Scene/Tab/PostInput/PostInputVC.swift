@@ -70,6 +70,7 @@ extension PostInputVC: PHPickerViewControllerDelegate {
 extension PostInputVC {
     
     func bindViewModel() {
+        // 수정 데이터 전달 받았을 때
         viewModel.editData
             .bind(with: self) { owner, postEntity in
                 owner.mainView.postInputDataSetting(postEntity: postEntity)
@@ -168,8 +169,15 @@ extension PostInputVC {
             .rx
             .tap
             .throttle(.seconds(1), scheduler: MainScheduler.instance)
-            .bind(with: self) { owner, _ in
-                owner.viewModel.create()
+            .withLatestFrom(viewModel.editData)
+            .bind(with: self) { owner, editData in
+                if editData == nil {
+                    // create
+                    owner.viewModel.create()
+                } else {
+                    // edit
+                    owner.viewModel.edit()
+                }
             }
             .disposed(by: viewModel.disposeBag)
         
@@ -186,6 +194,18 @@ extension PostInputVC {
                     vc.modalPresentationStyle = .fullScreen
                     pvc.present(vc, animated: false)
                 }
+            }
+            .disposed(by: viewModel.disposeBag)
+        
+        viewModel.editSuccess
+            .bind(with: self) { owner, value in
+                // 이전 화면으로 데이터 전달
+                NotificationCenter.default.post(
+                    name: .reloadPostDetail,
+                    object: nil,
+                    userInfo: [NotificationKey.reloadDetailPost: value]
+                )
+                owner.dismiss(animated: false)
             }
             .disposed(by: viewModel.disposeBag)
         

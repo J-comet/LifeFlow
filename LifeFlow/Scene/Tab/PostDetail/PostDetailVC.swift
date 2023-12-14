@@ -48,8 +48,24 @@ final class PostDetailVC: BaseViewController<PostDetailView, PostDetailViewModel
         super.viewDidLoad()
         bindViewModel()
         configureVC()
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(reloadPostDetailObserver),
+            name: .reloadPostDetail,
+            object: nil
+        )
     }
     
+    @objc
+    func reloadPostDetailObserver(notification: Notification) {
+        // 데이터 전달 받은거로 교체하기
+        print("전달받은 데이터로 교체하기")
+        guard let key = notification.userInfo?[NotificationKey.reloadDetailPost] as? PostEntity else { return }
+        print("key = \(key)")
+        viewModel.postDetail.accept(key)
+        
+    }
 }
 
 extension PostDetailVC {
@@ -117,7 +133,19 @@ extension PostDetailVC {
         viewModel.postDetail.map {
             $0.creator.id != UserDefaults.userId
         }
+        .share()
         .bind(to: mainView.moreButton.rx.isHidden)
         .disposed(by: viewModel.disposeBag)
+        
+        viewModel.postDetail
+            .share()
+            .bind(with: self) { owner, postEntity in
+                owner.viewModel.collectionViewDataSource.accept(
+                    [
+                        PostDetailSectionModel(header: postEntity, items: postEntity.comments)
+                    ]
+                )
+            }
+            .disposed(by: viewModel.disposeBag)
     }
 }

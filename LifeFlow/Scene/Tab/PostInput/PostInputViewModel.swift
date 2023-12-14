@@ -32,6 +32,8 @@ final class PostInputViewModel: BaseViewModel {
     
     let createSuccess = PublishRelay<PostEntity>()
     
+    let editSuccess = PublishRelay<PostEntity>()
+    
     func create() {
         
         if previewImages.value.count - 1 == 0 {
@@ -66,6 +68,51 @@ final class PostInputViewModel: BaseViewModel {
             case .success(let data):
                 owner.createSuccess.accept(data)
             case .failure(let error):
+                owner.errorMessage.accept(error.message)
+            }
+            owner.isLoading.accept(false)
+        }
+        .disposed(by: disposeBag)
+    }
+    
+    func edit() {
+        
+        if previewImages.value.count - 1 == 0 {
+            errorMessage.accept("이미지를 선택해주세요")
+            return
+        }
+        
+        if title.value.isEmpty {
+            errorMessage.accept("제목을 입력해주세요")
+            return
+        }
+        
+        if content.value == "내용을 입력해주세요" {
+            errorMessage.accept("내용을 입력해주세요")
+            return
+        }
+
+        isLoading.accept(true)
+
+        previewImages.value.forEach { pickerImage in
+            if let image = pickerImage.image {
+                passImageDatas.append(image.jpegData(compressionQuality: 1)!)
+            }
+        }
+        
+        guard let editDataID = editData.value?.id else { return }
+        
+        postRepository.edit(
+            id: editDataID,
+            params: PostEditRequest(title: title.value, content: content.value),
+            images: passImageDatas
+        ).subscribe(with: self) { owner, result in
+            switch result {
+            case .success(let data):
+                print("수정 성공")
+                owner.editSuccess.accept(data)
+            case .failure(let error):
+                print("수정 실패")
                 owner.errorMessage.accept(error.message)
             }
             owner.isLoading.accept(false)

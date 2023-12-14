@@ -24,11 +24,6 @@ final class PostDetailViewModel: BaseViewModel {
     ) {
         self.postDetail = postDetail
         self.postRepository = postRepository
-        self.collectionViewDataSource.accept(
-            [
-                PostDetailSectionModel(header: postDetail.value, items: postDetail.value.comments)
-            ]
-        )
     }
     
     func delete(){

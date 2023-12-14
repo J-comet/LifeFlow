@@ -82,6 +82,7 @@
 		C0A002C12B29A3480043D869 /* PostDeleteResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A002C02B29A3480043D869 /* PostDeleteResponse.swift */; };
 		C0A002C32B29A39A0043D869 /* PostDeleteEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A002C22B29A39A0043D869 /* PostDeleteEntity.swift */; };
 		C0A002C52B29DF400043D869 /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A002C42B29DF400043D869 /* Notification+Extension.swift */; };
+		C0A002C72B2B24950043D869 /* PostEditRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A002C62B2B24950043D869 /* PostEditRequest.swift */; };
 		C0B07F222B10DB5D00350ECC /* ValidateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B07F212B10DB5D00350ECC /* ValidateManager.swift */; };
 		C0B07F242B10DC0900350ECC /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B07F232B10DC0900350ECC /* UIViewController+Extension.swift */; };
 		C0B07F272B10DD3000350ECC /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C0B07F262B10DD3000350ECC /* IQKeyboardManagerSwift */; };
@@ -195,6 +196,7 @@
 		C0A002C02B29A3480043D869 /* PostDeleteResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDeleteResponse.swift; sourceTree = "<group>"; };
 		C0A002C22B29A39A0043D869 /* PostDeleteEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDeleteEntity.swift; sourceTree = "<group>"; };
 		C0A002C42B29DF400043D869 /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extension.swift"; sourceTree = "<group>"; };
+		C0A002C62B2B24950043D869 /* PostEditRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEditRequest.swift; sourceTree = "<group>"; };
 		C0B07F212B10DB5D00350ECC /* ValidateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateManager.swift; sourceTree = "<group>"; };
 		C0B07F232B10DC0900350ECC /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		C0B07F282B1108B200350ECC /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 				C006C69A2B19D6BF004D14AF /* PostCreateRequest.swift */,
 				C0A002BE2B29A0140043D869 /* PostDeleteRequest.swift */,
 				C0F5AAF22B1C2E7F00B3D102 /* PostGetRequest.swift */,
+				C0A002C62B2B24950043D869 /* PostEditRequest.swift */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -816,6 +819,7 @@
 				C02028A42B15D33A008FB1EA /* ProfileView.swift in Sources */,
 				C006C6982B19D674004D14AF /* PostEntity.swift in Sources */,
 				C020289B2B15C9EA008FB1EA /* HomeVC.swift in Sources */,
+				C0A002C72B2B24950043D869 /* PostEditRequest.swift in Sources */,
 				C0685C082B112B7B0098BB49 /* UserDefaultData.swift in Sources */,
 				C0DAE9212B038E5D0067279A /* CommonMessageResponse.swift in Sources */,
 				C0D9C6AA2B21F9B5007FEA20 /* PassThroughView.swift in Sources */,

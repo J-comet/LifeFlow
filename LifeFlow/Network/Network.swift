@@ -61,12 +61,13 @@ final class Network {
     func upload<T: Decodable>(
         api: Router,
         type: T.Type,
-        params: Parameters,
+        params: Parameters?,
         images: [Data]
     ) -> Single<Result<T, NetworkError>> {
         return Single.create { single -> Disposable in
             AF.upload(multipartFormData: { multipartFormData in
-                for (key, value) in params {
+                
+                params?.forEach { (key, value) in
                     if let temp = value as? String {
                         multipartFormData.append(temp.data(using: .utf8)!, withName: key)
                     }
@@ -74,7 +75,7 @@ final class Network {
                         multipartFormData.append("\(temp)".data(using: .utf8)!, withName: key)
                     }
                     if let temp = value as? NSArray {
-                        temp.forEach({ element in
+                        temp.forEach { element in
                             let keyObj = key + "[]"
                             if let string = element as? String {
                                 multipartFormData.append(string.data(using: .utf8)!, withName: keyObj)
@@ -83,11 +84,11 @@ final class Network {
                                 let value = "\(num)"
                                 multipartFormData.append(value.data(using: .utf8)!, withName: keyObj)
                             }
-                        })
+                        }
                     }
                 }
                 
-                for (index, data) in images.enumerated() {
+                images.enumerated().forEach { (index, data) in
                     multipartFormData.append(
                         data,
                         withName: "file",
@@ -95,6 +96,7 @@ final class Network {
                         mimeType: "image/jpeg"
                     )
                 }
+                
             }, with: api, interceptor: BaseInterceptor())
             .validate()
             .responseDecodable(of: T.self) { response in

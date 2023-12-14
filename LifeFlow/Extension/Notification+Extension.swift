@@ -7,7 +7,11 @@
 
 import Foundation
 
-extension NSNotification.Name {
-    static let reloadPost = NSNotification.Name("reloadPost")
-    
+extension Notification.Name {
+    static let reloadPost = Notification.Name("reloadPost")
+    static let reloadPostDetail = Notification.Name("reloadPostDetail")
+}
+
+enum NotificationKey {
+    case reloadDetailPost
 }

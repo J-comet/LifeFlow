@@ -13,6 +13,7 @@ enum PostAPI {
     case create
     case getPosts(request: PostGetRequest)
     case delete(request: PostDeleteRequest)
+    case edit(id: String)
 }
 
 extension PostAPI: Router, URLRequestConvertible {
@@ -29,6 +30,8 @@ extension PostAPI: Router, URLRequestConvertible {
             "post"
         case .delete(let request):
             "post/\(request.id)"
+        case .edit(let id):
+            "post/\(id)"
         }
     }
     
@@ -40,12 +43,14 @@ extension PostAPI: Router, URLRequestConvertible {
                 .get
         case .delete:
                 .delete
+        case .edit:
+                .put
         }
     }
     
     var headers: [String:String] {
         switch self {
-        case .create:
+        case .create, .edit:
             [
                 "Authorization": UserDefaults.token,
                 "SesacKey": APIManagement.key,
@@ -62,7 +67,7 @@ extension PostAPI: Router, URLRequestConvertible {
     
     var parameters: [String: String]? {
         switch self {
-        case .create, .delete:
+        case .create, .delete, .edit:
             nil
         case .getPosts(let request):
             request.toEncodable
@@ -78,6 +83,8 @@ extension PostAPI: Router, URLRequestConvertible {
         case .getPosts:
             URLEncoding.default
         case .delete:
+            URLEncoding.default
+        case .edit:
             URLEncoding.default
         }
     }
