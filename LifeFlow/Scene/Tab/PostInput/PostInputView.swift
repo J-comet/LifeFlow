@@ -51,7 +51,20 @@ final class PostInputView: BaseView {
     
     let contentTextview = BasicTextView(placeHolder: "내용을 입력해주세요")
     
-    let completeButton = BasicButton(title: "작성 완료", bgColor: .main)
+    var completeButton = BasicButton(title: "작성 완료", bgColor: .main)
+    
+    func postInputDataSetting(postEntity: PostEntity?) {
+        guard let postEntity else {
+            topLabel.text = "게시글 작성"
+            completeButton.setTitle(title: "작성 완료")
+            return
+        }
+        titleTextField.text = postEntity.title
+        contentTextview.text = postEntity.content
+        contentTextview.textColor = .text
+        completeButton.setTitle(title: "수정 완료")
+        topLabel.text = "게시글 수정"
+    }
     
     override func configureHierarchy() {
         addSubview(closeButton)

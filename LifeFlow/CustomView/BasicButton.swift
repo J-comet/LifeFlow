@@ -23,4 +23,9 @@ class BasicButton: UIButton {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func setTitle(title: String) {
+        setTitle(title, for: .normal)
+        titleLabel?.font = UIFont(name: SpoqaHanSansNeoFonts.bold.rawValue, size: 16)!
+    }
 }

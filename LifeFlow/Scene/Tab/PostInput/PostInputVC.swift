@@ -14,6 +14,7 @@ import RxCocoa
 import RxGesture
 
 import Alamofire
+import Kingfisher
 
 final class PostInputVC: BaseViewController<PostInputView, PostInputViewModel> {
     
@@ -69,6 +70,29 @@ extension PostInputVC: PHPickerViewControllerDelegate {
 extension PostInputVC {
     
     func bindViewModel() {
+        viewModel.editData
+            .bind(with: self) { owner, postEntity in
+                owner.mainView.postInputDataSetting(postEntity: postEntity)
+                if let arrImageUrl = postEntity?.image {
+                    arrImageUrl.forEach { imageUrl in
+                        if let resource = URL(string: APIManagement.baseURL + imageUrl) {
+                            KingfisherManager.shared.retrieveImage(with: resource, options: nil, progressBlock: nil) { result in
+                                   switch result {
+                                   case .success(let value):
+                                       print("value.image")
+                                       owner.viewModel.selectedImages.append(PhpickerImage(image: value.image))
+                                       owner.viewModel.previewImages.accept(owner.viewModel.selectedImages)
+                                   case .failure(let error):
+                                       print("Error: \(error)")
+                                   }
+                               }
+                        }
+                    }
+                    
+                }
+            }
+            .disposed(by: viewModel.disposeBag)
+        
         viewModel.previewImages
             .asDriver(onErrorJustReturn: [])
             .drive(mainView.imgCollectionView.rx.items(cellIdentifier: PostInputImageCell.identifier, cellType: PostInputImageCell.self)) { (row, element, cell) in
@@ -94,7 +118,7 @@ extension PostInputVC {
         Observable.zip(mainView.imgCollectionView.rx.itemSelected, mainView.imgCollectionView.rx.modelSelected(PhpickerImage.self))
             .subscribe(with: self) { owner, selectedItem in
                 
-                owner.phpickerConfig.selectionLimit = owner.max - (owner.viewModel.selectedImages.count - 1)
+                owner.phpickerConfig.selectionLimit = owner.max - (owner.viewModel.previewImages.value.count - 1)
                 let picker = PHPickerViewController(configuration: owner.phpickerConfig)
                 picker.delegate = self
                 
@@ -151,7 +175,6 @@ extension PostInputVC {
         
         viewModel.createSuccess
             .bind(with: self) { owner, value in
-                print("성공성공")
                 guard let pvc = owner.presentingViewController else { return }
                 owner.dismiss(animated: true) {
                     let vc = PostDetailVC(

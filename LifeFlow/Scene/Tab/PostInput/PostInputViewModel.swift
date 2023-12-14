@@ -12,9 +12,14 @@ import RxCocoa
 
 final class PostInputViewModel: BaseViewModel {
     
+    var editData = BehaviorRelay<PostEntity?>(value: nil)
     private var postRepository: PostRespository
     
-    init(postRepository: PostRespository) {
+    init(
+        editData: PostEntity?,
+        postRepository: PostRespository
+    ) {
+        self.editData.accept(editData)
         self.postRepository = postRepository
     }
     

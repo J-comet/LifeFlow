@@ -70,7 +70,6 @@ extension PostDetailVC {
         viewModel.deletedPostID
             .bind(with: self) { owner, id in
                 owner.showAlert(title: "", msg: "삭제되었어요", ok: "확인") { _ in
-                    print(id)
                     NotificationCenter.default.post(
                         name: .reloadPost,
                         object: nil,
@@ -100,7 +99,15 @@ extension PostDetailVC {
     
     func configureVC() {
         mainView.editHandler = { [weak self] in
-            print("1234")
+            guard let self else { return }
+            let vc = PostInputVC(
+                viewModel: PostInputViewModel(
+                    editData: self.viewModel.postDetail.value,
+                    postRepository: PostRespository()
+                )
+            )
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true)
         }
         
         mainView.removeHandler = { [weak self] in
