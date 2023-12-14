@@ -38,12 +38,32 @@ final class HomeVC: BaseViewController<HomeView, HomeViewModel> {
             name: .reloadPost,
             object: nil
         )
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(editPostObserver),
+            name: .editPost,
+            object: nil
+        )
     }
     
     @objc
     func reloadPostObserver() {
         viewModel.resetData()
         viewModel.getPosts()
+    }
+    
+    @objc
+    func editPostObserver(notification: Notification) {
+        guard let key = notification.userInfo?[NotificationKey.reloadDetailPost] as? PostEntity else { return }
+        let editPosts = viewModel.posts.value.map {
+            if $0.id == key.id {
+                return key
+            } else {
+                return $0
+            }
+        }
+        viewModel.posts.accept(editPosts)
     }
 }
 

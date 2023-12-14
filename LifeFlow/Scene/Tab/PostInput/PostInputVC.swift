@@ -185,6 +185,14 @@ extension PostInputVC {
             .bind(with: self) { owner, value in
                 guard let pvc = owner.presentingViewController else { return }
                 owner.dismiss(animated: true) {
+                    
+                    // HomeVC 으로 돌아갔을 때 업데이트 시키기
+                    NotificationCenter.default.post(
+                        name: .reloadPost,
+                        object: nil,
+                        userInfo: nil
+                    )
+                    
                     let vc = PostDetailVC(
                         viewModel: PostDetailViewModel(
                             postDetail: .init(value: value),
@@ -199,12 +207,21 @@ extension PostInputVC {
         
         viewModel.editSuccess
             .bind(with: self) { owner, value in
-                // 이전 화면으로 데이터 전달
+                
+                // Post 상세화면으로 데이터 전달
                 NotificationCenter.default.post(
                     name: .reloadPostDetail,
                     object: nil,
                     userInfo: [NotificationKey.reloadDetailPost: value]
                 )
+                
+                // HomeVC 로 왔을 때 수정 데이터 전달
+                NotificationCenter.default.post(
+                    name: .reloadPost,
+                    object: nil,
+                    userInfo: [NotificationKey.reloadDetailPost: value]
+                )
+                
                 owner.dismiss(animated: false)
             }
             .disposed(by: viewModel.disposeBag)

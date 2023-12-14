@@ -59,12 +59,9 @@ final class PostDetailVC: BaseViewController<PostDetailView, PostDetailViewModel
     
     @objc
     func reloadPostDetailObserver(notification: Notification) {
-        // 데이터 전달 받은거로 교체하기
         print("전달받은 데이터로 교체하기")
         guard let key = notification.userInfo?[NotificationKey.reloadDetailPost] as? PostEntity else { return }
-        print("key = \(key)")
         viewModel.postDetail.accept(key)
-        
     }
 }
 
