@@ -33,9 +33,25 @@ final class PostHeaderView: UICollectionReusableView, BaseCellProtocol {
     
     private let horizontalImages = PublishRelay<[String]>()
     
-//    private let imageContainerView = UIView().then {
-//        $0.backgroundColor = .blue
-//    }
+    let heartView = UIImageView().then {
+        $0.image = UIImage(systemName: "heart")?
+            .withTintColor(.text, renderingMode: .alwaysOriginal)
+            .withConfiguration(UIImage.SymbolConfiguration(weight: .light))
+    }
+    
+    let heartCntLabel = BasicLabel().then {
+        $0.font(weight: .regular, size: 14)
+        $0.textColor = .text
+    }
+    
+    let pageControl = UIPageControl(frame: .zero).then {
+        $0.pageIndicatorTintColor = .systemGray4
+        $0.currentPageIndicatorTintColor = .darkGray
+        $0.hidesForSinglePage = true
+        $0.isUserInteractionEnabled = false
+        $0.backgroundStyle = .minimal
+        $0.isHidden = true
+    }
     
     private let userContainerView = UIView()
     
@@ -73,6 +89,8 @@ final class PostHeaderView: UICollectionReusableView, BaseCellProtocol {
         $0.text = "0개"
     }
     
+    let currentPage = BehaviorRelay(value: 0)
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureHierarchy()
@@ -86,14 +104,19 @@ final class PostHeaderView: UICollectionReusableView, BaseCellProtocol {
     override func prepareForReuse() {
         super.prepareForReuse()
         disposeBag = DisposeBag()
-        bindHorizontalImages()
+//        bindHorizontalImages()
     }
     
     
     func configureHierarchy() {
         addSubview(containerView)
         addSubview(horizontalImgCollectionView)
+        
+        containerView.addSubview(heartView)
+        containerView.addSubview(heartCntLabel)
+        containerView.addSubview(pageControl)
         containerView.addSubview(userContainerView)
+        
         userContainerView.addSubview(profileImageView)
         userContainerView.addSubview(nicknameLabel)
         
@@ -103,6 +126,7 @@ final class PostHeaderView: UICollectionReusableView, BaseCellProtocol {
         containerView.addSubview(commentCntLabel)
         
         bindHorizontalImages()
+        bindPagingControl()
     }
     
     private func bindHorizontalImages() {
@@ -111,6 +135,22 @@ final class PostHeaderView: UICollectionReusableView, BaseCellProtocol {
             .drive(horizontalImgCollectionView.rx.items(cellIdentifier: HomeImageCell.identifier, cellType: HomeImageCell.self)) { (row, element, cell) in
                 cell.configCell(row: element)
             }
+            .disposed(by: disposeBag)
+    }
+    
+    func bindPagingControl() {
+        horizontalImgCollectionView
+            .rx
+            .didEndDecelerating
+            .bind(with: self) { owner, _ in
+                let pageWidth = UIScreen.main.bounds.width
+                let page = floor((owner.horizontalImgCollectionView.contentOffset.x - pageWidth / 2) / pageWidth) + 1
+                owner.currentPage.accept(Int(page))
+            }
+            .disposed(by: disposeBag)
+        
+        currentPage
+            .bind(to: pageControl.rx.currentPage)
             .disposed(by: disposeBag)
     }
     
@@ -128,10 +168,26 @@ final class PostHeaderView: UICollectionReusableView, BaseCellProtocol {
             make.bottom.equalToSuperview()  // snapKit error 발생
         }
         
+        pageControl.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(8)
+            make.centerX.equalToSuperview()
+        }
+        
+        heartView.snp.makeConstraints { make in
+            make.size.equalTo(28)
+            make.leading.equalToSuperview().inset(16)
+            make.centerY.equalTo(pageControl)
+        }
+        
+        heartCntLabel.snp.makeConstraints { make in
+            make.top.equalTo(heartView.snp.bottom).offset(8)
+            make.horizontalEdges.equalToSuperview().inset(16)
+        }
+        
         userContainerView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
+            make.top.equalTo(heartCntLabel.snp.bottom).offset(6)
             make.horizontalEdges.equalToSuperview()
-            make.height.equalTo(64)
+            make.height.equalTo(60)
         }
         
         profileImageView.snp.makeConstraints { make in
@@ -169,12 +225,15 @@ final class PostHeaderView: UICollectionReusableView, BaseCellProtocol {
     }
     
     func configCell(row item: PostEntity) {
+        pageControl.numberOfPages = item.image.count
+        pageControl.currentPage = item.currentImagePage
         horizontalImages.accept(item.image)
         profileImageView.loadImage(from: item.creator.profile, placeHolderImage: UIImage().defaultUser)
         nicknameLabel.text = item.creator.nick
         titleLabel.text = item.title
         contentLabel.text = item.content
         commentCntLabel.text = "\(item.comments.count)개"
+        heartCntLabel.text = "좋아요 \(item.likes.count)개"
     }
 }
 
