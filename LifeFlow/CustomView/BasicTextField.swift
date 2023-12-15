@@ -23,6 +23,7 @@ final class BasicTextField: UITextField {
                 NSAttributedString.Key.font : UIFont(name: SpoqaHanSansNeoFonts.regular.rawValue, size: 16)!
             ]
         )
+        backgroundColor = .white
     }
     
     @available(*, unavailable)

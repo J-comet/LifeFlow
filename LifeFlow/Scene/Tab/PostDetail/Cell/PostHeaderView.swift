@@ -194,7 +194,7 @@ final class PostHeaderView: UICollectionReusableView, BaseCellProtocol {
             make.size.equalTo(userContainerView.snp.height).multipliedBy(0.7)
             make.centerY.equalToSuperview()
             make.leading.equalToSuperview().inset(16)
-        }
+        } 
         
         nicknameLabel.snp.makeConstraints { make in
             make.leading.equalTo(profileImageView.snp.trailing).offset(16)

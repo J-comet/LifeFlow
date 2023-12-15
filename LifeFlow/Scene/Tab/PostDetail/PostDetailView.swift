@@ -37,7 +37,6 @@ final class PostDetailView: BaseView {
     
     var editHandler: (() -> Void)?
     
-    
     lazy var moreButton = UIButton().then {
         var config = UIButton.Configuration.filled()
         config.image = UIImage(systemName: "ellipsis")
@@ -60,11 +59,27 @@ final class PostDetailView: BaseView {
         $0.register(PostCommentCell.self, forCellWithReuseIdentifier: PostCommentCell.identifier)
     }
     
+    let commentInputView = UIView()
+    
+    let commentTextField = BasicTextField(placeholderText: "댓글을 입력해주세요")
+    
+    let commentButton = UIButton().then {
+        var config = UIButton.Configuration.filled()
+        config.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
+        config.image = UIImage(systemName: "paperplane.fill")
+        config.baseBackgroundColor = .main
+        config.baseForegroundColor = .white
+        $0.configuration = config
+    }
+    
     override func configureHierarchy() {
         addSubview(topView)
         topView.addSubview(backButton)
         topView.addSubview(moreButton)
         addSubview(collectionView)
+        addSubview(commentInputView)
+        commentInputView.addSubview(commentTextField)
+        commentInputView.addSubview(commentButton)
     }
     
     override func configureLayout() {
@@ -86,8 +101,28 @@ final class PostDetailView: BaseView {
         
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(topView.snp.bottom)
+            make.bottom.equalTo(commentInputView)
+            make.horizontalEdges.equalToSuperview()
+        }
+        
+        commentInputView.snp.makeConstraints { make in
+            make.height.equalTo(60)
             make.bottom.equalTo(safeAreaLayoutGuide)
             make.horizontalEdges.equalToSuperview()
+        }
+        
+        commentTextField.snp.makeConstraints { make in
+            make.width.equalToSuperview().multipliedBy(0.8)
+            make.leading.equalToSuperview().inset(8)
+            make.height.equalTo(40)
+            make.centerY.equalToSuperview()
+        }
+        
+        commentButton.snp.makeConstraints { make in
+            make.leading.equalTo(commentTextField.snp.trailing).offset(8)
+            make.trailing.equalToSuperview().inset(8)
+            make.height.equalTo(40)
+            make.centerY.equalToSuperview()
         }
     }
 }
