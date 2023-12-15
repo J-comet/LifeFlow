@@ -2,7 +2,7 @@
 //  CommentResponse.swift
 //  LifeFlow
 //
-//  Created by 장혜성 on 12/13/23.
+//  Created by 장혜성 on 12/15/23.
 //
 
 import Foundation
@@ -23,9 +23,9 @@ struct CommentResponse: Decodable, CreatEntityProtocol {
     func toEntity() -> CommentEntity {
         CommentEntity(
             id: id ?? "",
-            content: content ?? "",
-            creator: creator?.toEntity() ?? CreatorEntity(id: "", nick: "", profile: ""),
-            time: time ?? ""
+            time: time ?? "",
+            content: content ?? "", 
+            creator: creator?.toEntity() ?? CreatorEntity(id: "", nick: "", profile: "")
         )
     }
 }

@@ -76,8 +76,11 @@
 		C07FA7D92B01FBB6000B93F3 /* Encodable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07FA7D82B01FBB6000B93F3 /* Encodable+Extension.swift */; };
 		C082C9FD2B17979C004C53B3 /* PostInputImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C082C9FC2B17979C004C53B3 /* PostInputImageCell.swift */; };
 		C082CA262B18AF3B004C53B3 /* BasicTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C082CA252B18AF3B004C53B3 /* BasicTextView.swift */; };
-		C0A002BB2B297C0E0043D869 /* CommentEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A002BA2B297C0E0043D869 /* CommentEntity.swift */; };
-		C0A002BD2B297CC40043D869 /* CommentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A002BC2B297CC40043D869 /* CommentResponse.swift */; };
+		C09428312B2C44B700457769 /* CommentAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09428302B2C44B700457769 /* CommentAPI.swift */; };
+		C09428332B2C454900457769 /* CommentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09428322B2C454900457769 /* CommentRepository.swift */; };
+		C09428362B2C498300457769 /* CommentCreateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09428352B2C498300457769 /* CommentCreateRequest.swift */; };
+		C094283A2B2C4BD900457769 /* CommentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09428392B2C4BD900457769 /* CommentResponse.swift */; };
+		C094283C2B2C4BE500457769 /* CommentEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C094283B2B2C4BE500457769 /* CommentEntity.swift */; };
 		C0A002BF2B29A0140043D869 /* PostDeleteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A002BE2B29A0140043D869 /* PostDeleteRequest.swift */; };
 		C0A002C12B29A3480043D869 /* PostDeleteResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A002C02B29A3480043D869 /* PostDeleteResponse.swift */; };
 		C0A002C32B29A39A0043D869 /* PostDeleteEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A002C22B29A39A0043D869 /* PostDeleteEntity.swift */; };
@@ -190,8 +193,11 @@
 		C07FA7D82B01FBB6000B93F3 /* Encodable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extension.swift"; sourceTree = "<group>"; };
 		C082C9FC2B17979C004C53B3 /* PostInputImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostInputImageCell.swift; sourceTree = "<group>"; };
 		C082CA252B18AF3B004C53B3 /* BasicTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicTextView.swift; sourceTree = "<group>"; };
-		C0A002BA2B297C0E0043D869 /* CommentEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentEntity.swift; sourceTree = "<group>"; };
-		C0A002BC2B297CC40043D869 /* CommentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentResponse.swift; sourceTree = "<group>"; };
+		C09428302B2C44B700457769 /* CommentAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentAPI.swift; sourceTree = "<group>"; };
+		C09428322B2C454900457769 /* CommentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRepository.swift; sourceTree = "<group>"; };
+		C09428352B2C498300457769 /* CommentCreateRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCreateRequest.swift; sourceTree = "<group>"; };
+		C09428392B2C4BD900457769 /* CommentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentResponse.swift; sourceTree = "<group>"; };
+		C094283B2B2C4BE500457769 /* CommentEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentEntity.swift; sourceTree = "<group>"; };
 		C0A002BE2B29A0140043D869 /* PostDeleteRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDeleteRequest.swift; sourceTree = "<group>"; };
 		C0A002C02B29A3480043D869 /* PostDeleteResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDeleteResponse.swift; sourceTree = "<group>"; };
 		C0A002C22B29A39A0043D869 /* PostDeleteEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDeleteEntity.swift; sourceTree = "<group>"; };
@@ -262,7 +268,6 @@
 			children = (
 				C0F5AAEA2B1B169C00B3D102 /* PostResponse.swift */,
 				C0F5AAF42B1C482E00B3D102 /* PostListResponse.swift */,
-				C0A002BC2B297CC40043D869 /* CommentResponse.swift */,
 				C0A002C02B29A3480043D869 /* PostDeleteResponse.swift */,
 			);
 			path = Post;
@@ -290,7 +295,6 @@
 			children = (
 				C006C6972B19D674004D14AF /* PostEntity.swift */,
 				C0F5AAF62B1C48F900B3D102 /* PostListEntity.swift */,
-				C0A002BA2B297C0E0043D869 /* CommentEntity.swift */,
 				C0A002C22B29A39A0043D869 /* PostDeleteEntity.swift */,
 			);
 			path = Post;
@@ -311,8 +315,9 @@
 			isa = PBXGroup;
 			children = (
 				C01A42B12B02893100317956 /* AuthAPI.swift */,
-				C0DAE9332B0503F40067279A /* TokenAPI.swift */,
+				C09428302B2C44B700457769 /* CommentAPI.swift */,
 				C006C69C2B19D94E004D14AF /* PostAPI.swift */,
+				C0DAE9332B0503F40067279A /* TokenAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -321,8 +326,9 @@
 			isa = PBXGroup;
 			children = (
 				C01A42B52B028E2200317956 /* AuthRepository.swift */,
-				C0DAE9372B0512E70067279A /* TokenRepository.swift */,
+				C09428322B2C454900457769 /* CommentRepository.swift */,
 				C0F5AAE82B1B08D300B3D102 /* PostRespository.swift */,
+				C0DAE9372B0512E70067279A /* TokenRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -579,11 +585,36 @@
 		C07FA7D02B01E9A3000B93F3 /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				C09428342B2C497200457769 /* Comment */,
 				C0DAE9492B059ACD0067279A /* Auth */,
 				C006C6992B19D6A0004D14AF /* Post */,
 				C0DAE9482B059AC60067279A /* Token */,
 			);
 			path = Request;
+			sourceTree = "<group>";
+		};
+		C09428342B2C497200457769 /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				C09428352B2C498300457769 /* CommentCreateRequest.swift */,
+			);
+			path = Comment;
+			sourceTree = "<group>";
+		};
+		C09428372B2C4BBF00457769 /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				C094283B2B2C4BE500457769 /* CommentEntity.swift */,
+			);
+			path = Comment;
+			sourceTree = "<group>";
+		};
+		C09428382B2C4BC500457769 /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				C09428392B2C4BD900457769 /* CommentResponse.swift */,
+			);
+			path = Comment;
 			sourceTree = "<group>";
 		};
 		C0B07F2C2B110D8E00350ECC /* Auth */ = {
@@ -635,6 +666,7 @@
 		C0DAE93D2B0531220067279A /* DTO */ = {
 			isa = PBXGroup;
 			children = (
+				C09428382B2C4BC500457769 /* Comment */,
 				C0F5AAEF2B1B16EE00B3D102 /* Common */,
 				C0B07F2C2B110D8E00350ECC /* Auth */,
 				C006C6932B19D63E004D14AF /* Post */,
@@ -646,6 +678,7 @@
 		C0DAE93E2B0531280067279A /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				C09428372B2C4BBF00457769 /* Comment */,
 				C0F5AAEC2B1B16CC00B3D102 /* Common */,
 				C006C6942B19D64A004D14AF /* Auth */,
 				C006C6962B19D657004D14AF /* Post */,
@@ -800,7 +833,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C02028D42B178475008FB1EA /* PostInputViewModel.swift in Sources */,
+				C09428362B2C498300457769 /* CommentCreateRequest.swift in Sources */,
 				C0B07F292B1108B200350ECC /* LoadingIndicator.swift in Sources */,
+				C09428332B2C454900457769 /* CommentRepository.swift in Sources */,
 				C0729D6B2B10892D00CEA6F0 /* SignupView.swift in Sources */,
 				C02028D02B17843C008FB1EA /* PostInputVC.swift in Sources */,
 				C0C60B4A2B22DE4600095535 /* PostDetailSectionModel.swift in Sources */,
@@ -830,7 +865,7 @@
 				C0DAE94B2B059B4A0067279A /* JoinResponse.swift in Sources */,
 				C0DAE9342B0503F40067279A /* TokenAPI.swift in Sources */,
 				C02C06C32B07469B00E9AB93 /* BaseCellProtocol.swift in Sources */,
-				C0A002BD2B297CC40043D869 /* CommentResponse.swift in Sources */,
+				C09428312B2C44B700457769 /* CommentAPI.swift in Sources */,
 				C0F5AAF72B1C48F900B3D102 /* PostListEntity.swift in Sources */,
 				C02C06D22B074CCB00E9AB93 /* ViewModelType.swift in Sources */,
 				C02C06C42B07469B00E9AB93 /* BaseView.swift in Sources */,
@@ -839,11 +874,11 @@
 				C011211C2B20BB5C00C778E6 /* UILabel+Extension.swift in Sources */,
 				C0D9C6B12B220247007FEA20 /* PostDetailViewModel.swift in Sources */,
 				C0A002C52B29DF400043D869 /* Notification+Extension.swift in Sources */,
-				C0A002BB2B297C0E0043D869 /* CommentEntity.swift in Sources */,
 				C05352962B220D060077EF3C /* TitleSupplementaryView.swift in Sources */,
 				C07FA7D92B01FBB6000B93F3 /* Encodable+Extension.swift in Sources */,
 				C02C06D62B074F2C00E9AB93 /* BasicButton.swift in Sources */,
 				C07FA79E2B01E43C000B93F3 /* AppDelegate.swift in Sources */,
+				C094283C2B2C4BE500457769 /* CommentEntity.swift in Sources */,
 				C0A002C32B29A39A0043D869 /* PostDeleteEntity.swift in Sources */,
 				C082C9FD2B17979C004C53B3 /* PostInputImageCell.swift in Sources */,
 				C053529B2B221A180077EF3C /* PostCommentCell.swift in Sources */,
@@ -894,6 +929,7 @@
 				C02028A82B15DB71008FB1EA /* NavTitleLabel.swift in Sources */,
 				C0C60B4C2B22DF3600095535 /* PostDetailController.swift in Sources */,
 				C02028992B15C9CF008FB1EA /* HomeView.swift in Sources */,
+				C094283A2B2C4BD900457769 /* CommentResponse.swift in Sources */,
 				C0729D712B10960E00CEA6F0 /* UnderLineTextField.swift in Sources */,
 				C01A42B22B02893100317956 /* AuthAPI.swift in Sources */,
 			);

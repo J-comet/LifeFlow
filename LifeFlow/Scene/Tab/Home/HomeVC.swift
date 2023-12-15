@@ -90,7 +90,9 @@ extension HomeVC {
                     let vc = PostDetailVC(
                         viewModel: PostDetailViewModel(
                             postDetail: BehaviorRelay(value: element),
-                            postRepository: PostRespository())
+                            postRepository: PostRespository(),
+                            commentRepository: CommentRepository()
+                        )
                     )
                     vc.modalPresentationStyle = .fullScreen
                     self.present(vc, animated: false)
@@ -147,7 +149,8 @@ extension HomeVC {
                 let vc = PostDetailVC(
                     viewModel: PostDetailViewModel(
                         postDetail: BehaviorRelay(value: selectedItem.1),
-                        postRepository: PostRespository()
+                        postRepository: PostRespository(),
+                        commentRepository: CommentRepository()
                     )
                 )
                 vc.modalPresentationStyle = .fullScreen

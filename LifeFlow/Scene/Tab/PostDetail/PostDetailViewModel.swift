@@ -13,20 +13,25 @@ import RxCocoa
 final class PostDetailViewModel: BaseViewModel {
     let postDetail: BehaviorRelay<PostEntity>
     let postRepository: PostRespository
+    let commentRepository: CommentRepository
     
     let collectionViewDataSource: BehaviorRelay<[PostDetailSectionModel]> = BehaviorRelay(value: [])
     
     let deletedPostID = PublishRelay<String>()
     
+    let commentText = BehaviorRelay(value: "")
+    
     init(
         postDetail: BehaviorRelay<PostEntity>,
-        postRepository: PostRespository
+        postRepository: PostRespository,
+        commentRepository: CommentRepository
     ) {
         self.postDetail = postDetail
         self.postRepository = postRepository
+        self.commentRepository = commentRepository
     }
     
-    func delete(){
+    func delete() {
         isLoading.accept(true)
         postRepository.deletePost(id: postDetail.value.id)
             .subscribe(with: self) { owner, result in
@@ -41,5 +46,26 @@ final class PostDetailViewModel: BaseViewModel {
             }
             .disposed(by: disposeBag)
     }
-    
+   
+    func createComment() {
+        
+        if commentText.value.isEmpty {
+            errorMessage.accept("댓글을 입력해주세요")
+            return
+        }
+        
+        isLoading.accept(true)
+        commentRepository.create(id: postDetail.value.id, content: commentText.value)
+            .subscribe(with: self) { owner, result in
+                switch result {
+                case .success(let entity):
+                    print(entity)                    
+                case .failure(let error):
+                    print(error.message)
+                    owner.errorMessage.accept(error.message)
+                }
+                owner.isLoading.accept(false)
+            }
+            .disposed(by: disposeBag)
+    }
 }

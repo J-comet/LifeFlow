@@ -196,7 +196,8 @@ extension PostInputVC {
                     let vc = PostDetailVC(
                         viewModel: PostDetailViewModel(
                             postDetail: .init(value: value),
-                            postRepository: PostRespository()
+                            postRepository: PostRespository(),
+                            commentRepository: CommentRepository()
                         )
                     )
                     vc.modalPresentationStyle = .fullScreen

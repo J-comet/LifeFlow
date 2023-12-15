@@ -149,7 +149,7 @@ extension PostDetailView {
             
             let section = NSCollectionLayoutSection(group: group)
             
-            section.contentInsets = .init(top: 8, leading: 0, bottom: 0, trailing: 0)
+            section.contentInsets = .init(top: 8, leading: 0, bottom: 60, trailing: 0)
             
             // header 설정
             let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(

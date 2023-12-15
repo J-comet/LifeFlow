@@ -93,6 +93,22 @@ extension PostDetailVC {
             }
             .disposed(by: viewModel.disposeBag)
         
+        mainView.commentTextField
+            .rx
+            .text
+            .orEmpty
+            .bind(to: viewModel.commentText)
+            .disposed(by: viewModel.disposeBag)
+        
+        mainView.commentButton
+            .rx
+            .tap
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
+            .bind(with: self) { owner, _ in
+                owner.viewModel.createComment()
+            }
+            .disposed(by: viewModel.disposeBag)
+        
         viewModel.isLoading
             .bind { isLoading in
                 if isLoading {
