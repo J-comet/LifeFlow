@@ -21,6 +21,7 @@ final class HomeViewModel: BaseViewModel {
     private var next = ""
     private var tmpPosts: [PostEntity] = []
     
+    var isNext = false
     var posts: BehaviorRelay<[PostEntity]> = BehaviorRelay(value: [])
     
     func resetData() {
@@ -34,7 +35,14 @@ final class HomeViewModel: BaseViewModel {
             .subscribe(with: self) { owner, result in
                 switch result {
                 case .success(let data):
-                    print(data)
+                    print(data.nextCursor)
+                    
+                    if data.nextCursor == "0" {
+                        owner.isNext = false
+                    } else {
+                        owner.isNext = true
+                    }
+                    
                     owner.next = data.nextCursor
                     owner.tmpPosts.append(contentsOf: data.data)
                     owner.posts.accept(owner.tmpPosts)

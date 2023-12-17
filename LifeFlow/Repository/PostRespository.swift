@@ -45,7 +45,7 @@ final class PostRespository {
                     request: PostGetRequest(
                         product_id: Constant.ProductID.post,
                         next: next,
-                        limit: "10"
+                        limit: "5"
                     )
                 ),
                 type: PostListResponse.self
