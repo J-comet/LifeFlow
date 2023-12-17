@@ -109,6 +109,24 @@ extension PostDetailVC {
             }
             .disposed(by: viewModel.disposeBag)
         
+        viewModel.createCommentSuccess
+            .bind(with: self) { owner, postEntity in
+                
+                // HomeVC 로 왔을 때 수정 데이터 전달
+                NotificationCenter.default.post(
+                    name: .editPost,
+                    object: nil,
+                    userInfo: [NotificationKey.reloadDetailPost: postEntity]
+                )
+                
+                owner.mainView.commentTextField.text = nil
+                owner.viewModel.postDetail.accept(postEntity)
+                
+                print("------ 이미지 ------")
+                print(postEntity.image)
+            }
+            .disposed(by: viewModel.disposeBag)
+        
         viewModel.isLoading
             .bind { isLoading in
                 if isLoading {
@@ -153,6 +171,9 @@ extension PostDetailVC {
         viewModel.postDetail
             .share()
             .bind(with: self) { owner, postEntity in
+                print("이미지 22")
+                print(postEntity.image)
+                
                 owner.viewModel.collectionViewDataSource.accept(
                     [
                         PostDetailSectionModel(header: postEntity, items: postEntity.comments)

@@ -21,6 +21,8 @@ final class PostDetailViewModel: BaseViewModel {
     
     let commentText = BehaviorRelay(value: "")
     
+    let createCommentSuccess = PublishRelay<PostEntity>()
+    
     init(
         postDetail: BehaviorRelay<PostEntity>,
         postRepository: PostRespository,
@@ -58,8 +60,10 @@ final class PostDetailViewModel: BaseViewModel {
         commentRepository.create(id: postDetail.value.id, content: commentText.value)
             .subscribe(with: self) { owner, result in
                 switch result {
-                case .success(let entity):
-                    print(entity)                    
+                case .success(let comment):
+                    var postDetail = owner.postDetail.value
+                    postDetail.comments.insert(comment, at: 0)
+                    owner.createCommentSuccess.accept(postDetail)
                 case .failure(let error):
                     print(error.message)
                     owner.errorMessage.accept(error.message)

@@ -124,9 +124,6 @@ final class PostHeaderView: UICollectionReusableView, BaseCellProtocol {
         containerView.addSubview(contentLabel)
         containerView.addSubview(commentGuideLabel)
         containerView.addSubview(commentCntLabel)
-        
-        bindHorizontalImages()
-        bindPagingControl()
     }
     
     private func bindHorizontalImages() {
@@ -194,7 +191,7 @@ final class PostHeaderView: UICollectionReusableView, BaseCellProtocol {
             make.size.equalTo(userContainerView.snp.height).multipliedBy(0.7)
             make.centerY.equalToSuperview()
             make.leading.equalToSuperview().inset(16)
-        } 
+        }
         
         nicknameLabel.snp.makeConstraints { make in
             make.leading.equalTo(profileImageView.snp.trailing).offset(16)
@@ -225,9 +222,13 @@ final class PostHeaderView: UICollectionReusableView, BaseCellProtocol {
     }
     
     func configCell(row item: PostEntity) {
+        bindHorizontalImages()
+        bindPagingControl()
+        horizontalImages.accept(item.image)
+        horizontalImgCollectionView.scrollToItem(at: .init(item: item.currentImagePage, section: 0), at: .centeredHorizontally, animated: false)
         pageControl.numberOfPages = item.image.count
         pageControl.currentPage = item.currentImagePage
-        horizontalImages.accept(item.image)
+        
         profileImageView.loadImage(from: item.creator.profile, placeHolderImage: UIImage().defaultUser)
         nicknameLabel.text = item.creator.nick
         titleLabel.text = item.title
