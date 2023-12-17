@@ -91,7 +91,7 @@ extension PostAPI: Router, URLRequestConvertible {
             URLEncoding.default
         case .edit:
             URLEncoding.default
-        case .like
+        case .like:
             URLEncoding.default
         }
     }

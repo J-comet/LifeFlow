@@ -43,7 +43,7 @@ final class TabBarVC: UITabBarController {
         let vc = PostInputVC(
             viewModel: PostInputViewModel(
                 editData: nil,
-                postRepository: PostRespository()
+                postRepository: PostRepository()
             )
         )
         vc.modalPresentationStyle = .fullScreen
@@ -77,7 +77,7 @@ extension TabBarVC {
         var vc: UIViewController {
             switch self {
             case .home:
-                return HomeVC(viewModel: HomeViewModel(postRepository: PostRespository()))
+                return HomeVC(viewModel: HomeViewModel(postRepository: PostRepository()))
             case .emty:
                 return EmptyVC()
             case .profile:

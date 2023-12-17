@@ -94,8 +94,7 @@ extension HomeVC {
                 }
             }
             .disposed(by: viewModel.disposeBag)
-        
-        
+                
         viewModel.posts
             .asDriver(onErrorJustReturn: [])
             .drive(mainView.tableView.rx.items(cellIdentifier: HomeTableCell.identifier, cellType: HomeTableCell.self)) { (row, element, cell) in
@@ -105,7 +104,7 @@ extension HomeVC {
                     let vc = PostDetailVC(
                         viewModel: PostDetailViewModel(
                             postDetail: BehaviorRelay(value: element),
-                            postRepository: PostRespository(),
+                            postRepository: PostRepository(),
                             commentRepository: CommentRepository()
                         )
                     )
@@ -120,7 +119,8 @@ extension HomeVC {
                     .when(.recognized)
                     .asDriver { _ in .never() }
                     .drive(with: self, onNext: { owner, tap in
-                        print(element.title + "좋아요 클릭")
+                        print(element.title + "좋아요 클릭")                        
+                        owner.viewModel.like(id: element.id)
                     })
                     .disposed(by: cell.disposeBag)
                 
@@ -141,8 +141,6 @@ extension HomeVC {
                         
                     }
                     .disposed(by: cell.disposeBag)
-                
-                
                 cell.configCell(row: element)
             }
             .disposed(by: viewModel.disposeBag)
@@ -164,7 +162,7 @@ extension HomeVC {
                 let vc = PostDetailVC(
                     viewModel: PostDetailViewModel(
                         postDetail: BehaviorRelay(value: selectedItem.1),
-                        postRepository: PostRespository(),
+                        postRepository: PostRepository(),
                         commentRepository: CommentRepository()
                     )
                 )

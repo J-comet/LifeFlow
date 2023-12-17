@@ -17,6 +17,14 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
     
     var disposeBag = DisposeBag()
     
+    private let emptyHeart = UIImage(systemName: "heart")?
+        .withTintColor(.text, renderingMode: .alwaysOriginal)
+        .withConfiguration(UIImage.SymbolConfiguration(weight: .light))
+    
+    private let fillHeart = UIImage(systemName: "heart.fill")?
+        .withTintColor(.red, renderingMode: .alwaysOriginal)
+        .withConfiguration(UIImage.SymbolConfiguration(weight: .light))
+    
     private let userThumbnail = UIImageView().then {
         $0.image = UIImage().defaultUser
     }
@@ -96,10 +104,8 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
     
     let currentPage = BehaviorRelay(value: 0)
     
-    let heartView = UIImageView().then {
-        $0.image = UIImage(systemName: "heart")?
-            .withTintColor(.text, renderingMode: .alwaysOriginal)
-            .withConfiguration(UIImage.SymbolConfiguration(weight: .light))
+    lazy var heartView = UIImageView().then {
+        $0.image = emptyHeart
     }
     
     let heartCntLabel = BasicLabel().then {
@@ -149,7 +155,11 @@ final class HomeTableCell: BaseTableViewCell<PostEntity> {
             placeHolderImage: UIImage().defaultUser
         )
         nickNameLabel.text = row.creator.nick
+        
+        let isLike = row.likes.contains(UserDefaults.userId)
+        heartView.image = isLike ? fillHeart : emptyHeart
         heartCntLabel.text = "좋아요 \(row.likes.count)개"
+        
         titleLabel.text = row.title
         contentLabel.text = row.content
         

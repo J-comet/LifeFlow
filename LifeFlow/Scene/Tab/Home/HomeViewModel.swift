@@ -12,9 +12,9 @@ import RxCocoa
 
 final class HomeViewModel: BaseViewModel {
     
-    private var postRepository: PostRespository
+    private var postRepository: PostRepository
     
-    init(postRepository: PostRespository) {
+    init(postRepository: PostRepository) {
         self.postRepository = postRepository
     }
     
@@ -51,6 +51,36 @@ final class HomeViewModel: BaseViewModel {
                     owner.errorMessage.accept(error.message)
                 }
                 owner.isLoading.accept(false)
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    func like(id: String) {
+        postRepository.like(id: id)
+            .subscribe(with: self) { owner, result in
+                switch result {
+                case .success(let like):
+                    print(like.likeStatus)
+                    let updatePosts = owner.posts.value.map {
+                        var updateItem = $0
+                        if updateItem.id == id {
+                            if like.likeStatus {
+                                updateItem.likes.append(UserDefaults.userId)
+                                return updateItem
+                            } else {
+                                updateItem.likes = updateItem.likes.filter { $0 != UserDefaults.userId }
+                                return updateItem
+                            }
+                        } else {
+                            return $0
+                        }
+                    }
+                    
+                    owner.posts.accept(updatePosts)
+                    
+                case .failure(let error):
+                    owner.errorMessage.accept(error.message)
+                }
             }
             .disposed(by: disposeBag)
     }

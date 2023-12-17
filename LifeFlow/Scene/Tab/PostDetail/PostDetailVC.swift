@@ -150,7 +150,7 @@ extension PostDetailVC {
             let vc = PostInputVC(
                 viewModel: PostInputViewModel(
                     editData: self.viewModel.postDetail.value,
-                    postRepository: PostRespository()
+                    postRepository: PostRepository()
                 )
             )
             vc.modalPresentationStyle = .fullScreen
@@ -171,9 +171,6 @@ extension PostDetailVC {
         viewModel.postDetail
             .share()
             .bind(with: self) { owner, postEntity in
-                print("이미지 22")
-                print(postEntity.image)
-                
                 owner.viewModel.collectionViewDataSource.accept(
                     [
                         PostDetailSectionModel(header: postEntity, items: postEntity.comments)

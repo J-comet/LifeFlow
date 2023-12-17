@@ -9,7 +9,7 @@ import Foundation
 
 struct PostEntity {
     var image: [String]
-    let likes: [String]
+    var likes: [String]
     let id: String
     let creator: CreatorEntity
     var title: String

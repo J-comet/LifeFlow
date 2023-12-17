@@ -12,7 +12,7 @@ import RxCocoa
 
 final class PostDetailViewModel: BaseViewModel {
     let postDetail: BehaviorRelay<PostEntity>
-    let postRepository: PostRespository
+    let postRepository: PostRepository
     let commentRepository: CommentRepository
     
     let collectionViewDataSource: BehaviorRelay<[PostDetailSectionModel]> = BehaviorRelay(value: [])
@@ -25,7 +25,7 @@ final class PostDetailViewModel: BaseViewModel {
     
     init(
         postDetail: BehaviorRelay<PostEntity>,
-        postRepository: PostRespository,
+        postRepository: PostRepository,
         commentRepository: CommentRepository
     ) {
         self.postDetail = postDetail

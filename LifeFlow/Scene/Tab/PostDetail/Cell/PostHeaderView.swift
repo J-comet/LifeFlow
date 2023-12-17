@@ -19,6 +19,14 @@ final class PostHeaderView: UICollectionReusableView, BaseCellProtocol {
     
     var disposeBag = DisposeBag()
     
+    private let emptyHeart = UIImage(systemName: "heart")?
+        .withTintColor(.text, renderingMode: .alwaysOriginal)
+        .withConfiguration(UIImage.SymbolConfiguration(weight: .light))
+    
+    private let fillHeart = UIImage(systemName: "heart.fill")?
+        .withTintColor(.red, renderingMode: .alwaysOriginal)
+        .withConfiguration(UIImage.SymbolConfiguration(weight: .light))
+    
     private let horizontalImageViewHeight = UIScreen.main.bounds.width * 1.1
     
     private let containerView = UIView()
@@ -33,10 +41,8 @@ final class PostHeaderView: UICollectionReusableView, BaseCellProtocol {
     
     private let horizontalImages = PublishRelay<[String]>()
     
-    let heartView = UIImageView().then {
-        $0.image = UIImage(systemName: "heart")?
-            .withTintColor(.text, renderingMode: .alwaysOriginal)
-            .withConfiguration(UIImage.SymbolConfiguration(weight: .light))
+    lazy var heartView = UIImageView().then {
+        $0.image = emptyHeart
     }
     
     let heartCntLabel = BasicLabel().then {
@@ -234,6 +240,9 @@ final class PostHeaderView: UICollectionReusableView, BaseCellProtocol {
         titleLabel.text = item.title
         contentLabel.text = item.content
         commentCntLabel.text = "\(item.comments.count)개"
+        
+        let isLike = item.likes.contains(UserDefaults.userId)
+        heartView.image = isLike ? fillHeart : emptyHeart
         heartCntLabel.text = "좋아요 \(item.likes.count)개"
     }
 }
