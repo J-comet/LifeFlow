@@ -81,19 +81,6 @@ extension HomeVC {
         //            }
         //            .disposed(by: viewModel.disposeBag)
         
-//        mainView.tableView
-//            .rx
-//            .prefetchRows
-//            .compactMap(\.last?.row)
-//            .bind(with: self) { owner, row in
-//                print(owner.viewModel.posts.value.count - 1)
-//                print(row)
-//                
-//                guard row == owner.viewModel.posts.value.count - 1 else { return }
-//                print("페이징 실행시키기")
-//            }
-//            .disposed(by: viewModel.disposeBag)
-        
         mainView.tableView
             .rx
             .didScroll
@@ -102,10 +89,8 @@ extension HomeVC {
                 let contentHeight = owner.mainView.tableView.contentSize.height
                 if offSetY > (contentHeight - owner.mainView.tableView.frame.size.height - 100) {
                     if owner.viewModel.isNext && !owner.viewModel.isLoading.value {
-                        print("페이징 실행")
                         owner.viewModel.getPosts()
                     }
-//                    self.viewModel.fetchMoreDatas.onNext(())
                 }
             }
             .disposed(by: viewModel.disposeBag)
