@@ -119,7 +119,6 @@ extension HomeVC {
                     .when(.recognized)
                     .asDriver { _ in .never() }
                     .drive(with: self, onNext: { owner, tap in
-                        print(element.title + "좋아요 클릭")                        
                         owner.viewModel.like(id: element.id)
                     })
                     .disposed(by: cell.disposeBag)

@@ -36,6 +36,16 @@ final class PostDetailVC: BaseViewController<PostDetailView, PostDetailViewModel
                     for: indexPath
                   ) as? PostHeaderView else { return UICollectionReusableView() }
             
+            header.heartView
+                .rx
+                .tapGesture()
+                .when(.recognized)
+                .asDriver { _ in .never() }
+                .drive(with: self) { owner, tap in
+                    owner.viewModel.like(id: dataSource.sectionModels[indexPath.section].header.id)
+                }
+                .disposed(by: header.disposeBag)
+            
             header.configCell(row: dataSource.sectionModels[indexPath.section].header)
             header.layoutIfNeeded()
             
@@ -54,6 +64,17 @@ final class PostDetailVC: BaseViewController<PostDetailView, PostDetailViewModel
             selector: #selector(reloadPostDetailObserver),
             name: .reloadPostDetail,
             object: nil
+        )
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // HomeVC 로 왔을 때 수정 데이터 전달
+        NotificationCenter.default.post(
+            name: .editPost,
+            object: nil,
+            userInfo: [NotificationKey.reloadDetailPost: viewModel.postDetail.value]
         )
     }
     
@@ -113,11 +134,11 @@ extension PostDetailVC {
             .bind(with: self) { owner, postEntity in
                 
                 // HomeVC 로 왔을 때 수정 데이터 전달
-                NotificationCenter.default.post(
-                    name: .editPost,
-                    object: nil,
-                    userInfo: [NotificationKey.reloadDetailPost: postEntity]
-                )
+//                NotificationCenter.default.post(
+//                    name: .editPost,
+//                    object: nil,
+//                    userInfo: [NotificationKey.reloadDetailPost: postEntity]
+//                )
                 
                 owner.mainView.commentTextField.text = nil
                 owner.viewModel.postDetail.accept(postEntity)

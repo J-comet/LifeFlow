@@ -48,7 +48,7 @@ final class PostDetailViewModel: BaseViewModel {
             }
             .disposed(by: disposeBag)
     }
-   
+    
     func createComment() {
         
         if commentText.value.isEmpty {
@@ -69,6 +69,26 @@ final class PostDetailViewModel: BaseViewModel {
                     owner.errorMessage.accept(error.message)
                 }
                 owner.isLoading.accept(false)
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    func like(id: String) {
+        postRepository.like(id: id)
+            .subscribe(with: self) { owner, result in
+                switch result {
+                case .success(let like):
+                    print(like.likeStatus)
+                    var postDetail = owner.postDetail.value
+                    if like.likeStatus {
+                        postDetail.likes.append(UserDefaults.userId)
+                    } else {
+                        postDetail.likes = postDetail.likes.filter { $0 != UserDefaults.userId }
+                    }                    
+                    owner.postDetail.accept(postDetail)
+                case .failure(let error):
+                    owner.errorMessage.accept(error.message)
+                }
             }
             .disposed(by: disposeBag)
     }
