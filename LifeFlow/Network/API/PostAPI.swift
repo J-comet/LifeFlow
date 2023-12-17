@@ -14,6 +14,7 @@ enum PostAPI {
     case getPosts(request: PostGetRequest)
     case delete(request: PostDeleteRequest)
     case edit(id: String)
+    case like(id: String)
 }
 
 extension PostAPI: Router, URLRequestConvertible {
@@ -32,6 +33,8 @@ extension PostAPI: Router, URLRequestConvertible {
             "post/\(request.id)"
         case .edit(let id):
             "post/\(id)"
+        case .like(let id):
+            "post/like/\(id)"
         }
     }
     
@@ -45,6 +48,8 @@ extension PostAPI: Router, URLRequestConvertible {
                 .delete
         case .edit:
                 .put
+        case .like:
+                .post
         }
     }
     
@@ -56,7 +61,7 @@ extension PostAPI: Router, URLRequestConvertible {
                 "SesacKey": APIManagement.key,
                 "Content-Type": "multipart/form-data"
             ]
-        case .getPosts, .delete:
+        case .getPosts, .delete, .like:
             [
                 "Authorization": UserDefaults.token,
                 "SesacKey": APIManagement.key,
@@ -67,7 +72,7 @@ extension PostAPI: Router, URLRequestConvertible {
     
     var parameters: [String: String]? {
         switch self {
-        case .create, .delete, .edit:
+        case .create, .delete, .edit, .like:
             nil
         case .getPosts(let request):
             request.toEncodable
@@ -75,7 +80,7 @@ extension PostAPI: Router, URLRequestConvertible {
     }
     
     // get = URLEncoding.default
-    // post = JSONEncoding.default
+    // post = 전달할 데이터 있을 때 : JSONEncoding.default
     var encoding: ParameterEncoding? {
         switch self {
         case .create:
@@ -85,6 +90,8 @@ extension PostAPI: Router, URLRequestConvertible {
         case .delete:
             URLEncoding.default
         case .edit:
+            URLEncoding.default
+        case .like
             URLEncoding.default
         }
     }
