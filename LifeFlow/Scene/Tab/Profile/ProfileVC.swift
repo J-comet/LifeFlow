@@ -13,11 +13,31 @@ import RxGesture
 
 final class ProfileVC: BaseViewController<ProfileView, ProfileViewModel> {
     
-    private let rightBarButton = UIBarButtonItem(
-        image: UIImage(systemName: "ellipsis")?.defaultIconStyle,
-        style: .plain,
-        target: nil,
-        action: nil
+    private lazy var actions = [
+        UIAction(title: "프로필수정", identifier: UIAction.Identifier("edit_profile"), handler: self.settingHandler),
+        UIAction(title: "로그아웃", identifier: UIAction.Identifier("logout"), handler: self.settingHandler),
+        UIAction(title: "회원탈퇴", identifier: UIAction.Identifier("withdraw"), handler: self.settingHandler)
+     ]
+
+    private lazy var menu = UIMenu(title: "",  children: self.actions)
+    
+    private let settingHandler: (_ action: UIAction) -> Void = { action in
+      switch action.identifier.rawValue {
+      case "edit_profile":
+        print("프로필수정 화면으로 이동")
+      case "logout":
+        print("로그아웃 하기")
+      case "withdraw":
+        print("회원탈퇴 하기")
+      default:
+        break
+      }
+    }
+    
+    private lazy var settingButton = UIBarButtonItem(
+        title: "",
+        image: UIImage(systemName: "gearshape.fill")?.defaultIconStyle,
+        menu: menu
     )
     
     override func viewDidLoad() {
@@ -32,13 +52,6 @@ final class ProfileVC: BaseViewController<ProfileView, ProfileViewModel> {
 extension ProfileVC {
     
     func bindViewModel() {
-        rightBarButton
-            .rx
-            .tap
-            .bind(with: self) { owner, _ in
-                print("설정")
-            }
-            .disposed(by: viewModel.disposeBag)
         
         viewModel.myInfo
             .bind(with: self) { owner, entity in
@@ -58,7 +71,7 @@ extension ProfileVC {
             .disposed(by: viewModel.disposeBag)
         
         Observable.zip(mainView.postCollectionView.rx.itemSelected, mainView.postCollectionView.rx.modelSelected(PostEntity.self))
-            .subscribe(with: self) { owner, selectedItem in                
+            .subscribe(with: self) { owner, selectedItem in
                 let vc = PostDetailVC(
                     viewModel: PostDetailViewModel(
                         postDetail: BehaviorRelay(value: selectedItem.1),
@@ -91,7 +104,6 @@ extension ProfileVC {
     }
     
     func configureVC() {
-        navigationItem.rightBarButtonItem = rightBarButton
-        
+        navigationItem.rightBarButtonItem = settingButton
     }
 }
