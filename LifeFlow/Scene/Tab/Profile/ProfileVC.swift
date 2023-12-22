@@ -57,6 +57,20 @@ extension ProfileVC {
             }
             .disposed(by: viewModel.disposeBag)
         
+        Observable.zip(mainView.postCollectionView.rx.itemSelected, mainView.postCollectionView.rx.modelSelected(PostEntity.self))
+            .subscribe(with: self) { owner, selectedItem in                
+                let vc = PostDetailVC(
+                    viewModel: PostDetailViewModel(
+                        postDetail: BehaviorRelay(value: selectedItem.1),
+                        postRepository: PostRepository(),
+                        commentRepository: CommentRepository()
+                    )
+                )
+                vc.modalPresentationStyle = .fullScreen
+                owner.present(vc, animated: false)
+            }
+            .disposed(by: viewModel.disposeBag)
+        
         viewModel.isLoading
             .bind { isLoading in
                 if isLoading {
