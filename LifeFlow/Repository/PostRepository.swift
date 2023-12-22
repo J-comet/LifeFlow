@@ -134,6 +134,26 @@ final class PostRepository {
         }
     }
     
+    func getPostsByUser(id: String) -> Single<Result<PostListEntity, PostGetError>> {
+        return Single.create { single in
+            Network.shared.request(
+                api: PostAPI.getPostsByUser(id: id),
+                type: PostListResponse.self
+            ).subscribe { result in
+                switch result {
+                case .success(let result):
+                    switch result {
+                    case .success(let value):
+                        single(.success(.success(value.toEntity())))
+                    case .failure(let error):
+                        single(.success(.failure(PostGetError(rawValue: error.statusCode) ?? .commonError)))
+                    }
+                case .failure:
+                    single(.success(.failure(PostGetError.commonError)))
+                }
+            }
+        }
+    }
 }
 
 enum PostCreateError: Int, Error {

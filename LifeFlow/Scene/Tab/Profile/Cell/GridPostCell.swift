@@ -10,14 +10,19 @@ import UIKit
 import Then
 import SnapKit
 
-final class GridPostCell: BaseCollectionViewCell<String> {
+final class GridPostCell: BaseCollectionViewCell<PostEntity> {
     
     private let thumbnailImageView = UIImageView().then {
         $0.backgroundColor = .systemGray5
+        $0.contentMode = .scaleAspectFill
+        $0.clipsToBounds = true
     }
     
-    override func configCell(row: String) {
-        
+    override func configCell(row: PostEntity) {
+        guard let image = row.image.first else {
+            return
+        }
+        thumbnailImageView.loadImage(from: image)
     }
     
     override func configureHierarchy() {

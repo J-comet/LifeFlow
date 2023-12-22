@@ -81,7 +81,12 @@ extension TabBarVC {
             case .emty:
                 return EmptyVC()
             case .profile:
-                return ProfileVC(viewModel: ProfileViewModel(profileRepository: ProfileRepository()))
+                return ProfileVC(
+                    viewModel: ProfileViewModel(
+                        profileRepository: ProfileRepository(),
+                        postRepository: PostRepository()
+                    )
+                )
             }
         }
         

@@ -15,6 +15,7 @@ enum PostAPI {
     case delete(request: PostDeleteRequest)
     case edit(id: String)
     case like(id: String)
+    case getPostsByUser(id: String) // 유저별 작성한 포스트 조회
 }
 
 extension PostAPI: Router, URLRequestConvertible {
@@ -35,6 +36,8 @@ extension PostAPI: Router, URLRequestConvertible {
             "post/\(id)"
         case .like(let id):
             "post/like/\(id)"
+        case .getPostsByUser(let id):
+            "post/user/\(id)"
         }
     }
     
@@ -50,6 +53,8 @@ extension PostAPI: Router, URLRequestConvertible {
                 .put
         case .like:
                 .post
+        case .getPostsByUser:
+                .get
         }
     }
     
@@ -61,7 +66,7 @@ extension PostAPI: Router, URLRequestConvertible {
                 "SesacKey": APIManagement.key,
                 "Content-Type": "multipart/form-data"
             ]
-        case .getPosts, .delete, .like:
+        case .getPosts, .delete, .like, .getPostsByUser:
             [
                 "Authorization": UserDefaults.token,
                 "SesacKey": APIManagement.key,
@@ -72,7 +77,7 @@ extension PostAPI: Router, URLRequestConvertible {
     
     var parameters: [String: String]? {
         switch self {
-        case .create, .delete, .edit, .like:
+        case .create, .delete, .edit, .like, .getPostsByUser:
             nil
         case .getPosts(let request):
             request.toEncodable
@@ -92,6 +97,8 @@ extension PostAPI: Router, URLRequestConvertible {
         case .edit:
             URLEncoding.default
         case .like:
+            URLEncoding.default
+        case .getPostsByUser:
             URLEncoding.default
         }
     }

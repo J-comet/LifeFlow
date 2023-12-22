@@ -25,7 +25,7 @@ final class ProfileVC: BaseViewController<ProfileView, ProfileViewModel> {
         bindViewModel()
         configureVC()
         
-        viewModel.fetchMyInfo()
+        viewModel.fetchData()
     }
 }
 
@@ -51,7 +51,7 @@ extension ProfileVC {
             }
             .disposed(by: viewModel.disposeBag)
         
-        viewModel.postIds
+        viewModel.posts
             .bind(to: mainView.postCollectionView.rx.items(cellIdentifier: GridPostCell.identifier, cellType: GridPostCell.self)) { (row, element, cell) in
                 cell.configCell(row: element)
             }
