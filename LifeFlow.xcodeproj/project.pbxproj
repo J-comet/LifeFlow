@@ -42,6 +42,7 @@
 		C02C06D52B074F2C00E9AB93 /* BasicTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02C06D32B074F2C00E9AB93 /* BasicTextField.swift */; };
 		C02C06D62B074F2C00E9AB93 /* BasicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02C06D42B074F2C00E9AB93 /* BasicButton.swift */; };
 		C02C06D92B0751A800E9AB93 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = C02C06D82B0751A800E9AB93 /* Then */; };
+		C04E5EE82B35530A00A91E8D /* GridPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04E5EE72B35530A00A91E8D /* GridPostCell.swift */; };
 		C05352962B220D060077EF3C /* TitleSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05352952B220D060077EF3C /* TitleSupplementaryView.swift */; };
 		C05352982B2217500077EF3C /* PostHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05352972B2217500077EF3C /* PostHeaderView.swift */; };
 		C053529B2B221A180077EF3C /* PostCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C053529A2B221A180077EF3C /* PostCommentCell.swift */; };
@@ -165,6 +166,7 @@
 		C02C06D12B074CCB00E9AB93 /* ViewModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		C02C06D32B074F2C00E9AB93 /* BasicTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicTextField.swift; sourceTree = "<group>"; };
 		C02C06D42B074F2C00E9AB93 /* BasicButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicButton.swift; sourceTree = "<group>"; };
+		C04E5EE72B35530A00A91E8D /* GridPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridPostCell.swift; sourceTree = "<group>"; };
 		C05352952B220D060077EF3C /* TitleSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSupplementaryView.swift; sourceTree = "<group>"; };
 		C05352972B2217500077EF3C /* PostHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostHeaderView.swift; sourceTree = "<group>"; };
 		C053529A2B221A180077EF3C /* PostCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCommentCell.swift; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 		C02028A02B15D312008FB1EA /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				C04E5EE62B3552EA00A91E8D /* Cell */,
 				C02028A12B15D32A008FB1EA /* ProfileVC.swift */,
 				C02028A32B15D33A008FB1EA /* ProfileView.swift */,
 				C02028A52B15D342008FB1EA /* ProfileViewModel.swift */,
@@ -434,6 +437,14 @@
 				C07FA7A62B01E43D000B93F3 /* Assets.xcassets */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		C04E5EE62B3552EA00A91E8D /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C04E5EE72B35530A00A91E8D /* GridPostCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		C05352942B220CD50077EF3C /* CommonCellHeaderView */ = {
@@ -925,6 +936,7 @@
 				C0729D6D2B10893400CEA6F0 /* SignupViewModel.swift in Sources */,
 				C0E84F782B1F331900EB0B23 /* BaseInterceptor.swift in Sources */,
 				C02C06D52B074F2C00E9AB93 /* BasicTextField.swift in Sources */,
+				C04E5EE82B35530A00A91E8D /* GridPostCell.swift in Sources */,
 				C0F5AAF52B1C482E00B3D102 /* PostListResponse.swift in Sources */,
 				C02028D22B17845A008FB1EA /* PostInputView.swift in Sources */,
 				C0729D622B1080E100CEA6F0 /* SpoqaHanSansNeoFonts.swift in Sources */,
