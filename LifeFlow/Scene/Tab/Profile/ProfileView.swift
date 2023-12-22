@@ -12,7 +12,7 @@ import SnapKit
 
 final class ProfileView: BaseView {
     
-    private let profileImageView = UIImageView().then {
+    let profileImageView = UIImageView().then {
         $0.image = UIImage().defaultUser
     }
     
@@ -21,12 +21,12 @@ final class ProfileView: BaseView {
         $0.spacing = 4
     }
     
-    private let nicknameLabel = BasicLabel().then {
+    let nicknameLabel = BasicLabel().then {
         $0.font(weight: .regular, size: 14)
         $0.textColor = .text
     }
     
-    private let emailLabel = BasicLabel().then {
+    let emailLabel = BasicLabel().then {
         $0.font(weight: .regular, size: 14)
         $0.textColor = .text
     }

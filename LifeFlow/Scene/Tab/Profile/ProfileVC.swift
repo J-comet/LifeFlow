@@ -24,6 +24,8 @@ final class ProfileVC: BaseViewController<ProfileView, ProfileViewModel> {
         super.viewDidLoad()
         bindViewModel()
         configureVC()
+        
+        viewModel.fetchMyInfo()
     }
 }
 
@@ -38,10 +40,38 @@ extension ProfileVC {
             }
             .disposed(by: viewModel.disposeBag)
         
-        Observable.just(["1","3","4","5","6","7","8","9","1","2","3","4","5"])
-            .asDriver(onErrorJustReturn: [])
-            .drive(mainView.postCollectionView.rx.items(cellIdentifier: GridPostCell.identifier, cellType: GridPostCell.self)) { (row, element, cell) in
+        viewModel.myInfo
+            .bind(with: self) { owner, entity in
+                guard let entity else {
+                    return
+                }
+                owner.mainView.emailLabel.text = entity.email
+                owner.mainView.nicknameLabel.text = entity.nick
+                owner.mainView.profileImageView.loadImage(from: entity.profile, placeHolderImage: UIImage().defaultUser)
+            }
+            .disposed(by: viewModel.disposeBag)
+        
+        viewModel.postIds
+            .bind(to: mainView.postCollectionView.rx.items(cellIdentifier: GridPostCell.identifier, cellType: GridPostCell.self)) { (row, element, cell) in
                 cell.configCell(row: element)
+            }
+            .disposed(by: viewModel.disposeBag)
+        
+        viewModel.isLoading
+            .bind { isLoading in
+                if isLoading {
+                    LoadingIndicator.show()
+                } else {
+                    LoadingIndicator.hide()
+                }
+            }
+            .disposed(by: viewModel.disposeBag)
+        
+        
+        viewModel.errorMessage
+            .bind(with: self) { owner, message in
+                print(message)
+                owner.showToast(msg: message)
             }
             .disposed(by: viewModel.disposeBag)
     }
