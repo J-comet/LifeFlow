@@ -21,12 +21,12 @@ final class ProfileVC: BaseViewController<ProfileView, ProfileViewModel> {
 
     private lazy var menu = UIMenu(title: "",  children: self.actions)
     
-    private let settingHandler: (_ action: UIAction) -> Void = { action in
+    private lazy var settingHandler: (_ action: UIAction) -> Void = { action in
       switch action.identifier.rawValue {
       case "edit_profile":
         print("프로필수정 화면으로 이동")
       case "logout":
-        print("로그아웃 하기")
+          self.logout()
       case "withdraw":
         print("회원탈퇴 하기")
       default:
@@ -46,6 +46,17 @@ final class ProfileVC: BaseViewController<ProfileView, ProfileViewModel> {
         configureVC()
         
         viewModel.fetchData()
+    }
+    
+    private func logout() {
+        showAlert(title: "", msg: "로그아웃 하시겠습니까?", ok: "확인", no: "취소") { _ in
+            UserDefaults.isLogin = false
+            UserDefaults.token = ""
+            UserDefaults.refreshToken = ""
+            let window = UIApplication.shared.connectedScenes.first as? UIWindowScene
+            let vc = LoginVC(viewModel: LoginViewModel(userRepository: AuthRepository()))
+            window?.windows.first?.rootViewController = UINavigationController(rootViewController: vc)
+        }
     }
 }
 

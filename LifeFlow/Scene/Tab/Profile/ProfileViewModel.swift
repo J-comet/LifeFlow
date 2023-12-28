@@ -38,7 +38,6 @@ final class ProfileViewModel: BaseViewModel {
             guard let self else { return }
             self.myInfo.accept(_myInfo)
             self.posts.accept(_posts)
-            self.errorMessage.accept(_errorMsg)
             self.isLoading.accept(false)
         }
     }
