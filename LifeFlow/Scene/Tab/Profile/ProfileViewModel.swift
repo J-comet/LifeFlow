@@ -13,13 +13,16 @@ import RxCocoa
 final class ProfileViewModel: BaseViewModel {
     private var profileRepository: ProfileRepository
     private var postRepository: PostRepository
+    private var authRepository: AuthRepository
     
     init(
         profileRepository: ProfileRepository,
-        postRepository: PostRepository
+        postRepository: PostRepository,
+        authRepository: AuthRepository
     ) {
         self.profileRepository = profileRepository
         self.postRepository = postRepository
+        self.authRepository = authRepository
     }
     
     private let dispatchGroup = DispatchGroup()
@@ -29,6 +32,7 @@ final class ProfileViewModel: BaseViewModel {
     private var _errorMsg = ""
     let myInfo: BehaviorRelay<UserInfoEntity?> = BehaviorRelay(value: nil)
     let posts: BehaviorRelay<[PostEntity]> = BehaviorRelay(value: [])
+    let withdrawStatus = BehaviorRelay(value: false)
     
     func fetchData() {
         isLoading.accept(true)
@@ -73,5 +77,19 @@ final class ProfileViewModel: BaseViewModel {
             .disposed(by: disposeBag)
     }
     
+    func withdraw() {
+        isLoading.accept(true)
+        authRepository.withdraw()
+            .subscribe(with: self) { owner, result in
+                switch result {
+                case .success:
+                    owner.withdrawStatus.accept(true)
+                case .failure(let error):
+                    owner._errorMsg = error.message
+                }
+                owner.isLoading.accept(false)
+            }
+            .disposed(by: disposeBag)
+    }
     
 }

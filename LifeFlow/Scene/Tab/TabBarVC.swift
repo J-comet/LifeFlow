@@ -84,7 +84,8 @@ extension TabBarVC {
                 return ProfileVC(
                     viewModel: ProfileViewModel(
                         profileRepository: ProfileRepository(),
-                        postRepository: PostRepository()
+                        postRepository: PostRepository(),
+                        authRepository: AuthRepository()
                     )
                 )
             }

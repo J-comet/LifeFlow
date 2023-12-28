@@ -25,8 +25,7 @@ final class Network {
         return Single.create { single -> Disposable in
             AF.request(api, interceptor: BaseInterceptor())
                 .validate()
-                .responseDecodable(of: T.self) { response in
-                    
+                .responseData(completionHandler: { response in
                     print(response.request?.url)
                     
                     var jsonString = "JSON 데이터 없음"
@@ -36,12 +35,17 @@ final class Network {
                     let statusCode = response.response?.statusCode ?? -1
                     let errorMessage = "<\(self)> : [JSONDecoder Error] code = \(statusCode)\njsonString = \(jsonString)"
                     
-//                    print("request = ", jsonString)
-                    
                     switch response.result {
                     case .success(let data):
                         if statusCode == 200 {
-                            single(.success(.success(data)))
+                            do {
+                                let result = try JSONDecoder().decode(T.self, from: data)
+                                single(.success(.success(result)))
+                            } catch {
+                                print(errorMessage)
+                                single(.success(.failure(.init(statusCode: 600))))
+                            }
+
                         } else {
                             //                        let error = NSError(domain: errorMessage, code: statusCode)
                             let error = NetworkError(statusCode: statusCode)
@@ -53,11 +57,40 @@ final class Network {
                         let error = NetworkError(statusCode: statusCode)
                         single(.success(.failure(error)))
                     }
-                }
+                })
+            //                .responseDecodable(of: T.self) { response in
+            //
+            //                    print(response.request?.url)
+            //
+            //                    var jsonString = "JSON 데이터 없음"
+            //                    if let data = response.data {
+            //                        jsonString = String(decoding: data, as: UTF8.self)
+            //                    }
+            //                    let statusCode = response.response?.statusCode ?? -1
+            //                    let errorMessage = "<\(self)> : [JSONDecoder Error] code = \(statusCode)\njsonString = \(jsonString)"
+            //
+            ////                    print("request = ", jsonString)
+            //
+            //                    switch response.result {
+            //                    case .success(let data):
+            //                        if statusCode == 200 {
+            //                            single(.success(.success(data)))
+            //                        } else {
+            //                            //                        let error = NSError(domain: errorMessage, code: statusCode)
+            //                            let error = NetworkError(statusCode: statusCode)
+            //                            single(.success(.failure(error)))
+            //                        }
+            //
+            //                    case .failure(let _):
+            //                        //                    let error = NSError(domain: errorMessage, code: statusCode)
+            //                        let error = NetworkError(statusCode: statusCode)
+            //                        single(.success(.failure(error)))
+            //                    }
+            //                }
             return Disposables.create()
         }
     }
-
+    
     func upload<T: Decodable>(
         api: Router,
         type: T.Type,

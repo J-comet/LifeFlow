@@ -28,7 +28,7 @@ final class ProfileVC: BaseViewController<ProfileView, ProfileViewModel> {
       case "logout":
           self.logout()
       case "withdraw":
-        print("회원탈퇴 하기")
+          self.withdraw()
       default:
         break
       }
@@ -49,13 +49,23 @@ final class ProfileVC: BaseViewController<ProfileView, ProfileViewModel> {
     }
     
     private func logout() {
-        showAlert(title: "", msg: "로그아웃 하시겠습니까?", ok: "확인", no: "취소") { _ in
-            UserDefaults.isLogin = false
-            UserDefaults.token = ""
-            UserDefaults.refreshToken = ""
-            let window = UIApplication.shared.connectedScenes.first as? UIWindowScene
-            let vc = LoginVC(viewModel: LoginViewModel(userRepository: AuthRepository()))
-            window?.windows.first?.rootViewController = UINavigationController(rootViewController: vc)
+        showAlert(title: "", msg: "로그아웃 하시겠습니까?", ok: "확인", no: "취소") { [weak self] _ in
+            self?.reset()
+        }
+    }
+    
+    private func reset() {
+        UserDefaults.isLogin = false
+        UserDefaults.token = ""
+        UserDefaults.refreshToken = ""
+        let window = UIApplication.shared.connectedScenes.first as? UIWindowScene
+        let vc = LoginVC(viewModel: LoginViewModel(userRepository: AuthRepository()))
+        window?.windows.first?.rootViewController = UINavigationController(rootViewController: vc)
+    }
+    
+    private func withdraw() {
+        showAlert(title: "회원탈퇴", msg: "모든 정보는 삭제됩니다", ok: "탈퇴", no: "취소") { [weak self] _ in
+            self?.viewModel.withdraw()
         }
     }
 }
@@ -92,6 +102,15 @@ extension ProfileVC {
                 )
                 vc.modalPresentationStyle = .fullScreen
                 owner.present(vc, animated: false)
+            }
+            .disposed(by: viewModel.disposeBag)
+        
+        viewModel.withdrawStatus
+            .bind(with: self) { owner, isSuccess in
+                if isSuccess {
+                    print("회원 탈퇴 성공")
+                    owner.reset()
+                }
             }
             .disposed(by: viewModel.disposeBag)
         

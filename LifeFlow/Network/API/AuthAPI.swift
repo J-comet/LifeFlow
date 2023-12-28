@@ -10,9 +10,10 @@ import Foundation
 import Alamofire
 
 enum AuthAPI {
-    case chkDuplicateEmail(request: DuplicateEmailRequest)   // 중복이메일 체크
+    case chkDuplicateEmail(request: DuplicateEmailRequest)     // 중복이메일 체크
     case join(request: JoinRequest)                         // 회원가입
     case login(request: LoginRequest)                       // 로그인
+    case withdraw                                          // 회원탈퇴
 }
 
 extension AuthAPI: Router, URLRequestConvertible {
@@ -29,6 +30,8 @@ extension AuthAPI: Router, URLRequestConvertible {
             "join"
         case .login:
             "login"
+        case .withdraw:
+            "withdraw"
         }
     }
     
@@ -40,11 +43,22 @@ extension AuthAPI: Router, URLRequestConvertible {
                 .post
         case .login:
                 .post
+        case .withdraw:
+                .get
         }
     }
     
     var headers: [String:String] {
-        Constant.Network.defaultHttpHeaders
+        switch self {
+        case .chkDuplicateEmail, .join, .login:
+            Constant.Network.defaultHttpHeaders
+        case .withdraw:
+            [
+                "Authorization": UserDefaults.token,
+                "SesacKey": APIManagement.key
+            ]
+        }
+        
     }
     
     var parameters: [String: String]? {
@@ -55,6 +69,8 @@ extension AuthAPI: Router, URLRequestConvertible {
             request.toEncodable
         case .login(let request):
             request.toEncodable
+        case .withdraw:
+            nil
         }
     }
     
@@ -62,12 +78,10 @@ extension AuthAPI: Router, URLRequestConvertible {
     // post = JSONEncoding.default
     var encoding: ParameterEncoding? {
         switch self {
-        case .chkDuplicateEmail:
+        case .chkDuplicateEmail, .join, .login:
             JSONEncoding.default
-        case .join:
-            JSONEncoding.default
-        case .login:
-            JSONEncoding.default
+        case .withdraw:
+            URLEncoding.default
         }
     }
     
@@ -81,12 +95,6 @@ extension AuthAPI: Router, URLRequestConvertible {
         if let encoding = encoding {
             return try encoding.encode(request, with: parameters)
         }
-        
-        //        if method == HTTPMethod.get {
-        //            request = try URLEncodedFormParameterEncoder(destination: .methodDependent).encode(parameters, into: request)
-        //        } else {
-        //            request = try JSONParameterEncoder.default.encode(parameters, into: request)
-        //        }
         return request
     }
     
