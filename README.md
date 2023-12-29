@@ -13,7 +13,7 @@
 <br>
 
 ### 미리보기
-![라이프플로우 001](https://github.com/J-comet/traveltune/assets/67407666/4ae09c54-4afe-4bb0-9017-1f7424284dbb)
+![라이프플로우 001](https://github.com/J-comet/traveltune/assets/67407666/6e32dad6-c576-4f93-9450-01d5850b6d95)
 
 <br>
 
