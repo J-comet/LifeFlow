@@ -31,7 +31,7 @@
 <br>
 
 ### 서버
-- SeSAC iOS 앱 개발자 데뷔과정 교육생에게 제한적으로 제공되는 API 서버
+- SeSAC iOS 앱 개발자 데뷔과정 교육생에게 제한적으로 제공되는 API 서버를 사용합니다.
 
 <br>
 
@@ -44,11 +44,11 @@
 <br>
 
 ### 개발 고려사항
-- 데이터에 변동에 따라 UI 갱신되도록 MVVM 디자인패턴 적용
-- Alamofire RequestInterceptor 를 활용해 AccessToken 관리
-- DTO 적용해 서버의 파라미터명이 변경되어도 비정상적인 종료 방지
-- RxSwift Single 활용해 Error 발생시에도 구독이 해제되지 않도록 구현
-- 업로드 가능한 최대 용량에 따라 이미지 리사이징 후 다중이미지 업로드 구현
-- enum 활용해 APIError 코드별로 분기 처리
+- 데이터에 변동에 따라 UI 갱신되도록 MVVM 디자인패턴 적용 했습니다.
+- Alamofire RequestInterceptor 를 활용해 AccessToken 을 관리 했습니다.
+- DTO 적용해 서버의 파라미터명이 변경되어도 비정상적인 종료를 방지 했습니다.
+- RxSwift Single 활용해 Error 발생시에도 구독이 해제되지 않도록 구현 했습니다.
+- 업로드 가능한 최대 용량에 따라 이미지 리사이징 후 다중이미지 업로드 구현 했습니다.
+- enum 활용해 APIError 코드별로 분기 처리 했습니다.
 
 
