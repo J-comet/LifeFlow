@@ -13,7 +13,7 @@
 <br>
 
 ### 미리보기
-![라이프플로우 001](https://github.com/J-comet/LifeFlow/assets/67407666/4af6b50e-55f4-4ac2-82c2-96baf8d1e905)
+![라이프플로우 001](https://github.com/J-comet/traveltune/assets/67407666/4ae09c54-4afe-4bb0-9017-1f7424284dbb)
 
 <br>
 
