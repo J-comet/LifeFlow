@@ -22,11 +22,11 @@
 |:----:|:-----:|
 | Architecture | `MVVM` |
 |  UI  | `SnapKit` |
-| Reactive | `RxSwift` `RxDataSources` |
+| Reactive | `RxSwift` `RxDataSources` `RxGesture` |
 |  Network  | `Alamofire` |
 |  Image  | `Kingfisher` |
 |  Dependency Manager  | `SPM` |
-| Etc | `Then` |
+| Etc | `Then` `Toast` `IQKeyboardManagerSwift` |
 
 <br>
 
