@@ -166,7 +166,7 @@ final class PostHeaderView: UICollectionReusableView, BaseCellProtocol {
         }
         
         containerView.snp.makeConstraints { make in
-            make.top.equalTo(horizontalImgCollectionView.snp.bottom)
+            make.top.equalTo(horizontalImgCollectionView.snp.bottom).offset(8)
             make.horizontalEdges.equalToSuperview()
             make.bottom.equalToSuperview()  // snapKit error 발생
         }
